@@ -1,13 +1,18 @@
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/socket.h>
+#include <netinet/in.h>
 #include <netdb.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/select.h>
 #include <errno.h>
 #define CONNECT_ERROR -1
 #define REC_ERROR -1
+
+
+
+
+
 
 ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
@@ -42,8 +47,8 @@ void error(const char *msg)
     exit(1);
 }
 
-int connect_socket(char *hostname){
-
+int connect_socket(char *hostname,int a){
+  int sock;
   struct sockaddr_in sock_host;
   //get the socket
   sock= socket(AF_INET, SOCK_STREAM, 0);
@@ -59,7 +64,7 @@ int connect_socket(char *hostname){
 
   sock_host.sin_addr = *addr;
   sock_host.sin_family = AF_INET;
-  sock_host.sin_port = htons(atoi(argv[2]));
+  sock_host.sin_port = htons(a);
 
   //connect to remote socket
   int connection = connect(sock, (struct sockaddr*)&sock_host, sizeof(sock_host));
@@ -85,11 +90,10 @@ int main(int argc,char** argv)
     char msg_recv[msg_size];
     char msg_sent[msg_size];
     fd_set fd_set_read;
-
     memset(msg_sent, 0, msg_size);
     memset(msg_recv, 0, msg_size);
 
-    sock = connect_socket(hostname);
+    sock = connect_socket("localhost",atoi(argv[2]));
 
     //get user input
     //readline()
@@ -100,7 +104,8 @@ int main(int argc,char** argv)
       FD_SET(fileno(stdin), &fd_set_read);
       int max_fd = sock+1;
 
-      int sel= select(max_fd, &fd_read, NULL, NULL, NULL );
+      int sel= select(max_fd, &fd_set_read, NULL, NULL, NULL );
+      int i;
 
       for (i=0; 0<max_fd && sel>0; i++){
         if (FD_ISSET(i, &fd_set_read)){
@@ -127,10 +132,7 @@ int main(int argc,char** argv)
         }
       }
         }
-      }
       close(sock);
-
-      getchar();
 
       return 0;
 
