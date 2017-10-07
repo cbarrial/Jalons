@@ -50,12 +50,10 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    struct sockaddr_in csin;
+
     struct sockaddr_in sin;
-    socklen_t taille = sizeof(csin);
     int msg_size=1000;
     char msg[msg_size];
-    int csock;
     int sock ;
     int bind_err;
     int list_err;
@@ -93,50 +91,82 @@ int main(int argc, char** argv)
 
         //specify the socket to be a server socket and listen for at most 20 concurrent client
         //listen()
-        list_err=listen(sock, 2);
+        list_err=listen(sock, 20);
         if (list_err == LISTEN_ERROR){
           error("listen");
         }
         else {
           printf("Connection on the port %d\n", atoi(argv[1]));
 
+          //init the fdset
+          fd_set lecture;
+          int client[20];
+          int n=0;
 
-          for (;;){
+          while (1){
 
-          //accept connection from client
-          csock = accept(sock, (struct sockaddr*)&csin, &taille);
-          if (csock == BIND_ERROR){
-            error("accept");
-          }
-          else {
-              printf("A client is connecting with the socket %d\n", csock);
+            FD_ZERO(&lecture);
+            FD_SET(STDIN_FILENO,&lecture);
+            FD_SET(sock,&lecture);
 
-              while(1){
-
-                //clean msg
-                memset(msg, 0, msg_size);
-
-                //read what the client has to say
-                int size=readline(csock,msg,msg_size);
-
-                printf("Message received\n");
-                //we write back to the client
-
-                write(csock, msg, size);
+            select(sock+1,&lecture,NULL,NULL,NULL);
 
 
+            for (int i=0;i < n ;i++ ){
+              FD_SET(client[i], &lecture);
+            }
 
-              }
+            if (FD_ISSET(STDIN_FILENO,&lecture)!=0){
+              break;
+            }
+            else if (FD_ISSET(sock, &lecture)!=0){
+                struct sockaddr_in csin;
+                socklen_t taille = sizeof(csin);
+                int csock;
+
+                //accept connection from client
+                csock = accept(sock, (struct sockaddr*)&csin, &taille);
+                if (csock == BIND_ERROR){
+                  error("accept");
+                }
+                else {
+                  printf("A client is connecting with the socket %d\n", csock);
+
+                  while(1){
+
+                    //clean msg
+                    memset(msg, 0, msg_size);
+
+                    //read what the client has to say
+                    int size=readline(csock,msg,msg_size);
+
+                    printf("Message received\n");
+                    //we write back to the client
+
+                    write(csock, msg, size);
 
 
-              //clean up client socket
-              close(csock);
+
+                  }
+
+                client[n]=csock;
+                n++;
+
+            }
+
+
+
         }
-        }
-}
-}
-}
 
+
+      }
+      for (int i=0; i<n; i++){
+        close(client[i]);
+      }
+
+}
+}
+}
 
 
 
