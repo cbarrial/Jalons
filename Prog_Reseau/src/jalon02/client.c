@@ -99,7 +99,7 @@ int main(int argc,char** argv)
     //readline()
     for (;;) {
 
-      FD_ZEROS(&fd_set_read);
+      FD_ZERO(&fd_set_read);
       FD_SET(sock, &fd_set_read);
       FD_SET(fileno(stdin), &fd_set_read);
       int max_fd = sock+1;
