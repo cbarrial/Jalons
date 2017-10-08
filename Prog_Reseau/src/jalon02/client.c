@@ -10,10 +10,6 @@
 #define REC_ERROR -1
 
 
-
-
-
-
 ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
   char caract, *tab;
@@ -58,7 +54,6 @@ int connect_socket(char *hostname,int a){
   struct hostent *res;
   struct in_addr* addr;
 
-  //char *hostname = "localhost";
   res=gethostbyname(hostname);
   addr = (struct in_addr*) res->h_addr_list[0];
 
@@ -99,17 +94,17 @@ int main(int argc,char** argv)
     //readline()
     for (;;) {
 
-      FD_ZEROS(&fd_set_read);
+      FD_ZERO(&fd_set_read);
       FD_SET(sock, &fd_set_read);
       FD_SET(fileno(stdin), &fd_set_read);
       int max_fd = sock+1;
 
-      int sel= select(max_fd, &fd_set_read, NULL, NULL, NULL );
+      select(max_fd, &fd_set_read, NULL, NULL, NULL );
       int i;
 
-      for (i=0; 0<max_fd && sel>0; i++){
-        if (FD_ISSET(i, &fd_set_read)){
-          if (i == STDIN_FILENO){
+      //From the standart input
+      if (FD_ISSET(fileno(stdin), &fd_set_read)){
+
             while (1){
               printf("\nEnter your message:\n");
               fflush(stdout);
@@ -119,7 +114,8 @@ int main(int argc,char** argv)
                 exit(1);
               }
             }
-            else{
+      else if (FD_ISSET(sock, &fd_set_read)){
+        
               while (1){
                 memset(msg_recv, '\0', msg_size);
                 readline(sock,msg_recv,msg_size);
@@ -128,10 +124,8 @@ int main(int argc,char** argv)
                 write(1,msg_recv,strlen(msg_recv));
               }
             }
-            sel--;
         }
-      }
-        }
+
       close(sock);
 
       return 0;

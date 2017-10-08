@@ -111,15 +111,20 @@ int main(int argc, char** argv)
 
             select(sock+1,&lecture,NULL,NULL,NULL);
 
+            int i;
 
-            for (int i=0;i < n ;i++ ){
+            //add new client's socket
+            for (i=0;i < n ;i++ ){
               FD_SET(client[i], &lecture);
             }
 
+            // From the standart input
             if (FD_ISSET(STDIN_FILENO,&lecture)!=0){
               break;
             }
             else if (FD_ISSET(sock, &lecture)!=0){
+
+                //New client
                 struct sockaddr_in csin;
                 socklen_t taille = sizeof(csin);
                 int csock;
@@ -127,11 +132,12 @@ int main(int argc, char** argv)
                 //accept connection from client
                 csock = accept(sock, (struct sockaddr*)&csin, &taille);
                 if (csock == BIND_ERROR){
-                  eis:pr is:open rror("accept");
+                  error("accept");
                 }
                 else {
                   printf("A client is connecting with the socket %d\n", csock);
 
+                  //Message from client
                   while(1){
 
                     //clean msg
@@ -148,19 +154,19 @@ int main(int argc, char** argv)
 
 
                   }
-
+                //Add client
+                FD_SET(csock, &lecture);
                 client[n]=csock;
                 n++;
 
             }
-
-
-
         }
 
 
       }
-      for (int i=0; i<n; i++){
+      //close sockets
+      int i;
+      for (i=0; i<n; i++){
         close(client[i]);
       }
 
