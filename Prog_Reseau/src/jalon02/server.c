@@ -127,7 +127,7 @@ int main(int argc, char** argv)
                 //accept connection from client
                 csock = accept(sock, (struct sockaddr*)&csin, &taille);
                 if (csock == BIND_ERROR){
-                  error("accept");
+                  eis:pr is:open rror("accept");
                 }
                 else {
                   printf("A client is connecting with the socket %d\n", csock);
