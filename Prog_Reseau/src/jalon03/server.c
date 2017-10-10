@@ -8,6 +8,10 @@
 #define SOCKET_ERROR -1
 #define BIND_ERROR -1
 #define LISTEN_ERROR -1
+typedef struct {
+  int sockclient;
+  char name[50];
+}client;
 
 ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
@@ -54,9 +58,11 @@ int main(int argc, char** argv)
     struct sockaddr_in sin;
     int msg_size=1000;
     char msg[msg_size];
+    char introduce[1000];
     int sock ;
     int bind_err;
     int list_err;
+
 
     //create the socket
     sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -99,16 +105,18 @@ int main(int argc, char** argv)
           //init the fdset
           fd_set lecture;
           int n=20;
-          int client[n];
+
+          client tabclient[n];
           int csock;
           int conex=0;
           int i;
 
 
           for (i=0;i < n ;i++ ){
-            client[i]=0;
+
+            tabclient[i].sockclient=0;
           }
-          client[0]=sock;
+          tabclient[0].sockclient=sock;
           conex=conex+1;
 
           for (;;){
@@ -119,11 +127,11 @@ int main(int argc, char** argv)
             int i;
             int max_sock=sock;
             for (i=0;i<n;i++){
-              if (client[i]>0){
-                FD_SET(client[i],&lecture);
+              if (tabclient[i].sockclient>0){
+                FD_SET(tabclient[i].sockclient,&lecture);
               }
-              if (client[i]>max_sock){
-                max_sock=client[i];
+              if (tabclient[i].sockclient>max_sock){
+                max_sock=tabclient[i].sockclient;
               }
             }
 
@@ -144,23 +152,35 @@ int main(int argc, char** argv)
               else {
                 printf("Client %d is connecting with the socket %d\n", csock-3,csock);
                 conex=conex+1;
-                client[conex-1]=csock;
+                tabclient[conex-1].sockclient=csock;
+                if (tabclient[conex-1].name[50] = ""){
+                  printf("bonjour\n");
+                  *introduce="[SERVER] please introduce yourself by using /nick <your pseudo>";
+                  write(csock, introduce, strlen(introduce));
+
+                  }
+                }
               }
             }
 
 
             for (i=1;i<n;i++){
               memset(msg, 0, msg_size);
-              if (FD_ISSET(client[i], &lecture)!=0){
-                int size=readline(client[i],msg,msg_size);
+              if (FD_ISSET(tabclient[i].sockclient, &lecture)!=0){
+                int size=readline(tabclient[i].sockclient,msg,msg_size);
 
-                printf("Message received by client %d\n",client[i]-3);
+                printf("Message received by client %d\n",tabclient[i].sockclient-3);
+
+                /*bool b=contains("/nick", msg);
+                if (b){
+
+                }*/
                 //we write back to the client
                 if (strcmp(msg, "quit\n") == 0){
                   //write(client[i], ms, size);
-                  int clos=client[i]-3;
-                  close(client[i]);
-                  client[i]=0;
+                  int clos=tabclient[i].sockclient-3;
+                  close(tabclient[i].sockclient);
+                  tabclient[i].sockclient=0;
                   conex=conex-1;
                   printf("Client %d is deconnected\n",clos);
                   if (conex<=1){
@@ -168,7 +188,7 @@ int main(int argc, char** argv)
                   }
                 }
 
-                write(client[i], msg, size);
+                write(tabclient[i].sockclient, msg, size);
               }
             }
             if (strcmp(msg, "quit\n") == 0){
