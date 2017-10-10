@@ -66,7 +66,6 @@ int main(int argc, char** argv)
       error("socket");
     }
     else {
-      printf("Socket %d\n", sock);
 
       //init the sin structure
 
@@ -87,7 +86,6 @@ int main(int argc, char** argv)
         error("bind");
       }
       else {
-        printf("Port %d\n", atoi(argv[1]));
 
         //specify the socket to be a server socket and listen for at most 20 concurrent client
         //listen()
@@ -100,75 +98,96 @@ int main(int argc, char** argv)
 
           //init the fdset
           fd_set lecture;
-          int client[20];
-          int n=0;
+          int n=20;
+          int client[n];
+          int csock;
+          int conex=0;
+          int i;
 
-          while (1){
+
+          for (i=0;i < n ;i++ ){
+            client[i]=0;
+          }
+          client[0]=sock;
+          conex=conex+1;
+
+          for (;;){
 
             FD_ZERO(&lecture);
-            FD_SET(STDIN_FILENO,&lecture);
             FD_SET(sock,&lecture);
 
-            select(sock+1,&lecture,NULL,NULL,NULL);
-
-
-            for (int i=0;i < n ;i++ ){
-              FD_SET(client[i], &lecture);
+            int i;
+            int max_sock=sock;
+            for (i=0;i<n;i++){
+              if (client[i]>0){
+                FD_SET(client[i],&lecture);
+              }
+              if (client[i]>max_sock){
+                max_sock=client[i];
+              }
             }
 
-            if (FD_ISSET(STDIN_FILENO,&lecture)!=0){
+            int sel=select(max_sock+1,&lecture,NULL,NULL,NULL);
+            if (sel==-1){
+              error("select");
+            }
+
+            if (FD_ISSET(sock,&lecture)!=0){
+              struct sockaddr_in csin;
+              socklen_t taille = sizeof(csin);
+              csock = accept(sock, (struct sockaddr*)&csin, &taille);
+              if (csock == BIND_ERROR){
+
+                error("accept");
+
+              }
+              else {
+                printf("Client %d is connecting with the socket %d\n", csock-3,csock);
+                conex=conex+1;
+                client[conex-1]=csock;
+              }
+            }
+
+
+            for (i=1;i<n;i++){
+              memset(msg, 0, msg_size);
+              if (FD_ISSET(client[i], &lecture)!=0){
+                int size=readline(client[i],msg,msg_size);
+
+                printf("Message received by client %d\n",client[i]-3);
+                //we write back to the client
+                if (strcmp(msg, "quit\n") == 0){
+                  //write(client[i], ms, size);
+                  int clos=client[i]-3;
+                  close(client[i]);
+                  client[i]=0;
+                  conex=conex-1;
+                  printf("Client %d is deconnected\n",clos);
+                  if (conex<=1){
+                    break;
+                  }
+                }
+
+                write(client[i], msg, size);
+              }
+            }
+            if (strcmp(msg, "quit\n") == 0){
+              printf("Server is closed\n");
               break;
             }
-            else if (FD_ISSET(sock, &lecture)!=0){
-                struct sockaddr_in csin;
-                socklen_t taille = sizeof(csin);
-                int csock;
-
-                //accept connection from client
-                csock = accept(sock, (struct sockaddr*)&csin, &taille);
-                if (csock == BIND_ERROR){
-                  perror("accept");
-                }
-                else {
-                  printf("A client is connecting with the socket %d\n", csock);
-
-                  while(1){
-
-                    //clean msg
-                    memset(msg, 0, msg_size);
-
-                    //read what the client has to say
-                    int size=readline(csock,msg,msg_size);
-
-                    printf("Message received\n");
-                    //we write back to the client
-
-                    write(csock, msg, size);
 
 
 
-                  }
-
-                client[n]=csock;
-                n++;
-
-            }
+            //add new client's socket
 
 
+            // From the standart input
 
+
+          }
         }
-
-
       }
-      for (int i=0; i<n; i++){
-        close(client[i]);
-      }
-
-}
-}
-}
-
-
+    }
 
       //clean up server socket
       close(sock);
