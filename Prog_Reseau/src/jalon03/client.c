@@ -34,7 +34,23 @@ ssize_t readline(int fd, char str[], size_t maxlen){
   return i;
 }
 
+char *read_name(char tab1[],char tab2[]){
+  int j=0;
+  int i=0;
+  char msg[1000];
+  while (i<=strlen(tab1)){
+    if (tab1[i]==tab2[i]){
+      i++;
+    }
+    else {
+      msg[j]= tab1[i];
+      i++;
+      j++;
+    }
 
+  }
+  return msg;
+}
 
 void error(const char *msg)
 {
@@ -94,24 +110,45 @@ int main(int argc,char** argv)
     //readline()
     for (;;) {
 
+      int i=0;
       //send message to the server
       while (1){
-        printf("\nEnter your message:\n");
-        fflush(stdout);
-        readline(0,msg_sent,msg_size);
-        write(sock,msg_sent,strlen(msg_sent));
-        if (strcmp(msg_sent, "quit\n") == 0)
-          exit(1);
 
-        //handle_client_message()
-        memset(msg_recv, '\0', msg_size);
-        readline(sock,msg_recv,msg_size);
-        printf("[Server]: ");
-        fflush(stdout);
-        write(1,msg_recv,strlen(msg_recv));
-        printf("\n");
+        if (i==0){
+          printf("\n[SERVER] please introduce yourself by using /nick <your pseudo>\n");
+          fflush(stdout);
+          readline(0,msg_sent,msg_size);
+          write(sock,msg_sent,strlen(msg_sent));
+          if (strcmp(msg_sent, "quit\n") == 0)
+            exit(1);
 
+          //handle_client_message()
+          memset(msg_recv, '\0', msg_size);
+          readline(sock,msg_recv,msg_size);
+          char *name=read_name(msg_recv,"/nick ");
 
+          printf("[Server]: Welcome to the chat " );
+          fflush(stdout);
+          write(1,name,strlen(name));
+          printf("\n");
+          i++;
+        }
+        else{
+          printf("\nEnter your message :\n");
+          fflush(stdout);
+          readline(0,msg_sent,msg_size);
+          write(sock,msg_sent,strlen(msg_sent));
+          if (strcmp(msg_sent, "quit\n") == 0)
+            exit(1);
+
+          //handle_client_message()
+          memset(msg_recv, '\0', msg_size);
+          readline(sock,msg_recv,msg_size);
+          printf("[Server]: ");
+          fflush(stdout);
+          write(1,msg_recv,strlen(msg_recv));
+          printf("\n");
+        }
         }
       }
       close(sock);

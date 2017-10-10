@@ -58,7 +58,6 @@ int main(int argc, char** argv)
     struct sockaddr_in sin;
     int msg_size=1000;
     char msg[msg_size];
-    char introduce[1000];
     int sock ;
     int bind_err;
     int list_err;
@@ -145,23 +144,20 @@ int main(int argc, char** argv)
               socklen_t taille = sizeof(csin);
               csock = accept(sock, (struct sockaddr*)&csin, &taille);
               if (csock == BIND_ERROR){
-
                 error("accept");
-
               }
               else {
                 printf("Client %d is connecting with the socket %d\n", csock-3,csock);
                 conex=conex+1;
                 tabclient[conex-1].sockclient=csock;
-                if (tabclient[conex-1].name[50] = ""){
+                /*if (tabclient[conex-1].name[50] = ""){
                   printf("bonjour\n");
-                  *introduce="[SERVER] please introduce yourself by using /nick <your pseudo>";
-                  write(csock, introduce, strlen(introduce));
-
-                  }
+                  char *introduce="[SERVER] please introduce yourself by using /nick <your pseudo>\n";
+                  write(tabclient[conex-1].name[50], introduce, strlen(introduce));
+                }*/
                 }
               }
-            }
+
 
 
             for (i=1;i<n;i++){
