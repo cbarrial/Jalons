@@ -77,7 +77,7 @@ CMAKE_ECLIPSE_GENERATE_SOURCE_PROJECT:BOOL=FALSE
 
 //Additional command line arguments when Eclipse invokes make.
 // Enter e.g. -j<some_number> to get parallel builds
-CMAKE_ECLIPSE_MAKE_ARGUMENTS:STRING=-j8
+CMAKE_ECLIPSE_MAKE_ARGUMENTS:STRING=-j4
 
 //The version of Eclipse. If Eclipse has not been found, 3.6 (Helios)
 // is assumed.

@@ -134,6 +134,7 @@ int main(int argc, char** argv)
           for (i=0;i < n ;i++ ){
 
             tabclient[i].sockclient=0;
+            tabclient[i].name = "";
           }
           tabclient[0].sockclient=sock;
           conex=conex+1;
@@ -142,7 +143,7 @@ int main(int argc, char** argv)
 
             FD_ZERO(&lecture);
             FD_SET(sock,&lecture);
-            //tabclient[i].iden = 0;
+
 
             int i;
             int max_sock=sock;
@@ -171,6 +172,7 @@ int main(int argc, char** argv)
                 printf("Client %d is connecting with the socket %d\n", csock-3,csock);
                 conex=conex+1;
                 tabclient[conex-1].sockclient=csock;
+                tabclient[conex-1].iden = 0;
                 /*if (tabclient[conex-1].name[50] = ""){
                   printf("bonjour\n");
                   char *introduce="[SERVER] please introduce yourself by using /nick <your pseudo>\n";
@@ -193,11 +195,11 @@ int main(int argc, char** argv)
                     printf("Identification of %s\n", tabclient[i].name);
                   }
                   else{
-                    printf("Identification failed");
+                    printf("Identification failed\n");
                   }
                 }
                 else{
-                  printf("Message received by %s\n",tabclient[i].name);
+                  printf("Message received by client %d\n",tabclient[i].sockclient-3);
 
                   /*bool b=contains("/nick", msg);
                   if (b){
