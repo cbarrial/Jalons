@@ -134,7 +134,8 @@ int main(int argc, char** argv)
           for (i=0;i < n ;i++ ){
 
             tabclient[i].sockclient=0;
-            tabclient[i].name = "";
+            tabclient[i].iden = 0;
+            tabclient[i].name="";
           }
           tabclient[0].sockclient=sock;
           conex=conex+1;
@@ -172,7 +173,7 @@ int main(int argc, char** argv)
                 printf("Client %d is connecting with the socket %d\n", csock-3,csock);
                 conex=conex+1;
                 tabclient[conex-1].sockclient=csock;
-                tabclient[conex-1].iden = 0;
+                //tabclient[conex-1].iden = 0;
                 /*if (tabclient[conex-1].name[50] = ""){
                   printf("bonjour\n");
                   char *introduce="[SERVER] please introduce yourself by using /nick <your pseudo>\n";
@@ -182,14 +183,13 @@ int main(int argc, char** argv)
               }
 
 
-
             for (i=1;i<n;i++){
               memset(msg, 0, msg_size);
               if (FD_ISSET(tabclient[i].sockclient, &lecture)!=0){
                 int size=readline(tabclient[i].sockclient,msg,msg_size);
                 char *nick = "/nick ";
                 if (tabclient[i].iden == 0){
-                  if (strncmp(msg, nick, strlen(nick)) == 0){
+                  if (strncmp(msg, nick, strlen(nick)) == 0 && tabclient[i].name == ""){
                     tabclient[i].name=read_name(msg,"/nick ");
                     tabclient[i].iden++;
                     printf("Identification of %s\n", tabclient[i].name);
@@ -199,6 +199,13 @@ int main(int argc, char** argv)
                   }
                 }
                 else{
+                  char *who = "/who";
+                  if (strncmp(msg, who, strlen(who)) == 0){
+                    printf("List of user :\n");
+                    for (i=1; i<conex; i++){
+                      printf("  -%s\n", tabclient[i].name);
+                    }
+                  }
                   printf("Message received by client %d\n",tabclient[i].sockclient-3);
 
                   /*bool b=contains("/nick", msg);
