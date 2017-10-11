@@ -125,13 +125,21 @@ int main(int argc,char** argv)
           //handle_client_message()
           memset(msg_recv, '\0', msg_size);
           readline(sock,msg_recv,msg_size);
-          char *name=read_name(msg_recv,"/nick ");
+          char *nick = "/nick ";
+          if (strncmp(msg_recv, nick, strlen(nick)) != 0){
+              printf("[Server] : Wrong syntaxe\n");
+              break;
+          }
+          else {
+            char *name=read_name(msg_recv,"/nick ");
+            printf("[Server]: Welcome to the chat " );
+            fflush(stdout);
+            write(1,name,strlen(name));
+            printf("\n");
+            i++;
+          }
 
-          printf("[Server]: Welcome to the chat " );
-          fflush(stdout);
-          write(1,name,strlen(name));
-          printf("\n");
-          i++;
+
         }
         else{
           printf("\nEnter your message :\n");

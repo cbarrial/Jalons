@@ -8,10 +8,30 @@
 #define SOCKET_ERROR -1
 #define BIND_ERROR -1
 #define LISTEN_ERROR -1
+
 typedef struct {
   int sockclient;
-  char name[50];
+  int iden ;
+  char *name;
 }client;
+
+char *read_name(char tab1[],char tab2[]){
+  int j=0;
+  int i=0;
+  char msg[1000];
+  while (i<=strlen(tab1)){
+    if (tab1[i]==tab2[i]){
+      i++;
+    }
+    else {
+      msg[j]= tab1[i];
+      i++;
+      j++;
+    }
+
+  }
+  return msg;
+}
 
 ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
@@ -122,6 +142,7 @@ int main(int argc, char** argv)
 
             FD_ZERO(&lecture);
             FD_SET(sock,&lecture);
+            //tabclient[i].iden = 0;
 
             int i;
             int max_sock=sock;
@@ -164,25 +185,39 @@ int main(int argc, char** argv)
               memset(msg, 0, msg_size);
               if (FD_ISSET(tabclient[i].sockclient, &lecture)!=0){
                 int size=readline(tabclient[i].sockclient,msg,msg_size);
-
-                printf("Message received by client %d\n",tabclient[i].sockclient-3);
-
-                /*bool b=contains("/nick", msg);
-                if (b){
-
-                }*/
-                //we write back to the client
-                if (strcmp(msg, "quit\n") == 0){
-                  //write(client[i], ms, size);
-                  int clos=tabclient[i].sockclient-3;
-                  close(tabclient[i].sockclient);
-                  tabclient[i].sockclient=0;
-                  conex=conex-1;
-                  printf("Client %d is deconnected\n",clos);
-                  if (conex<=1){
-                    break;
+                char *nick = "/nick ";
+                if (tabclient[i].iden == 0){
+                  if (strncmp(msg, nick, strlen(nick)) == 0){
+                    tabclient[i].name=read_name(msg,"/nick ");
+                    tabclient[i].iden++;
+                    printf("Identification of %s\n", tabclient[i].name);
+                  }
+                  else{
+                    printf("Identification failed");
                   }
                 }
+                else{
+                  printf("Message received by %s\n",tabclient[i].name);
+
+                  /*bool b=contains("/nick", msg);
+                  if (b){
+
+                  }*/
+                  //we write back to the client
+                  if (strcmp(msg, "quit\n") == 0){
+                    //write(client[i], ms, size);
+                    int clos=tabclient[i].sockclient-3;
+                    close(tabclient[i].sockclient);
+                    tabclient[i].sockclient=0;
+                    conex=conex-1;
+                    printf("Client %d is deconnected\n",clos);
+                    if (conex<=1){
+                      break;
+                    }
+                  }
+                }
+
+
 
                 write(tabclient[i].sockclient, msg, size);
               }
