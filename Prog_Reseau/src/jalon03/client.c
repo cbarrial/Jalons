@@ -38,6 +38,7 @@ char *read_name(char tab1[],char tab2[]){
   int j=0;
   int i=0;
   char *msg;
+  msg=malloc(sizeof(char)*36);
   while (i<=strlen(tab1)){
     if (tab1[i]==tab2[i]){
       i++;
@@ -133,7 +134,7 @@ int main(int argc,char** argv)
             char *name=read_name(msg_recv,"/nick ");
             printf("[Server]: Welcome to the chat " );
             fflush(stdout);
-            write(1,&name,strlen(name));
+            write(1,name,strlen(name));
             printf("\n");
             i++;
           }
@@ -151,10 +152,27 @@ int main(int argc,char** argv)
           //handle_client_message()
           memset(msg_recv, '\0', msg_size);
           readline(sock,msg_recv,msg_size);
-          printf("[Server]: ");
-          fflush(stdout);
-          write(1,msg_recv,strlen(msg_recv));
-          printf("\n");
+          char *who = "/who";
+          if (strncmp(msg_recv, who, strlen(who)) == 0){
+              printf("List of user:\n");
+              memset(msg_recv, '\0', msg_size);
+              readline(sock, msg_recv, msg_size);
+              int conex = atoi(msg_recv);
+              int j=1;
+              for (j=1; j<conex; j++){
+                memset(msg_recv, '\0', msg_size);
+                readline(sock, msg_recv, msg_size);
+                write(1,msg_recv,strlen(msg_recv));
+              }
+
+          }
+          else {
+            printf("[Server]: ");
+            fflush(stdout);
+            write(1,msg_recv,strlen(msg_recv));
+            printf("\n");
+          }
+
         }
         }
       }

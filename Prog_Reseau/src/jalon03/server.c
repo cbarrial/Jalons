@@ -20,6 +20,7 @@ char *read_name(char tab1[],char tab2[]){
   int j=0;
   int i=0;
   char *msg;
+  msg=malloc(sizeof(char)*36);
   while (i<=strlen(tab1)){
     if (tab1[i]==tab2[i]){
       i++;
@@ -205,13 +206,20 @@ int main(int argc, char** argv)
                 else{
                   char *who = "/who";
                   if (strncmp(msg, who, strlen(who)) == 0){
-                    printf("List of user :\n");
-                    int i=0;
-                    for (i=1; i<conex; i++){
-                      printf("  -%s\n", tabclient[i].name);
+                    char *conex2;
+                    sprintf(conex2, "%d", conex);
+                    write(tabclient[i].sockclient, conex2, strlen(conex2));
+                    int j=1;
+                    for (j=1; j<conex; j++){
+                      printf("name");
+                      char *list2 = "  - ";
+                      char *who_name;
+                      who_name=strcat(list2,tabclient[j].name);
+                      write(tabclient[i].sockclient, who_name, strlen(who_name));
+
                     }
                   }
-                  printf("Message received by client %d\n",tabclient[i].sockclient-3);
+                  printf("Message received by client %s\n",tabclient[i].name);
 
                   /*bool b=contains("/nick", msg);
                   if (b){
