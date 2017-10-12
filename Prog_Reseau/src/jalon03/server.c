@@ -13,12 +13,13 @@ typedef struct {
   int sockclient;
   int iden ;
   char *name;
+  int ip;
 }client;
 
 char *read_name(char tab1[],char tab2[]){
   int j=0;
   int i=0;
-  char msg[1000];
+  char *msg;
   while (i<=strlen(tab1)){
     if (tab1[i]==tab2[i]){
       i++;
@@ -134,7 +135,8 @@ int main(int argc, char** argv)
           for (i=0;i < n ;i++ ){
 
             tabclient[i].sockclient=0;
-            tabclient[i].name = "";
+            tabclient[i].iden = 0;
+            tabclient[i].name="";
           }
           tabclient[0].sockclient=sock;
           conex=conex+1;
@@ -172,15 +174,17 @@ int main(int argc, char** argv)
                 printf("Client %d is connecting with the socket %d\n", csock-3,csock);
                 conex=conex+1;
                 tabclient[conex-1].sockclient=csock;
-                tabclient[conex-1].iden = 0;
-                /*if (tabclient[conex-1].name[50] = ""){
-                  printf("bonjour\n");
-                  char *introduce="[SERVER] please introduce yourself by using /nick <your pseudo>\n";
-                  write(tabclient[conex-1].name[50], introduce, strlen(introduce));
-                }*/
+                if (conex-1>20){
+                  write(tabclient[conex-1].sockclient, "Server cannot accept incoming connections anymore. Try again later.", sizeof(char)*60);
+                  tabclient[conex-1].sockclient=0;
+                  conex=conex-1;
+
+                }
+
+
+
                 }
               }
-
 
 
             for (i=1;i<n;i++){
@@ -189,7 +193,7 @@ int main(int argc, char** argv)
                 int size=readline(tabclient[i].sockclient,msg,msg_size);
                 char *nick = "/nick ";
                 if (tabclient[i].iden == 0){
-                  if (strncmp(msg, nick, strlen(nick)) == 0){
+                  if (strncmp(msg, nick, strlen(nick)) == 0 && strcmp(tabclient[i].name,"")==0){
                     tabclient[i].name=read_name(msg,"/nick ");
                     tabclient[i].iden++;
                     printf("Identification of %s\n", tabclient[i].name);
@@ -199,6 +203,14 @@ int main(int argc, char** argv)
                   }
                 }
                 else{
+                  char *who = "/who";
+                  if (strncmp(msg, who, strlen(who)) == 0){
+                    printf("List of user :\n");
+                    int i=0;
+                    for (i=1; i<conex; i++){
+                      printf("  -%s\n", tabclient[i].name);
+                    }
+                  }
                   printf("Message received by client %d\n",tabclient[i].sockclient-3);
 
                   /*bool b=contains("/nick", msg);
@@ -231,10 +243,7 @@ int main(int argc, char** argv)
 
 
 
-            //add new client's socket
 
-
-            // From the standart input
 
 
           }

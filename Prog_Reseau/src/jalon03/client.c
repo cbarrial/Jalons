@@ -37,7 +37,7 @@ ssize_t readline(int fd, char str[], size_t maxlen){
 char *read_name(char tab1[],char tab2[]){
   int j=0;
   int i=0;
-  char msg[1000];
+  char *msg;
   while (i<=strlen(tab1)){
     if (tab1[i]==tab2[i]){
       i++;
@@ -107,7 +107,6 @@ int main(int argc,char** argv)
 
 
     //get user input
-    //readline()
     for (;;) {
 
       int i=0;
@@ -134,7 +133,7 @@ int main(int argc,char** argv)
             char *name=read_name(msg_recv,"/nick ");
             printf("[Server]: Welcome to the chat " );
             fflush(stdout);
-            write(1,name,strlen(name));
+            write(1,&name,strlen(name));
             printf("\n");
             i++;
           }

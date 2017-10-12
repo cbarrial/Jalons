@@ -145,8 +145,16 @@ int main(int argc, char** argv)
                 printf("Client %d is connecting with the socket %d\n", csock-3,csock);
                 conex=conex+1;
                 client[conex-1]=csock;
+                if (conex-1>20){
+                  write(client[conex-1], "Server cannot accept incoming connections anymore. Try again later.", sizeof(char)*60);
+                  client[conex-1]=0;
+                  conex=conex-1;
+
+                }
               }
             }
+
+
 
 
             for (i=1;i<n;i++){
@@ -178,10 +186,10 @@ int main(int argc, char** argv)
 
 
 
-            //add new client's socket
 
 
-            // From the standart input
+
+
 
 
           }
