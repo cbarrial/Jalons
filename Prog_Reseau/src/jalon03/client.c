@@ -8,8 +8,9 @@
 #include <errno.h>
 #define CONNECT_ERROR -1
 #define REC_ERROR -1
+#include "functcom.h"
 
-ssize_t readline(int fd, char str[], size_t maxlen){
+/*ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
   char caract, *tab;
   tab = str;
@@ -57,7 +58,7 @@ void error(const char *msg)
 {
     perror(msg);
     exit(1);
-}
+}*/
 
 
 int main(int argc,char** argv)
