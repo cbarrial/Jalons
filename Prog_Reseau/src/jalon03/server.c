@@ -14,12 +14,14 @@ typedef struct {
   int iden ;
   char *name;
   int ip;
+
 }client;
 
 char *read_name(char tab1[],char tab2[]){
   int j=0;
   int i=0;
   char *msg;
+  msg=malloc(sizeof(char)*36);
   while (i<=strlen(tab1)){
     if (tab1[i]==tab2[i]){
       i++;
@@ -211,7 +213,7 @@ int main(int argc, char** argv)
                       printf("  -%s\n", tabclient[i].name);
                     }
                   }
-                  printf("Message received by client %d\n",tabclient[i].sockclient-3);
+                  printf("Message received by %s\n",tabclient[i].name);
 
                   /*bool b=contains("/nick", msg);
                   if (b){
