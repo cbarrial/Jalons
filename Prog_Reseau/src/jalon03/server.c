@@ -44,6 +44,28 @@ char *concat_string(char *s1,char *s2)
      return s3;
      }
 
+/*int send_list(char *msg, int conex, client *tabclient, int msg_size){
+     int i;
+     char *who = "/who";
+
+     if (strncmp(msg, who, strlen(who)) == 0){
+
+       memset(msg, '\0', msg_size);
+       int j;
+       char *who_name="";
+
+       for (j=1; j<conex; j++){
+         char *name;
+         name=malloc(sizeof(char)*36);
+         char *list2 = " - ";
+         name=concat_string(list2,tabclient[j].name);
+         who_name=concat_string(who_name,name);
+       }
+     i = write(tabclient[i].sockclient, who_name, strlen(who_name));
+     }
+     return i;
+   }*/
+
 ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
   char caract, *tab;
@@ -215,9 +237,7 @@ int main(int argc, char** argv)
                 else{
                   char *who = "/who";
                   if (strncmp(msg, who, strlen(who)) == 0){
-                    /*char *conex2;
-                    conex2=malloc(sizeof(char)*36);
-                    sprintf(conex2, "%d", conex-1);*/
+
                     memset(msg, '\0', msg_size);
                     int j;
                     char *who_name="";
@@ -230,8 +250,8 @@ int main(int argc, char** argv)
                       who_name=concat_string(who_name,name);
                     }
                   write(tabclient[i].sockclient, who_name, strlen(who_name));
-                  }
-
+                }
+                  //send_list(msg, conex, tabclient, msg_size);
                   printf("Message received by client %s\n",tabclient[i].name);
 
                   //we write back to the client
