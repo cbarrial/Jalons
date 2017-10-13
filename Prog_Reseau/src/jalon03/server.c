@@ -8,6 +8,7 @@
 #define SOCKET_ERROR -1
 #define BIND_ERROR -1
 #define LISTEN_ERROR -1
+#include "functcom.h"
 
 typedef struct {
   int sockclient;
@@ -16,7 +17,7 @@ typedef struct {
   int ip;
 }client;
 
-char *read_name(char tab1[],char tab2[]){
+/*char *read_name(char tab1[],char tab2[]){
   int j=0;
   int i=0;
   char *msg;
@@ -33,7 +34,7 @@ char *read_name(char tab1[],char tab2[]){
 
   }
   return msg;
-}
+}*/
 
 char *concat_string(char *s1,char *s2)
 {
@@ -44,15 +45,11 @@ char *concat_string(char *s1,char *s2)
      return s3;
      }
 
-/*int send_list(char *msg, int conex, client *tabclient, int msg_size){
-     int i;
-     char *who = "/who";
-
-     if (strncmp(msg, who, strlen(who)) == 0){
-
-       memset(msg, '\0', msg_size);
+void send_list( char *msg, int conex, client *tabclient, int msg_size, int cactual){
        int j;
        char *who_name="";
+       if (strncmp(msg, who, strlen(who)) == 0){
+         memset(msg, '\0', msg_size);
 
        for (j=1; j<conex; j++){
          char *name;
@@ -61,12 +58,47 @@ char *concat_string(char *s1,char *s2)
          name=concat_string(list2,tabclient[j].name);
          who_name=concat_string(who_name,name);
        }
-     i = write(tabclient[i].sockclient, who_name, strlen(who_name));
+     write(tabclient[cactual].sockclient, who_name, strlen(who_name));
      }
-     return i;
-   }*/
+   }
 
-ssize_t readline(int fd, char str[], size_t maxlen){
+
+void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual){
+  char *whois = "/whois";
+  char *command;
+  char *user;
+  char *info;
+  char *info1;
+
+  int i=0;
+
+  if (strncmp(msg, whois, strlen(whois)) == 0){
+    while (strncmp(msg, concat_string("/whois ", tabclient[i].name), strlen(concat_string("/whois ", tabclient[i].name))) !=0 ){
+      i++;
+      if (i>nbclients){
+        char  *mistake = "This client doesn't exist";
+        write(tabclient[cactual].sockclient, mistake, strlen(mistake));
+      }
+    }
+
+    sscanf(msg, "%s %s", command, user);
+    memset(msg, '\0', msg_size);
+    info = concat_string(user, " connected since ");
+    //extraire la date
+    info1 = concat_string( info, date);
+    info = concat_string( info1, " with IP adress ");
+    //extraire l'adresse ip
+    info1= concat_string( info, addip);
+    info = concat_string( info1, " and port number ");
+    //extraire le port
+    info1 = concat_string( info, portnb);
+
+    write(tabclient[cactual].sockclient, info1, strlen(info1));
+
+}
+
+
+/*ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
   char caract, *tab;
   tab = str;
@@ -96,7 +128,7 @@ void error(const char *msg)
 {
     perror(msg);
     exit(1);
-}
+}*/
 
 int main(int argc, char** argv)
 {
@@ -221,23 +253,37 @@ int main(int argc, char** argv)
 
             for (i=1;i<n;i++){
               memset(msg, 0, msg_size);
+
+
               if (FD_ISSET(tabclient[i].sockclient, &lecture)!=0){
                 int size=readline(tabclient[i].sockclient,msg,msg_size);
+
+
+
+
                 char *nick = "/nick ";
                 if (tabclient[i].iden == 0){
+
                   if (strncmp(msg, nick, strlen(nick)) == 0 && strcmp(tabclient[i].name,"")==0){
                     tabclient[i].name=read_name(msg,"/nick ");
                     tabclient[i].iden++;
                     printf("Identification of %s\n", tabclient[i].name);
                   }
+
                   else{
                     printf("Identification failed\n");
                   }
                 }
+
+
+
                 else{
+
+
+
+                  /*
                   char *who = "/who";
                   if (strncmp(msg, who, strlen(who)) == 0){
-
                     memset(msg, '\0', msg_size);
                     int j;
                     char *who_name="";
@@ -249,9 +295,14 @@ int main(int argc, char** argv)
                       name=concat_string(list2,tabclient[j].name);
                       who_name=concat_string(who_name,name);
                     }
+
+
                   write(tabclient[i].sockclient, who_name, strlen(who_name));
-                }
-                  //send_list(msg, conex, tabclient, msg_size);
+                }*/
+
+                  send_list(msg, conex, tabclient, msg_size, i);
+                  send_info(msg, tabclient, msg_size, n, i);
+
                   printf("Message received by client %s\n",tabclient[i].name);
 
                   //we write back to the client
