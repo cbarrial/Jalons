@@ -35,6 +35,15 @@ char *read_name(char tab1[],char tab2[]){
   return msg;
 }
 
+char *concat_string(char *s1,char *s2)
+{
+     char *s3=NULL;
+     s3=(char *)malloc((strlen(s1)+strlen(s2))*sizeof(char));
+     strcpy(s3,s1);
+     strcat(s3,s2);
+     return s3;
+     }
+
 ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
   char caract, *tab;
@@ -206,28 +215,29 @@ int main(int argc, char** argv)
                 else{
                   char *who = "/who";
                   if (strncmp(msg, who, strlen(who)) == 0){
-                    char *conex2;
-                    sprintf(conex2, "%d", conex);
-                    write(tabclient[i].sockclient, conex2, strlen(conex2));
-                    int j=1;
-                    for (j=1; j<conex; j++){
-                      printf("name");
-                      char *list2 = "  - ";
-                      char *who_name;
-                      who_name=strcat(list2,tabclient[j].name);
-                      write(tabclient[i].sockclient, who_name, strlen(who_name));
+                    /*char *conex2;
+                    conex2=malloc(sizeof(char)*36);
+                    sprintf(conex2, "%d", conex-1);*/
+                    memset(msg, '\0', msg_size);
+                    int j;
+                    char *who_name="";
 
+                    for (j=1; j<conex; j++){
+                      char *name;
+                      name=malloc(sizeof(char)*36);
+                      char *list2 = " - ";
+                      name=concat_string(list2,tabclient[j].name);
+                      who_name=concat_string(who_name,name);
                     }
+                  write(tabclient[i].sockclient, who_name, strlen(who_name));
                   }
+
                   printf("Message received by client %s\n",tabclient[i].name);
 
-                  /*bool b=contains("/nick", msg);
-                  if (b){
-
-                  }*/
                   //we write back to the client
                   if (strcmp(msg, "quit\n") == 0){
                     //write(client[i], ms, size);
+                    memset(msg, '\0', msg_size);
                     int clos=tabclient[i].sockclient-3;
                     close(tabclient[i].sockclient);
                     tabclient[i].sockclient=0;
