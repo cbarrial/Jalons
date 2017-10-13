@@ -60,6 +60,34 @@ void error(const char *msg)
     exit(1);
 }*/
 
+int intro(int i, char *msg_sent, char *msg_recv, int msg_size, int sock){
+  
+    printf("\n[SERVER] please introduce yourself by using /nick <your pseudo>\n");
+    fflush(stdout);
+    readline(0,msg_sent,msg_size);
+    write(sock,msg_sent,strlen(msg_sent));
+    if (strcmp(msg_sent, "quit\n") == 0)
+      exit(1);
+
+    //handle_client_message()
+    memset(msg_recv, '\0', msg_size);
+    readline(sock,msg_recv,msg_size);
+    char *nick = "/nick ";
+    if (strncmp(msg_recv, nick, strlen(nick)) != 0){
+        printf("[Server] : Wrong syntaxe\n");
+        break;
+    }
+    else {
+      char *name=read_name(msg_recv,"/nick ");
+      printf("[Server]: Welcome to the chat " );
+      fflush(stdout);
+      write(1,name,strlen(name));
+      printf("\n");
+      i++;
+    }
+    return i;
+}
+
 
 int main(int argc,char** argv)
 {
@@ -116,7 +144,9 @@ int main(int argc,char** argv)
       while (1){
 
         if (i==0){
-          printf("\n[SERVER] please introduce yourself by using /nick <your pseudo>\n");
+
+
+          /*printf("\n[SERVER] please introduce yourself by using /nick <your pseudo>\n");
           fflush(stdout);
           readline(0,msg_sent,msg_size);
           write(sock,msg_sent,strlen(msg_sent));
@@ -138,7 +168,8 @@ int main(int argc,char** argv)
             write(1,name,strlen(name));
             printf("\n");
             i++;
-          }
+          }*/
+          intro(i, msg_sent, msg_recv, msg_size, sock);
 
 
         }

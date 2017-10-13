@@ -98,6 +98,22 @@ void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int ca
 }
 
 
+void ident(client *tabclient, int cactual, char *msg){
+  char *nick = "/nick ";
+  if (tabclient[cactual].iden == 0){
+
+    if (strncmp(msg, nick, strlen(nick)) == 0 && strcmp(tabclient[cactual].name,"")==0){
+      tabclient[cactual].name=read_name(msg,"/nick ");
+      tabclient[cactual].iden++;
+      printf("Identification of %s\n", tabclient[cactual].name);
+    }
+
+    else{
+      printf("Identification failed\n");
+    }
+  }
+}
+
 /*ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
   char caract, *tab;
@@ -261,7 +277,7 @@ int main(int argc, char** argv)
 
 
 
-                char *nick = "/nick ";
+                /*char *nick = "/nick ";
                 if (tabclient[i].iden == 0){
 
                   if (strncmp(msg, nick, strlen(nick)) == 0 && strcmp(tabclient[i].name,"")==0){
@@ -273,7 +289,9 @@ int main(int argc, char** argv)
                   else{
                     printf("Identification failed\n");
                   }
-                }
+                }*/
+
+                ident(tabclient, i, msg);
 
 
 
