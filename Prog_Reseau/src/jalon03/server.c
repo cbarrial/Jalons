@@ -74,7 +74,7 @@ void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int ca
 
   char *command;
   command=malloc(sizeof(char)*36);
-
+  //command=concat_string(command,"\n");
   char *info="";
   char *info1="";
 

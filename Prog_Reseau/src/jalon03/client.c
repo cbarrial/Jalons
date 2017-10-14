@@ -178,6 +178,11 @@ int main(int argc,char** argv)
           fflush(stdout);
           readline(0,msg_sent,msg_size);
           write(sock,msg_sent,strlen(msg_sent));
+          char *command;
+          command=malloc(sizeof(char)*36);
+          char *whois = "/whois ";
+          sscanf(msg_sent, "%s", command);
+
           if (strcmp(msg_sent, "quit\n") == 0)
             exit(1);
 
@@ -192,7 +197,10 @@ int main(int argc,char** argv)
               write(1,msg_recv,strlen(msg_recv));
 
 
+
           }
+
+
           else if (strncmp(msg_sent, "/whois", strlen("/whois")) == 0){
             printf("[Server]: ");
             memset(msg_recv, '\0', msg_size);
