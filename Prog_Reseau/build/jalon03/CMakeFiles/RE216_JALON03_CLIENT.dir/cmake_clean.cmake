@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/RE216_JALON03_CLIENT.dir/client.c.o"
+  "CMakeFiles/RE216_JALON03_CLIENT.dir/functcom.c.o"
   "RE216_JALON03_CLIENT.pdb"
   "RE216_JALON03_CLIENT"
 )

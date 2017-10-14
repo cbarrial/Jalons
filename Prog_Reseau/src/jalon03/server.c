@@ -8,6 +8,7 @@
 #define SOCKET_ERROR -1
 #define BIND_ERROR -1
 #define LISTEN_ERROR -1
+#include "functcom.h"
 
 typedef struct {
   int sockclient;
@@ -17,7 +18,7 @@ typedef struct {
 
 }client;
 
-char *read_name(char tab1[],char tab2[]){
+/*char *read_name(char tab1[],char tab2[]){
   int j=0;
   int i=0;
   char *msg;
@@ -34,9 +35,94 @@ char *read_name(char tab1[],char tab2[]){
 
   }
   return msg;
+}*/
+
+char *concat_string(char *s1,char *s2)
+{
+     char *s3=NULL;
+     s3=(char *)malloc((strlen(s1)+strlen(s2))*sizeof(char));
+     strcpy(s3,s1);
+     strcat(s3,s2);
+     return s3;
+     }
+
+void send_list( char *msg, int conex, client *tabclient, int msg_size, int cactual){
+       int j;
+       char *who = "/who";
+       char *who_name="";
+       if (strncmp(msg, who, strlen(who)) == 0){
+         memset(msg, '\0', msg_size);
+
+       for (j=1; j<conex; j++){
+         char *name;
+         name=malloc(sizeof(char)*36);
+         char *list2 = " - ";
+         name=concat_string(list2,tabclient[j].name);
+         who_name=concat_string(who_name,name);
+       }
+     write(tabclient[cactual].sockclient, who_name, strlen(who_name));
+     }
+   }
+
+
+void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *portnb){
+  char *whois = "/whois";
+  char *user;
+  user=malloc(sizeof(char)*36);
+  user=read_name(msg,"/whois ");;
+  char *command;
+  command=malloc(sizeof(char)*36);
+  //command=concat_string(command,"\n");
+  char *info="";
+  char *info1="";
+
+  int i=0;
+  sscanf(msg, "%s", command);
+  if (strcmp(command,"/whois") == 0){
+    printf("Entrer");
+    /*while (strncmp(msg, concat_string("/whois ", tabclient[i].name), strlen(concat_string("/whois ", tabclient[i].name))) !=0 ){
+      i++;
+      if (i>nbclients){
+        char  *mistake = "This client doesn't exist";
+        write(tabclient[cactual].sockclient, mistake, strlen(mistake));
+      }
+    }*/
+
+    //sscanf(msg, "%s %s", command, user);
+    memset(msg, '\0', msg_size);
+    info = concat_string(user, " connected since ");
+    //extraire la date
+    info1 = concat_string( info, "date");
+    info = concat_string( info1, " with IP adress ");
+    //extraire l'adresse ip
+    info1= concat_string( info, "addip");
+    info = concat_string( info1, " and port number ");
+    //extraire le port
+    info1 = concat_string( info, portnb);
+
+    write(tabclient[cactual].sockclient, info1, strlen(info1));
+
+}
 }
 
-ssize_t readline(int fd, char str[], size_t maxlen){
+
+void ident(client *tabclient, int cactual, char *msg){
+  char *nick = "/nick ";
+  if (tabclient[cactual].iden == 0){
+
+    if (strncmp(msg, nick, strlen(nick)) == 0 && strcmp(tabclient[cactual].name,"")==0){
+      tabclient[cactual].name=read_name(msg,"/nick ");
+      tabclient[cactual].iden++;
+      printf("Identification of %s\n", tabclient[cactual].name);
+    }
+
+    else {
+      printf("Identification failed\n");
+    }
+  }
+}
+
+/*ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
   char caract, *tab;
   tab = str;
@@ -66,7 +152,7 @@ void error(const char *msg)
 {
     perror(msg);
     exit(1);
-}
+}*/
 
 int main(int argc, char** argv)
 {
@@ -191,48 +277,74 @@ int main(int argc, char** argv)
 
             for (i=1;i<n;i++){
               memset(msg, 0, msg_size);
+
+
               if (FD_ISSET(tabclient[i].sockclient, &lecture)!=0){
                 int size=readline(tabclient[i].sockclient,msg,msg_size);
-                char *nick = "/nick ";
+
+
+
+
+                /*char *nick = "/nick ";
                 if (tabclient[i].iden == 0){
+
                   if (strncmp(msg, nick, strlen(nick)) == 0 && strcmp(tabclient[i].name,"")==0){
                     tabclient[i].name=read_name(msg,"/nick ");
                     tabclient[i].iden++;
                     printf("Identification of %s\n", tabclient[i].name);
                   }
+
                   else{
                     printf("Identification failed\n");
                   }
-                }
-                else{
+                }*/
+
+                ident(tabclient, i, msg);
+
+
+
+                //else {
+
+
+
+                  /*
                   char *who = "/who";
                   if (strncmp(msg, who, strlen(who)) == 0){
-                    char *conex2;
-                    sprintf(conex2, "%d", conex);
-                    write(tabclient[i].sockclient, conex2, strlen(conex2));
-                    int j=1;
-                    for (j=1; j<conex; j++){
-                      printf("name");
-                      char *list2 = "  - ";
-                      char *who_name;
-                      who_name=strcat(list2,tabclient[j].name);
-                      write(tabclient[i].sockclient, who_name, strlen(who_name));
+                    memset(msg, '\0', msg_size);
+                    int j;
+                    char *who_name="";
 
+                    for (j=1; j<conex; j++){
+                      char *name;
+                      name=malloc(sizeof(char)*36);
+                      char *list2 = " - ";
+                      name=concat_string(list2,tabclient[j].name);
+                      who_name=concat_string(who_name,name);
                     }
+<<<<<<< HEAD
                   }
 
                   printf("Message received by %s\n",tabclient[i].name);
 
-                  
 
 
-                  /*bool b=contains("/nick", msg);
-                  if (b){
+=======
+>>>>>>> 66e8261f2717c91b7e2d5e72c4cb7e9c274e2a20
 
-                  }*/
+
+                  write(tabclient[i].sockclient, who_name, strlen(who_name));
+                }*/
+
+                  send_list(msg, conex, tabclient, msg_size, i);
+
+                  send_info(msg, tabclient, msg_size, n, i, argv[1]);
+
+                  printf("Message received by client %s\n",tabclient[i].name);
+
                   //we write back to the client
                   if (strcmp(msg, "quit\n") == 0){
                     //write(client[i], ms, size);
+                    //memset(msg, '\0', msg_size); si memset pas de server closed
                     int clos=tabclient[i].sockclient-3;
                     close(tabclient[i].sockclient);
                     tabclient[i].sockclient=0;
@@ -242,24 +354,25 @@ int main(int argc, char** argv)
                       break;
                     }
                   }
-                }
+
 
 
 
                 write(tabclient[i].sockclient, msg, size);
               }
             }
+
             if (strcmp(msg, "quit\n") == 0){
               printf("Server is closed\n");
               break;
             }
-
-
-
-
-
-
           }
+
+
+
+
+
+
         }
       }
     }

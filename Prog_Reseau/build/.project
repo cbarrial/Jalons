@@ -152,9 +152,19 @@
 			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/server.c</location>
 		</link>
 		<link>
+			<name>[Targets]/[exe] RE216_JALON03_SERVER/Source Files/functcom.c</name>
+			<type>1</type>
+			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.c</location>
+		</link>
+		<link>
 			<name>[Targets]/[exe] RE216_JALON03_SERVER/Header Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON03_SERVER/Header Files/functcom.h</name>
+			<type>1</type>
+			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_SERVER/CMake Rules</name>
@@ -197,9 +207,19 @@
 			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/client.c</location>
 		</link>
 		<link>
+			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Source Files/functcom.c</name>
+			<type>1</type>
+			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.c</location>
+		</link>
+		<link>
 			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Header Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Header Files/functcom.h</name>
+			<type>1</type>
+			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_CLIENT/CMake Rules</name>

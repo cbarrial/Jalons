@@ -6,6 +6,44 @@
 
 #IncludeRegexTransform: 
 
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.c
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+string.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+netdb.h
+-
+errno.h
+-
+functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h
+
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+string.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+netdb.h
+-
+errno.h
+-
+
 /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/server.c
 stdio.h
 -
@@ -21,4 +59,6 @@ sys/socket.h
 -
 netinet/in.h
 -
+functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h
 

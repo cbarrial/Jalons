@@ -167,6 +167,36 @@ client.c.s:
 	cd /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build && $(MAKE) -f jalon03/CMakeFiles/RE216_JALON03_CLIENT.dir/build.make jalon03/CMakeFiles/RE216_JALON03_CLIENT.dir/client.c.s
 .PHONY : client.c.s
 
+functcom.o: functcom.c.o
+
+.PHONY : functcom.o
+
+# target to build an object file
+functcom.c.o:
+	cd /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build && $(MAKE) -f jalon03/CMakeFiles/RE216_JALON03_SERVER.dir/build.make jalon03/CMakeFiles/RE216_JALON03_SERVER.dir/functcom.c.o
+	cd /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build && $(MAKE) -f jalon03/CMakeFiles/RE216_JALON03_CLIENT.dir/build.make jalon03/CMakeFiles/RE216_JALON03_CLIENT.dir/functcom.c.o
+.PHONY : functcom.c.o
+
+functcom.i: functcom.c.i
+
+.PHONY : functcom.i
+
+# target to preprocess a source file
+functcom.c.i:
+	cd /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build && $(MAKE) -f jalon03/CMakeFiles/RE216_JALON03_SERVER.dir/build.make jalon03/CMakeFiles/RE216_JALON03_SERVER.dir/functcom.c.i
+	cd /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build && $(MAKE) -f jalon03/CMakeFiles/RE216_JALON03_CLIENT.dir/build.make jalon03/CMakeFiles/RE216_JALON03_CLIENT.dir/functcom.c.i
+.PHONY : functcom.c.i
+
+functcom.s: functcom.c.s
+
+.PHONY : functcom.s
+
+# target to generate assembly for a file
+functcom.c.s:
+	cd /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build && $(MAKE) -f jalon03/CMakeFiles/RE216_JALON03_SERVER.dir/build.make jalon03/CMakeFiles/RE216_JALON03_SERVER.dir/functcom.c.s
+	cd /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build && $(MAKE) -f jalon03/CMakeFiles/RE216_JALON03_CLIENT.dir/build.make jalon03/CMakeFiles/RE216_JALON03_CLIENT.dir/functcom.c.s
+.PHONY : functcom.c.s
+
 server.o: server.c.o
 
 .PHONY : server.o
@@ -207,6 +237,9 @@ help:
 	@echo "... client.o"
 	@echo "... client.i"
 	@echo "... client.s"
+	@echo "... functcom.o"
+	@echo "... functcom.i"
+	@echo "... functcom.s"
 	@echo "... server.o"
 	@echo "... server.i"
 	@echo "... server.s"

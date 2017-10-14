@@ -7,15 +7,22 @@ SET(SRC_CLIENT
 	client.c
 	)
 
+SET(SRC_FUNCT
+		functcom.c
+		)
 
-add_executable(RE216_JALON03_CLIENT ${SRC_CLIENT})
+SET(SRC_FUNCT2
+		functcom.h
+		)
+
+
+add_executable(RE216_JALON03_CLIENT ${SRC_CLIENT} ${SRC_FUNCT} ${SRC_FUNCT2})
 
 
 #add here source files you need to compile and link to the server app
 SET(SRC_SERVER
-        server.c)
+        server.c
+				)
 
 
-add_executable(RE216_JALON03_SERVER  ${SRC_SERVER})
-
-
+add_executable(RE216_JALON03_SERVER  ${SRC_SERVER}  ${SRC_FUNCT} ${SRC_FUNCT2})
