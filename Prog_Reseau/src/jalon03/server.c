@@ -48,9 +48,9 @@ char *concat_string(char *s1,char *s2)
 
 void send_list( char *msg, int conex, client *tabclient, int msg_size, int cactual){
        int j;
-       char *who = "/who";
+       char *who = "/who\n";
        char *who_name="";
-       if (strncmp(msg, who, strlen(who)) == 0){
+       if (strcmp(msg, who) == 0){
          memset(msg, '\0', msg_size);
 
        for (j=1; j<conex; j++){
@@ -65,11 +65,10 @@ void send_list( char *msg, int conex, client *tabclient, int msg_size, int cactu
    }
 
 
-void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *portnb){
-  char *whois = "/whois";
+void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *port){
+  char *whois = "/whois ";
   char *user;
   user=malloc(sizeof(char)*36);
-  user=read_name(msg,"/whois ");;
   char *command;
   command=malloc(sizeof(char)*36);
   //command=concat_string(command,"\n");
@@ -77,9 +76,9 @@ void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int ca
   char *info1="";
 
   int i=0;
-  sscanf(msg, "%s", command);
-  if (strcmp(command,"/whois") == 0){
-    printf("Entrer");
+  sscanf(msg, "%s %s", command, user);
+
+  if (strncmp(command, whois, strlen(whois)-1) == 0){
     /*while (strncmp(msg, concat_string("/whois ", tabclient[i].name), strlen(concat_string("/whois ", tabclient[i].name))) !=0 ){
       i++;
       if (i>nbclients){
@@ -90,15 +89,22 @@ void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int ca
 
     //sscanf(msg, "%s %s", command, user);
     memset(msg, '\0', msg_size);
+
     info = concat_string(user, " connected since ");
+
     //extraire la date
     info1 = concat_string( info, "date");
+
     info = concat_string( info1, " with IP adress ");
     //extraire l'adresse ip
+
     info1= concat_string( info, "addip");
+
     info = concat_string( info1, " and port number ");
     //extraire le port
-    info1 = concat_string( info, portnb);
+
+    info1 = concat_string( info, port);
+
 
     write(tabclient[cactual].sockclient, info1, strlen(info1));
 
@@ -170,7 +176,7 @@ int main(int argc, char** argv)
     int sock ;
     int bind_err;
     int list_err;
-
+    char *port=argv[1];
 
     //create the socket
     sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -328,8 +334,7 @@ int main(int argc, char** argv)
 
 
 
-=======
->>>>>>> 66e8261f2717c91b7e2d5e72c4cb7e9c274e2a20
+
 
 
                   write(tabclient[i].sockclient, who_name, strlen(who_name));
