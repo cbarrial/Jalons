@@ -23,6 +23,8 @@ netdb.h
 -
 errno.h
 -
+time.h
+-
 functcom.h
 /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h
 

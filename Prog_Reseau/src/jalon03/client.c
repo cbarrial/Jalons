@@ -198,16 +198,16 @@ int main(int argc,char** argv)
 
 
 
+
           }
 
 
-
-          else if (strncmp(command, whois, strlen(whois)-1) == 0){
+          else if (strncmp(msg_sent, "/whois", strlen("/whois")) == 0){
+            printf("[Server]: ");
             memset(msg_recv, '\0', msg_size);
             read(sock, msg_recv, msg_size);
             write(1,msg_recv,strlen(msg_recv));
             printf("\n");
-
           }
 
           else {
@@ -224,7 +224,7 @@ int main(int argc,char** argv)
       }
       close(sock);
 
-      getchar();
+      
 
       return 0;
 

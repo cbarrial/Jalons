@@ -10,13 +10,13 @@
 #define LISTEN_ERROR -1
 #include "functcom.h"
 
-typedef struct {
+/*typedef struct {
   int sockclient;
   int iden ;
   char *name;
   int ip;
 
-}client;
+}client;*/
 
 /*char *read_name(char tab1[],char tab2[]){
   int j=0;
@@ -35,7 +35,7 @@ typedef struct {
 
   }
   return msg;
-}*/
+}
 
 char *concat_string(char *s1,char *s2)
 {
@@ -48,9 +48,9 @@ char *concat_string(char *s1,char *s2)
 
 void send_list( char *msg, int conex, client *tabclient, int msg_size, int cactual){
        int j;
-       char *who = "/who\n";
+       char *who = "/who";
        char *who_name="";
-       if (strcmp(msg, who) == 0){
+       if (strncmp(msg, who, strlen(who)) == 0 && strncmp(msg, "/whois", strlen("/whois")) !=0 ){
          memset(msg, '\0', msg_size);
 
        for (j=1; j<conex; j++){
@@ -65,46 +65,47 @@ void send_list( char *msg, int conex, client *tabclient, int msg_size, int cactu
    }
 
 
-void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *port){
-  char *whois = "/whois ";
+void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *portnb){
+  char *whois = "/whois";
   char *user;
   user=malloc(sizeof(char)*36);
+  user=read_name(msg,"/whois ");
+  user[strlen(user)-1]='\0';
+
   char *command;
   command=malloc(sizeof(char)*36);
   //command=concat_string(command,"\n");
   char *info="";
   char *info1="";
 
-  int i=0;
-  sscanf(msg, "%s %s", command, user);
+  int i=1;
+  sscanf(msg, "%s", command);
+  if (strcmp(command,"/whois") == 0){
 
-  if (strncmp(command, whois, strlen(whois)-1) == 0){
-    /*while (strncmp(msg, concat_string("/whois ", tabclient[i].name), strlen(concat_string("/whois ", tabclient[i].name))) !=0 ){
+
+    while (strncmp(user, tabclient[i].name, strlen(tabclient[i].name)) !=0 ){
+
       i++;
       if (i>nbclients){
         char  *mistake = "This client doesn't exist";
         write(tabclient[cactual].sockclient, mistake, strlen(mistake));
       }
-    }*/
+    }
 
-    //sscanf(msg, "%s %s", command, user);
+
     memset(msg, '\0', msg_size);
-
     info = concat_string(user, " connected since ");
 
     //extraire la date
     info1 = concat_string( info, "date");
-
     info = concat_string( info1, " with IP adress ");
     //extraire l'adresse ip
-
     info1= concat_string( info, "addip");
-
     info = concat_string( info1, " and port number ");
     //extraire le port
+    info1 = concat_string( info, portnb);
 
-    info1 = concat_string( info, port);
-
+    //printf("et la socket : %d\n", tabclient[cactual].sockclient);
 
     write(tabclient[cactual].sockclient, info1, strlen(info1));
 
@@ -128,7 +129,7 @@ void ident(client *tabclient, int cactual, char *msg){
   }
 }
 
-/*ssize_t readline(int fd, char str[], size_t maxlen){
+ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
   char caract, *tab;
   tab = str;
@@ -176,7 +177,7 @@ int main(int argc, char** argv)
     int sock ;
     int bind_err;
     int list_err;
-    char *port=argv[1];
+
 
     //create the socket
     sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -231,6 +232,7 @@ int main(int argc, char** argv)
             tabclient[i].sockclient=0;
             tabclient[i].iden = 0;
             tabclient[i].name="";
+            
           }
           tabclient[0].sockclient=sock;
           conex=conex+1;
@@ -327,13 +329,10 @@ int main(int argc, char** argv)
                       name=concat_string(list2,tabclient[j].name);
                       who_name=concat_string(who_name,name);
                     }
-<<<<<<< HEAD
+
                   }
 
                   printf("Message received by %s\n",tabclient[i].name);
-
-
-
 
 
 
