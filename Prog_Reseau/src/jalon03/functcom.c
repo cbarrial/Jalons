@@ -7,6 +7,7 @@
 #include <netdb.h>
 #include <errno.h>
 #include <time.h>
+#include <arpa/inet.h>
 #include "functcom.h"
 
 
@@ -71,35 +72,40 @@ char *concat_string(char *s1,char *s2)
      return s3;
    }
 
-void send_list( char *msg, int conex, client *tabclient, int msg_size, int cactual){
-          int j;
-          char *who = "/who\n";
-          char *who_name="";
-          if (strcmp(msg, who) == 0){
-            memset(msg, '\0', msg_size);
+int send_list( char *msg, int conex, client *tabclient, int msg_size, int cactual){
 
-          for (j=1; j<conex; j++){
-            char *name;
-            name=malloc(sizeof(char)*36);
-            char *list2 = " - ";
-            name=concat_string(list2,tabclient[j].name);
-            who_name=concat_string(who_name,name);
-          }
-        write(tabclient[cactual].sockclient, who_name, strlen(who_name));
-        }
-      }
+  int j;
+  char *who = "/who\n";
+  char *who_name="";
 
-void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *portnb){
+  if (strcmp(msg, who) == 0){
+    memset(msg, '\0', msg_size);
+
+    for (j=1; j<conex; j++){
+      char *name;
+      name=malloc(sizeof(char)*36);
+      char *list2 = " - ";
+      name=concat_string(list2,tabclient[j].name);
+      who_name=concat_string(who_name,name);
+    }
+
+    write(tabclient[cactual].sockclient, who_name, strlen(who_name));
+    return 0;
+  }
+  else {
+    return -1;
+  }
+}
+
+int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *portnb){
       char *whois = "/whois";
       char *user;
       user=malloc(sizeof(char)*36);
       user=read_name(msg,"/whois ");
-      user[strlen(user)-1]='\0';
-      /*struct tm date;
-      time_t temps;
-      time(&temps);
-      date=*localtime(&temps);
-      strftime(tabclient[cactual].date,100,"%c\n",&date);*/
+
+      char date[20];
+      strftime(date, 20, "%Y-%m-%d %H:%M:%S", localtime(&tabclient[cactual].date));
+
 
       char *command;
       command=malloc(sizeof(char)*36);
@@ -112,31 +118,40 @@ void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int ca
       if (strcmp(command,"/whois") == 0){
 
 
-        while (strncmp(user, tabclient[i].name, strlen(tabclient[i].name)) !=0 ){
+        while (i<nbclients){
+          if (strncmp(user, tabclient[i].name, strlen(tabclient[i].name)) == 0){
+            user[strlen(user)-1]='\0';
+            memset(msg, '\0', msg_size);
+            info1 = concat_string("[Server] : ", user);
+            info = concat_string(info1, " connected since ");
 
-          i++;
-          if (i>nbclients){
-            char  *mistake = "This client doesn't exist";
-            write(tabclient[cactual].sockclient, mistake, strlen(mistake));
+            //extraire la date
+            info1 = concat_string( info, date);
+            info = concat_string( info1, " with IP adress ");
+              //extraire l'adresse ip
+            info1= concat_string( info, tabclient[cactual].ip);
+            info = concat_string( info1, " and port number ");
+              //extraire le port
+            info1 = concat_string( info, portnb);
+
+              //printf("et la socket : %d\n", tabclient[cactual].sockclient);
+
+            write(tabclient[cactual].sockclient, info1, strlen(info1));
+            return 0;
+          }
+          else {
+            i++;
           }
         }
 
-
-        memset(msg, '\0', msg_size);
-        info = concat_string(user, " connected since ");
-
-          //extraire la date
-        info1 = concat_string( info, "tabclient[cactual].date");
-        info = concat_string( info1, " with IP adress ");
-          //extraire l'adresse ip
-        info1= concat_string( info, "addip");
-        info = concat_string( info1, " and port number ");
-          //extraire le port
-        info1 = concat_string( info, portnb);
-
-          //printf("et la socket : %d\n", tabclient[cactual].sockclient);
-
-        write(tabclient[cactual].sockclient, info1, strlen(info1));
+        if (i == nbclients){
+          char  *mistake = "This client doesn't exist";
+          write(tabclient[cactual].sockclient, mistake, strlen(mistake));
+          return 0;
+        }
+    }
+    else {
+      return -1;
 
     }
   }

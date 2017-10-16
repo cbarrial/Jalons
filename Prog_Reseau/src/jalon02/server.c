@@ -113,6 +113,11 @@ int main(int argc, char** argv)
 
           for (;;){
 
+<<<<<<< HEAD
+            int i;
+            for (i=0;i < n ;i++ ){
+              FD_SET(client[i], &lecture);
+=======
             FD_ZERO(&lecture);
             FD_SET(sock,&lecture);
 
@@ -125,6 +130,7 @@ int main(int argc, char** argv)
               if (client[i]>max_sock){
                 max_sock=client[i];
               }
+>>>>>>> b2735058229c4bf904e1545aebdd1106d5ab9ad5
             }
 
             int sel=select(max_sock+1,&lecture,NULL,NULL,NULL);
@@ -188,6 +194,14 @@ int main(int argc, char** argv)
 
 
 
+<<<<<<< HEAD
+      }
+      int i;
+      for (i=0; i<n; i++){
+        close(client[i]);
+      }
+=======
+>>>>>>> b2735058229c4bf904e1545aebdd1106d5ab9ad5
 
 
 

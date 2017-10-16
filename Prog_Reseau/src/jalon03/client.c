@@ -10,84 +10,6 @@
 #define REC_ERROR -1
 #include "functcom.h"
 
-/*ssize_t readline(int fd, char str[], size_t maxlen){
-  int i, a;
-  char caract, *tab;
-  tab = str;
-  int j=0;
-
-  for (i=0 ; i<maxlen ; i++){
-
-    a= read(fd, &caract, 1);
-
-    if (a==1){
-      tab[j++]=caract;
-      if (caract == '\n'){
-        tab[j]='\0';
-        return i+1;
-      }
-    }
-    else {
-      break;
-    }
-  }
-
-  return i;
-}
-
-char *read_name(char tab1[],char tab2[]){
-  int j=0;
-  int i=0;
-  char *msg;
-  msg=malloc(sizeof(char)*36);
-  while (i<=strlen(tab1)){
-    if (tab1[i]==tab2[i]){
-      i++;
-    }
-    else {
-      msg[j]= tab1[i];
-      i++;
-      j++;
-    }
-
-  }
-  return msg;
-}
-
-void error(const char *msg)
-{
-    perror(msg);
-    exit(1);
-}*/
-
-/*int intro(int i, char *msg_sent, char *msg_recv, int msg_size, int sock){
-
-    printf("\n[SERVER] please introduce yourself by using /nick <your pseudo>\n");
-    fflush(stdout);
-    readline(0,msg_sent,msg_size);
-    write(sock,msg_sent,strlen(msg_sent));
-    if (strcmp(msg_sent, "quit\n") == 0)
-      exit(1);
-
-    //handle_client_message()
-    memset(msg_recv, '\0', msg_size);
-    readline(sock,msg_recv,msg_size);
-    char *nick = "/nick ";
-    if (strncmp(msg_recv, nick, strlen(nick)) != 0){
-        printf("[Server] : Wrong syntaxe\n");
-        break;
-    }
-    else {
-      char *name=read_name(msg_recv,"/nick ");
-      printf("[Server]: Welcome to the chat " );
-      fflush(stdout);
-      write(1,name,strlen(name));
-      printf("\n");
-      i++;
-    }
-    return i;
-}*/
-
 
 int main(int argc,char** argv)
 {
@@ -144,12 +66,11 @@ int main(int argc,char** argv)
       while (1){
 
         if (i==0){
-
-
           printf("\n[SERVER] please introduce yourself by using /nick <your pseudo>\n");
           fflush(stdout);
           readline(0,msg_sent,msg_size);
           write(sock,msg_sent,strlen(msg_sent));
+
           if (strcmp(msg_sent, "quit\n") == 0)
             exit(1);
 
@@ -157,10 +78,12 @@ int main(int argc,char** argv)
           memset(msg_recv, '\0', msg_size);
           readline(sock,msg_recv,msg_size);
           char *nick = "/nick ";
+
           if (strncmp(msg_recv, nick, strlen(nick)) != 0){
               printf("[Server] : Wrong syntaxe\n");
               break;
           }
+
           else {
             char *name=read_name(msg_recv,"/nick ");
             printf("[Server]: Welcome to the chat " );
@@ -169,19 +92,16 @@ int main(int argc,char** argv)
             printf("\n");
             i++;
           }
-          //intro(i, msg_sent, msg_recv, msg_size, sock);
-
-
         }
+
+
+
         else{
           printf("\nEnter your message :\n");
           fflush(stdout);
           readline(0,msg_sent,msg_size);
           write(sock,msg_sent,strlen(msg_sent));
-          /*char *command;
-          command=malloc(sizeof(char)*36);
-          char *whois = "/whois ";
-          sscanf(msg_sent, "%s", command);*/
+
 
           if (strcmp(msg_sent, "quit\n") == 0)
             exit(1);
@@ -193,13 +113,7 @@ int main(int argc,char** argv)
               printf("\nList of user:\n");
 
               read(sock, msg_recv, msg_size);
-
-
               write(1,msg_recv,strlen(msg_recv));
-
-
-
-
           }
 
 
@@ -210,6 +124,7 @@ int main(int argc,char** argv)
             write(1,msg_recv,strlen(msg_recv));
             printf("\n");
           }
+
 
           else {
             memset(msg_recv, '\0', msg_size);

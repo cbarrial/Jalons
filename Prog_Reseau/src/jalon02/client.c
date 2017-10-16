@@ -94,6 +94,38 @@ int main(int argc,char** argv)
     //readline()
     for (;;) {
 
+<<<<<<< HEAD
+      FD_ZERO(&fd_set_read);
+      FD_SET(sock, &fd_set_read);
+      FD_SET(fileno(stdin), &fd_set_read);
+      int max_fd = sock+1;
+
+      int sel= select(max_fd, &fd_set_read, NULL, NULL, NULL );
+      int i;
+
+      for (i=0; 0<max_fd && sel>0; i++){
+        if (FD_ISSET(i, &fd_set_read)){
+          if (i == STDIN_FILENO){
+            while (1){
+              printf("\nEnter your message:\n");
+              fflush(stdout);
+              readline(0,msg_sent,msg_size);
+              write(sock,msg_sent,strlen(msg_sent));
+              if (strcmp(msg_sent, "quit\n") == 0)
+                exit(1);
+              }
+            }
+            else{
+              while (1){
+                memset(msg_recv, '\0', msg_size);
+                readline(sock,msg_recv,msg_size);
+                printf("Message from server:\n");
+                fflush(stdout);
+                write(1,msg_recv,strlen(msg_recv));
+              }
+            }
+            sel--;
+=======
       //send message to the server
       while (1){
         printf("\nEnter your message:\n");
@@ -112,6 +144,7 @@ int main(int argc,char** argv)
         printf("\n");
 
 
+>>>>>>> b2735058229c4bf904e1545aebdd1106d5ab9ad5
         }
       }
       close(sock);
