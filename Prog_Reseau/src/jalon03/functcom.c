@@ -104,8 +104,7 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
       user=read_name(msg,"/whois ");
 
       char date[20];
-      strftime(date, 20, "%Y-%m-%d %H:%M:%S", localtime(&tabclient[cactual].date));
-      //strftime(tabclient[cactual].date,100,"%c\n",&date);
+
 
       char *command;
       command=malloc(sizeof(char)*36);
@@ -120,6 +119,7 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
 
         while (i<nbclients){
           if (strncmp(user, tabclient[i].name, strlen(tabclient[i].name)) == 0){
+            strftime(date, 20, "%Y-%m-%d %H:%M:%S", localtime(&tabclient[i].date));
             user[strlen(user)-1]='\0';
             memset(msg, '\0', msg_size);
             info1 = concat_string("[Server] : ", user);
@@ -128,8 +128,9 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
             //extraire la date
             info1 = concat_string( info, date);
             info = concat_string( info1, " with IP adress ");
+            memset(date, '\0', 20);
               //extraire l'adresse ip
-            info1= concat_string( info, tabclient[cactual].ip);
+            info1= concat_string( info, tabclient[i].ip);
             info = concat_string( info1, " and port number ");
               //extraire le port
             info1 = concat_string( info, portnb);

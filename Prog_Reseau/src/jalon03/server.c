@@ -125,7 +125,7 @@ int main(int argc, char** argv)
                 conex=conex+1;
                 tabclient[conex-1].sockclient=csock;
                 tabclient[conex-1].date = time(NULL);
-                tabclient[conex-1].ip = inet_ntoa(sin.sin_addr);
+                tabclient[conex-1].ip = inet_ntoa(csin.sin_addr);
                 if (conex-1>20){
                   write(tabclient[conex-1].sockclient, "Server cannot accept incoming connections anymore. Try again later.", sizeof(char)*60);
                   tabclient[conex-1].sockclient=0;
