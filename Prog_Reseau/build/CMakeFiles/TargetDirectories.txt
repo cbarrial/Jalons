@@ -1,2 +1,2 @@
-/net/t/cbarrial/Prog_Reseau/build/jalon01/CMakeFiles/RE216_JALON01_CLIENT.dir
-/net/t/cbarrial/Prog_Reseau/build/jalon01/CMakeFiles/RE216_JALON01_SERVER.dir
+/net/t/gchapotot/Jalons/Prog_Reseau/build/jalon02/CMakeFiles/RE216_JALON02_CLIENT.dir
+/net/t/gchapotot/Jalons/Prog_Reseau/build/jalon02/CMakeFiles/RE216_JALON02_SERVER.dir

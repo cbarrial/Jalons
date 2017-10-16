@@ -47,7 +47,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>/net/t/cbarrial/Prog_Reseau/build</value>
+					<value>/net/t/gchapotot/Jalons/Prog_Reseau/build</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.useDefaultBuildCmd</key>
@@ -83,7 +83,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.build.location</key>
-					<value>/net/t/cbarrial/Prog_Reseau/build</value>
+					<value>/net/t/gchapotot/Jalons/Prog_Reseau/build</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.autoBuildTarget</key>
@@ -111,7 +111,7 @@
 		<link>
 			<name>[Source directory]</name>
 			<type>2</type>
-			<location>/net/t/cbarrial/Prog_Reseau/src</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src</location>
 		</link>
 		<link>
 			<name>[Subprojects]</name>
@@ -121,12 +121,12 @@
 		<link>
 			<name>[Subprojects]/RE216</name>
 			<type>2</type>
-			<location>/net/t/cbarrial/Prog_Reseau/src</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src</location>
 		</link>
 		<link>
-			<name>[Subprojects]/RE216_JALON01</name>
+			<name>[Subprojects]/RE216_JALON02</name>
 			<type>2</type>
-			<location>/net/t/cbarrial/Prog_Reseau/src/jalon01</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon02</location>
 		</link>
 		<link>
 			<name>[Targets]</name>
@@ -134,82 +134,82 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_CLIENT</name>
+			<name>[Targets]/[exe] RE216_JALON02_CLIENT</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_CLIENT/</name>
+			<name>[Targets]/[exe] RE216_JALON02_CLIENT/</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_CLIENT/Source Files</name>
+			<name>[Targets]/[exe] RE216_JALON02_CLIENT/Source Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_CLIENT/Source Files/client.c</name>
+			<name>[Targets]/[exe] RE216_JALON02_CLIENT/Source Files/client.c</name>
 			<type>1</type>
-			<location>/net/t/cbarrial/Prog_Reseau/src/jalon01/client.c</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon02/client.c</location>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_CLIENT/Header Files</name>
+			<name>[Targets]/[exe] RE216_JALON02_CLIENT/Header Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_CLIENT/CMake Rules</name>
+			<name>[Targets]/[exe] RE216_JALON02_CLIENT/CMake Rules</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_CLIENT/Resources</name>
+			<name>[Targets]/[exe] RE216_JALON02_CLIENT/Resources</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_CLIENT/Object Files</name>
+			<name>[Targets]/[exe] RE216_JALON02_CLIENT/Object Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_SERVER</name>
+			<name>[Targets]/[exe] RE216_JALON02_SERVER</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_SERVER/</name>
+			<name>[Targets]/[exe] RE216_JALON02_SERVER/</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_SERVER/Source Files</name>
+			<name>[Targets]/[exe] RE216_JALON02_SERVER/Source Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_SERVER/Source Files/server.c</name>
+			<name>[Targets]/[exe] RE216_JALON02_SERVER/Source Files/server.c</name>
 			<type>1</type>
-			<location>/net/t/cbarrial/Prog_Reseau/src/jalon01/server.c</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon02/server.c</location>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_SERVER/Header Files</name>
+			<name>[Targets]/[exe] RE216_JALON02_SERVER/Header Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_SERVER/CMake Rules</name>
+			<name>[Targets]/[exe] RE216_JALON02_SERVER/CMake Rules</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_SERVER/Resources</name>
+			<name>[Targets]/[exe] RE216_JALON02_SERVER/Resources</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON01_SERVER/Object Files</name>
+			<name>[Targets]/[exe] RE216_JALON02_SERVER/Object Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
