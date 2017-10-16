@@ -199,10 +199,10 @@ ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 RE216_BINARY_DIR:STATIC=/net/t/gchapotot/Jalons/Prog_Reseau/build
 
 //Value Computed by CMake
-RE216_JALON02_BINARY_DIR:STATIC=/net/t/gchapotot/Jalons/Prog_Reseau/build/jalon02
+RE216_JALON03_BINARY_DIR:STATIC=/net/t/gchapotot/Jalons/Prog_Reseau/build/jalon03
 
 //Value Computed by CMake
-RE216_JALON02_SOURCE_DIR:STATIC=/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon02
+RE216_JALON03_SOURCE_DIR:STATIC=/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03
 
 //Value Computed by CMake
 RE216_SOURCE_DIR:STATIC=/net/t/gchapotot/Jalons/Prog_Reseau/src

@@ -8,38 +8,8 @@
 #define SOCKET_ERROR -1
 #define BIND_ERROR -1
 #define LISTEN_ERROR -1
+#include "functcom.h"
 
-ssize_t readline(int fd, char str[], size_t maxlen){
-  int i, a;
-  char caract, *tab;
-  tab = str;
-  int j=0;
-
-  for (i=0 ; i<maxlen ; i++){
-
-    a= read(fd, &caract, 1);
-
-    if (a==1){
-      tab[j++]=caract;
-      if (caract == '\n'){
-        tab[j]='\0';
-        return i+1;
-      }
-    }
-    else {
-      break;
-    }
-  }
-
-  return i;
-}
-
-
-void error(const char *msg)
-{
-    perror(msg);
-    exit(1);
-}
 
 int main(int argc, char** argv)
 {
@@ -57,6 +27,7 @@ int main(int argc, char** argv)
     int sock ;
     int bind_err;
     int list_err;
+
 
     //create the socket
     sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -99,38 +70,38 @@ int main(int argc, char** argv)
           //init the fdset
           fd_set lecture;
           int n=20;
-          int client[n];
+
+          client tabclient[n];
           int csock;
           int conex=0;
           int i;
 
 
           for (i=0;i < n ;i++ ){
-            client[i]=0;
+
+            tabclient[i].sockclient=0;
+            tabclient[i].iden = 0;
+            tabclient[i].name="";
+
           }
-          client[0]=sock;
+          tabclient[0].sockclient=sock;
           conex=conex+1;
 
           for (;;){
 
-<<<<<<< HEAD
-            int i;
-            for (i=0;i < n ;i++ ){
-              FD_SET(client[i], &lecture);
-=======
             FD_ZERO(&lecture);
             FD_SET(sock,&lecture);
+
 
             int i;
             int max_sock=sock;
             for (i=0;i<n;i++){
-              if (client[i]>0){
-                FD_SET(client[i],&lecture);
+              if (tabclient[i].sockclient>0){
+                FD_SET(tabclient[i].sockclient,&lecture);
               }
-              if (client[i]>max_sock){
-                max_sock=client[i];
+              if (tabclient[i].sockclient>max_sock){
+                max_sock=tabclient[i].sockclient;
               }
->>>>>>> b2735058229c4bf904e1545aebdd1106d5ab9ad5
             }
 
             int sel=select(max_sock+1,&lecture,NULL,NULL,NULL);
@@ -143,38 +114,47 @@ int main(int argc, char** argv)
               socklen_t taille = sizeof(csin);
               csock = accept(sock, (struct sockaddr*)&csin, &taille);
               if (csock == BIND_ERROR){
-
                 error("accept");
-
               }
               else {
                 printf("Client %d is connecting with the socket %d\n", csock-3,csock);
                 conex=conex+1;
-                client[conex-1]=csock;
+                tabclient[conex-1].sockclient=csock;
                 if (conex-1>20){
-                  write(client[conex-1], "Server cannot accept incoming connections anymore. Try again later.", sizeof(char)*60);
-                  client[conex-1]=0;
+                  write(tabclient[conex-1].sockclient, "Server cannot accept incoming connections anymore. Try again later.", sizeof(char)*60);
+                  tabclient[conex-1].sockclient=0;
                   conex=conex-1;
 
                 }
+
+
+
+                }
               }
-            }
-
-
 
 
             for (i=1;i<n;i++){
               memset(msg, 0, msg_size);
-              if (FD_ISSET(client[i], &lecture)!=0){
-                int size=readline(client[i],msg,msg_size);
 
-                printf("Message received by client %d\n",client[i]-3);
+
+              if (FD_ISSET(tabclient[i].sockclient, &lecture)!=0){
+                int size=readline(tabclient[i].sockclient,msg,msg_size);
+
+                ident(tabclient, i, msg);
+
+                send_list(msg, conex, tabclient, msg_size, i);
+
+                send_info(msg, tabclient, msg_size, n, i, argv[1]);
+
+                printf("Message received by client %s\n",tabclient[i].name);
+
                 //we write back to the client
                 if (strcmp(msg, "quit\n") == 0){
                   //write(client[i], ms, size);
-                  int clos=client[i]-3;
-                  close(client[i]);
-                  client[i]=0;
+                  //memset(msg, '\0', msg_size); si memset pas de server closed
+                  int clos=tabclient[i].sockclient-3;
+                  close(tabclient[i].sockclient);
+                  tabclient[i].sockclient=0;
                   conex=conex-1;
                   printf("Client %d is deconnected\n",clos);
                   if (conex<=1){
@@ -182,31 +162,24 @@ int main(int argc, char** argv)
                   }
                 }
 
-                write(client[i], msg, size);
-              }
+
+
+
+              write(tabclient[i].sockclient, msg, size);
             }
-            if (strcmp(msg, "quit\n") == 0){
-              printf("Server is closed\n");
-              break;
-            }
-
-
-
-
-
-<<<<<<< HEAD
-      }
-      int i;
-      for (i=0; i<n; i++){
-        close(client[i]);
-      }
-=======
->>>>>>> b2735058229c4bf904e1545aebdd1106d5ab9ad5
-
-
-
-
           }
+
+          if (strcmp(msg, "quit\n") == 0){
+            printf("Server is closed\n");
+            break;
+          }
+        }
+
+
+
+
+
+
         }
       }
     }
