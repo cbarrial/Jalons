@@ -86,11 +86,7 @@ int main(int argc, char** argv)
             tabclient[i].sockclient=0;
             tabclient[i].iden = 0;
             tabclient[i].name="";
-<<<<<<< HEAD
-            tabclient[i].date="";
-=======
 
->>>>>>> ded2cf35296c979e5b874ba3466066d0d6e8102d
           }
           tabclient[0].sockclient=sock;
           conex=conex+1;

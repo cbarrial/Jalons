@@ -119,7 +119,6 @@ int main(int argc,char** argv)
 
           else if (strncmp(msg_sent, "/whois", strlen("/whois")) == 0){
             memset(msg_recv, '\0', msg_size);
-            printf("[Server1]: ");
             read(sock, msg_recv, msg_size);
             write(1,msg_recv,strlen(msg_recv));
             printf("\n");
@@ -129,7 +128,7 @@ int main(int argc,char** argv)
           else {
             memset(msg_recv, '\0', msg_size);
             readline(sock, msg_recv, msg_size);
-            printf("[Server2]: ");
+            printf("[Server]: ");
             fflush(stdout);
             write(1,msg_recv,strlen(msg_recv));
             printf("\n");
