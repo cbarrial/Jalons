@@ -5,9 +5,13 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
+#include <time.h>
 #define SOCKET_ERROR -1
 #define BIND_ERROR -1
 #define LISTEN_ERROR -1
+#define NO_WHO -1
+#define NO_WHOIS -1
 #include "functcom.h"
 
 
@@ -120,14 +124,14 @@ int main(int argc, char** argv)
                 printf("Client %d is connecting with the socket %d\n", csock-3,csock);
                 conex=conex+1;
                 tabclient[conex-1].sockclient=csock;
+                tabclient[conex-1].date = time(NULL);
+                tabclient[conex-1].ip = inet_ntoa(sin.sin_addr);
                 if (conex-1>20){
                   write(tabclient[conex-1].sockclient, "Server cannot accept incoming connections anymore. Try again later.", sizeof(char)*60);
                   tabclient[conex-1].sockclient=0;
                   conex=conex-1;
 
                 }
-
-
 
                 }
               }
@@ -142,9 +146,9 @@ int main(int argc, char** argv)
 
                 ident(tabclient, i, msg);
 
-                send_list(msg, conex, tabclient, msg_size, i);
+                int list = send_list(msg, conex, tabclient, msg_size, i);
 
-                send_info(msg, tabclient, msg_size, n, i, argv[1]);
+                int info = send_info(msg, tabclient, msg_size, conex, i, argv[1]);
 
                 printf("Message received by client %s\n",tabclient[i].name);
 
@@ -162,10 +166,10 @@ int main(int argc, char** argv)
                   }
                 }
 
+                if (list == NO_WHO && info == NO_WHOIS){
+                  write(tabclient[i].sockclient, msg, size);
+                }
 
-
-
-              write(tabclient[i].sockclient, msg, size);
             }
           }
 

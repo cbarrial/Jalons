@@ -47,7 +47,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>/net/t/gchapotot/Jalons/Prog_Reseau/build</value>
+					<value>/net/t/cbarrial/Jalons/Prog_Reseau/build</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.useDefaultBuildCmd</key>
@@ -83,7 +83,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.build.location</key>
-					<value>/net/t/gchapotot/Jalons/Prog_Reseau/build</value>
+					<value>/net/t/cbarrial/Jalons/Prog_Reseau/build</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.autoBuildTarget</key>
@@ -111,7 +111,7 @@
 		<link>
 			<name>[Source directory]</name>
 			<type>2</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src</location>
 		</link>
 		<link>
 			<name>[Subprojects]</name>
@@ -121,12 +121,12 @@
 		<link>
 			<name>[Subprojects]/RE216</name>
 			<type>2</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src</location>
 		</link>
 		<link>
 			<name>[Subprojects]/RE216_JALON03</name>
 			<type>2</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03</location>
 		</link>
 		<link>
 			<name>[Targets]</name>
@@ -151,12 +151,12 @@
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Source Files/client.c</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/client.c</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/client.c</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Source Files/functcom.c</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.c</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/functcom.c</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Header Files</name>
@@ -166,7 +166,7 @@
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Header Files/functcom.h</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.h</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/functcom.h</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_CLIENT/CMake Rules</name>
@@ -201,12 +201,12 @@
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_SERVER/Source Files/server.c</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/server.c</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/server.c</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_SERVER/Source Files/functcom.c</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.c</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/functcom.c</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_SERVER/Header Files</name>
@@ -216,7 +216,7 @@
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_SERVER/Header Files/functcom.h</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.h</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/functcom.h</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON03_SERVER/CMake Rules</name>

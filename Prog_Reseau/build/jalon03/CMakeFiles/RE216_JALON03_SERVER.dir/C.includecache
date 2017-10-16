@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.c
+/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/functcom.c
 stdlib.h
 -
 unistd.h
@@ -25,10 +25,12 @@ errno.h
 -
 time.h
 -
+arpa/inet.h
+-
 functcom.h
-/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.h
+/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/functcom.h
 
-/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.h
+/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/functcom.h
 stdlib.h
 -
 unistd.h
@@ -45,8 +47,10 @@ netdb.h
 -
 errno.h
 -
+time.h
+-
 
-/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/server.c
+/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/server.c
 stdio.h
 -
 stdlib.h
@@ -61,6 +65,10 @@ sys/socket.h
 -
 netinet/in.h
 -
+arpa/inet.h
+-
+time.h
+-
 functcom.h
-/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.h
+/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon03/functcom.h
 
