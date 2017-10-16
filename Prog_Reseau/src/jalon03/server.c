@@ -232,7 +232,7 @@ int main(int argc, char** argv)
             tabclient[i].sockclient=0;
             tabclient[i].iden = 0;
             tabclient[i].name="";
-            
+            tabclient[i].date="";
           }
           tabclient[0].sockclient=sock;
           conex=conex+1;
@@ -342,7 +342,7 @@ int main(int argc, char** argv)
                   send_list(msg, conex, tabclient, msg_size, i);
 
                   send_info(msg, tabclient, msg_size, n, i, argv[1]);
-
+                  
                   printf("Message received by client %s\n",tabclient[i].name);
 
                   //we write back to the client

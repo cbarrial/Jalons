@@ -95,11 +95,11 @@ void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int ca
       user=malloc(sizeof(char)*36);
       user=read_name(msg,"/whois ");
       user[strlen(user)-1]='\0';
-      struct tm date;
+      /*struct tm date;
       time_t temps;
       time(&temps);
       date=*localtime(&temps);
-      strftime(tabclient[cactual].date,100,"%c\n",&date);
+      strftime(tabclient[cactual].date,100,"%c\n",&date);*/
 
       char *command;
       command=malloc(sizeof(char)*36);
@@ -126,7 +126,7 @@ void send_info(char *msg, client *tabclient, int msg_size, int nbclients, int ca
         info = concat_string(user, " connected since ");
 
           //extraire la date
-        info1 = concat_string( info, tabclient[cactual].date);
+        info1 = concat_string( info, "tabclient[cactual].date");
         info = concat_string( info1, " with IP adress ");
           //extraire l'adresse ip
         info1= concat_string( info, "addip");
