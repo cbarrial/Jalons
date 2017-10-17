@@ -313,14 +313,14 @@
 </target>
 <target name="Build" path="[Targets]/[exe] RE216_JALON03_CLIENT" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
-<buildArguments>-C "/net/t/cbarrial/Jalons/Prog_Reseau/build" -j8</buildArguments>
+<buildArguments>-C "/net/t/gchapotot/Jalons/Prog_Reseau/build" -j8</buildArguments>
 <buildTarget>RE216_JALON03_CLIENT</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
 <target name="Clean" path="[Targets]/[exe] RE216_JALON03_CLIENT" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/cmake</buildCommand>
-<buildArguments>-E chdir "/net/t/cbarrial/Jalons/Prog_Reseau/build/jalon03" "/usr/bin/cmake" -P "CMakeFiles/RE216_JALON03_CLIENT.dir/cmake_clean.cmake"</buildArguments>
+<buildArguments>-E chdir "/net/t/gchapotot/Jalons/Prog_Reseau/build/jalon03" "/usr/bin/cmake" -P "CMakeFiles/RE216_JALON03_CLIENT.dir/cmake_clean.cmake"</buildArguments>
 <buildTarget></buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
@@ -341,14 +341,14 @@
 </target>
 <target name="Build" path="[Targets]/[exe] RE216_JALON03_SERVER" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
-<buildArguments>-C "/net/t/cbarrial/Jalons/Prog_Reseau/build" -j8</buildArguments>
+<buildArguments>-C "/net/t/gchapotot/Jalons/Prog_Reseau/build" -j8</buildArguments>
 <buildTarget>RE216_JALON03_SERVER</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
 <target name="Clean" path="[Targets]/[exe] RE216_JALON03_SERVER" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/cmake</buildCommand>
-<buildArguments>-E chdir "/net/t/cbarrial/Jalons/Prog_Reseau/build/jalon03" "/usr/bin/cmake" -P "CMakeFiles/RE216_JALON03_SERVER.dir/cmake_clean.cmake"</buildArguments>
+<buildArguments>-E chdir "/net/t/gchapotot/Jalons/Prog_Reseau/build/jalon03" "/usr/bin/cmake" -P "CMakeFiles/RE216_JALON03_SERVER.dir/cmake_clean.cmake"</buildArguments>
 <buildTarget></buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
