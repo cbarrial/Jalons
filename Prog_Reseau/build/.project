@@ -124,9 +124,9 @@
 			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src</location>
 		</link>
 		<link>
-			<name>[Subprojects]/RE216_JALON03</name>
+			<name>[Subprojects]/RE216_JALON04</name>
 			<type>2</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04</location>
 		</link>
 		<link>
 			<name>[Targets]</name>
@@ -134,102 +134,102 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_CLIENT</name>
+			<name>[Targets]/[exe] RE216_JALON04_CLIENT</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_CLIENT/</name>
+			<name>[Targets]/[exe] RE216_JALON04_CLIENT/</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Source Files</name>
+			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Source Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Source Files/client.c</name>
+			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Source Files/client.c</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/client.c</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/client.c</location>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Source Files/functcom.c</name>
+			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Source Files/functcom.c</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.c</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/functcom.c</location>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Header Files</name>
+			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Header Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Header Files/functcom.h</name>
+			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Header Files/functcom.h</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.h</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/functcom.h</location>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_CLIENT/CMake Rules</name>
+			<name>[Targets]/[exe] RE216_JALON04_CLIENT/CMake Rules</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Resources</name>
+			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Resources</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_CLIENT/Object Files</name>
+			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Object Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_SERVER</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_SERVER/</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_SERVER/Source Files</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Source Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_SERVER/Source Files/server.c</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Source Files/server.c</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/server.c</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/server.c</location>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_SERVER/Source Files/functcom.c</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Source Files/functcom.c</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.c</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/functcom.c</location>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_SERVER/Header Files</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Header Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_SERVER/Header Files/functcom.h</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Header Files/functcom.h</name>
 			<type>1</type>
-			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon03/functcom.h</location>
+			<location>/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/functcom.h</location>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_SERVER/CMake Rules</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/CMake Rules</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_SERVER/Resources</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Resources</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON03_SERVER/Object Files</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Object Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>

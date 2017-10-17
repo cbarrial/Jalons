@@ -85,7 +85,7 @@ int main(int argc,char** argv)
 
           else {
             char *name=read_name(msg_recv,"/nick ");
-            printf("[Server]: Welcome to the chat " );
+            printf("[Server] : Welcome to the chat " );
             fflush(stdout);
             write(1,name,strlen(name));
             printf("\n");
@@ -122,11 +122,15 @@ int main(int argc,char** argv)
             printf("\n");
           }
 
+          else if (strncmp(msg_sent, "/msgall", strlen("/msgall")) == 0){
+            printf("[Server] : Message sent to all\n");
+          }
+
 
           else {
             memset(msg_recv, '\0', msg_size);
             readline(sock, msg_recv, msg_size);
-            printf("[Server]: ");
+            printf("[Server] : ");
             fflush(stdout);
             write(1,msg_recv,strlen(msg_recv));
             printf("\n");

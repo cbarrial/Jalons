@@ -167,3 +167,31 @@ void ident(client *tabclient, int cactual, char *msg){
     }
   }
 }
+
+
+int broadcast(client *tabclient, int cactual,int i, int j, char *msg){
+  char *msgall = "/msgall ";
+  char *say;
+  say=malloc(sizeof(char)*36);
+  say=read_name(msg,"/msgall ");
+  char *info="";
+  char *info1="";
+  info = concat_string("User ",tabclient[cactual].name);
+  info1= concat_string(info,": ");
+  info= concat_string(info1,say);
+
+  if (strncmp(msg, msgall, strlen(msgall)) == 0 ){
+
+      printf("%s\n",info);
+
+
+      write(tabclient[i].sockclient, info, strlen(info));
+      return 0;
+        }
+
+  else {
+          return -1;
+        }
+
+
+}

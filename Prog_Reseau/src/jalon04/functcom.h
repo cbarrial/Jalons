@@ -27,3 +27,4 @@ char *concat_string(char *s1,char *s2);
 int send_list( char *msg, int conex, client *tabclient, int msg_size, int cactual);
 int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *portnb);
 void ident(client *tabclient, int cactual, char *msg);
+int broadcast(client *tabclient, int cactual,int i, int j, char *msg);
