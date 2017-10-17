@@ -6,6 +6,30 @@
 
 #IncludeRegexTransform: 
 
+/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/functcom.c
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+string.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+netdb.h
+-
+errno.h
+-
+time.h
+-
+arpa/inet.h
+-
+functcom.h
+/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/functcom.h
+
 /net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/functcom.h
 stdlib.h
 -
@@ -25,26 +49,4 @@ errno.h
 -
 time.h
 -
-
-/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/server.c
-stdio.h
--
-stdlib.h
--
-string.h
--
-unistd.h
--
-sys/types.h
--
-sys/socket.h
--
-netinet/in.h
--
-arpa/inet.h
--
-time.h
--
-functcom.h
-/net/t/gchapotot/Jalons/Prog_Reseau/src/jalon04/functcom.h
 

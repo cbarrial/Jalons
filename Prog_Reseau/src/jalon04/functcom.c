@@ -166,6 +166,13 @@ void ident(client *tabclient, int cactual, char *msg){
       printf("Identification failed\n");
     }
   }
+  else {
+    if (strncmp(msg, nick, strlen(nick)) == 0 ){
+      tabclient[cactual].name=read_name(msg,"/nick ");
+
+    }
+
+  }
 }
 
 
