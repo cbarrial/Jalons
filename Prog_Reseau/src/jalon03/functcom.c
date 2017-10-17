@@ -106,10 +106,9 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
       char date[20];
       strftime(date, 20, "%Y-%m-%d %H:%M:%S", localtime(&tabclient[cactual].date));
 
-
       char *command;
       command=malloc(sizeof(char)*36);
-        //command=concat_string(command,"\n");
+
       char *info="";
       char *info1="";
 
@@ -117,14 +116,12 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
       sscanf(msg, "%s", command);
       if (strcmp(command,"/whois") == 0){
 
-
         while (i<nbclients){
           if (strncmp(user, tabclient[i].name, strlen(tabclient[i].name)) == 0){
             user[strlen(user)-1]='\0';
             memset(msg, '\0', msg_size);
             info1 = concat_string("[Server] : ", user);
             info = concat_string(info1, " connected since ");
-
             //extraire la date
             info1 = concat_string( info, date);
             info = concat_string( info1, " with IP adress ");
@@ -133,8 +130,6 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
             info = concat_string( info1, " and port number ");
               //extraire le port
             info1 = concat_string( info, portnb);
-
-              //printf("et la socket : %d\n", tabclient[cactual].sockclient);
 
             write(tabclient[cactual].sockclient, info1, strlen(info1));
             return 0;
@@ -149,6 +144,7 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
           write(tabclient[cactual].sockclient, mistake, strlen(mistake));
           return 0;
         }
+        return 0;
     }
     else {
       return -1;

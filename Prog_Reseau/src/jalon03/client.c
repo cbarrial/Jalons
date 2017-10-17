@@ -31,7 +31,6 @@ int main(int argc,char** argv)
     memset(msg_recv, 0, msg_size);
 
     //get address info from the server
-    //get_addr_info()
     struct hostent *res;
     struct in_addr* addr;
 
@@ -57,7 +56,6 @@ int main(int argc,char** argv)
     }
 
 
-
     //get user input
     for (;;) {
 
@@ -74,7 +72,6 @@ int main(int argc,char** argv)
           if (strcmp(msg_sent, "quit\n") == 0)
             exit(1);
 
-          //handle_client_message()
           memset(msg_recv, '\0', msg_size);
           readline(sock,msg_recv,msg_size);
           char *nick = "/nick ";
@@ -107,7 +104,6 @@ int main(int argc,char** argv)
             exit(1);
 
           //handle_client_message()
-
           if (strcmp(msg_sent, "/who\n") == 0 ){
               memset(msg_recv, '\0', msg_size);
               printf("\nList of user:\n");

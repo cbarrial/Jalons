@@ -63,7 +63,6 @@ int main(int argc, char** argv)
       else {
 
         //specify the socket to be a server socket and listen for at most 20 concurrent client
-        //listen()
         list_err=listen(sock, 20);
         if (list_err == LISTEN_ERROR){
           error("listen");
@@ -153,42 +152,9 @@ int main(int argc, char** argv)
                 printf("Message received by client %s\n",tabclient[i].name);
 
 
-
-                  /*
-                  char *who = "/who";
-                  if (strncmp(msg, who, strlen(who)) == 0){
-                    memset(msg, '\0', msg_size);
-                    int j;
-                    char *who_name="";
-
-                    for (j=1; j<conex; j++){
-                      char *name;
-                      name=malloc(sizeof(char)*36);
-                      char *list2 = " - ";
-                      name=concat_string(list2,tabclient[j].name);
-                      who_name=concat_string(who_name,name);
-                    }
-
-                  }
-
-                  printf("Message received by %s\n",tabclient[i].name);
-
-
-
-                  write(tabclient[i].sockclient, who_name, strlen(who_name));
-                }*/
-
-                  send_list(msg, conex, tabclient, msg_size, i);
-
-                  send_info(msg, tabclient, msg_size, n, i, argv[1]);
-
-                  printf("Message received by client %s\n",tabclient[i].name);
-
-
                 //we write back to the client
                 if (strcmp(msg, "quit\n") == 0){
-                  //write(client[i], ms, size);
-                  //memset(msg, '\0', msg_size); si memset pas de server closed
+
                   int clos=tabclient[i].sockclient-3;
                   close(tabclient[i].sockclient);
                   tabclient[i].sockclient=0;
@@ -212,10 +178,6 @@ int main(int argc, char** argv)
             break;
           }
         }
-
-
-
-
 
 
         }
