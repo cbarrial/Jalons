@@ -84,9 +84,11 @@ int send_list( char *msg, int conex, client *tabclient, int msg_size, int cactua
     for (j=1; j<conex; j++){
       char *name;
       name=malloc(sizeof(char)*36);
-      char *list2 = " - ";
+      char *list2 = " \n- ";
       name=concat_string(list2,tabclient[j].name);
       who_name=concat_string(who_name,name);
+      who_name=concat_string(who_name,"\n");
+
     }
 
     write(tabclient[cactual].sockclient, who_name, strlen(who_name));
@@ -158,6 +160,7 @@ void ident(client *tabclient, int cactual, char *msg){
 
     if (strncmp(msg, nick, strlen(nick)) == 0 && strcmp(tabclient[cactual].name,"")==0){
       tabclient[cactual].name=read_name(msg,"/nick ");
+      tabclient[cactual].name[strlen(tabclient[cactual].name)-1]='\0';
       tabclient[cactual].iden++;
       printf("Identification of %s\n", tabclient[cactual].name);
     }
@@ -169,6 +172,7 @@ void ident(client *tabclient, int cactual, char *msg){
   else {
     if (strncmp(msg, nick, strlen(nick)) == 0 ){
       tabclient[cactual].name=read_name(msg,"/nick ");
+      tabclient[cactual].name[strlen(tabclient[cactual].name)-1]='\0';
 
     }
 
@@ -183,17 +187,19 @@ int broadcast(client *tabclient, int cactual,int i, int j, char *msg){
   say=read_name(msg,"/msgall ");
   char *info="";
   char *info1="";
-  info = concat_string("User ",tabclient[cactual].name);
-  info1= concat_string(info,": ");
+
+
+  info1= concat_string(tabclient[cactual].name,": ");
   info= concat_string(info1,say);
 
   if (strncmp(msg, msgall, strlen(msgall)) == 0 ){
+    if (j!=tabclient[i].sockclient){
 
       printf("%s\n",info);
-
-
       write(tabclient[i].sockclient, info, strlen(info));
+
       return 0;
+    }
         }
 
   else {

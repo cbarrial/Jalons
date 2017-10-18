@@ -154,6 +154,7 @@ int main(int argc, char** argv)
 
                 int msgall;
                 int k;
+            
 
                 for (k=1;k<conex;k++){
 

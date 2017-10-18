@@ -26,6 +26,7 @@ int main(int argc,char** argv)
     int msg_size=1000;
     char msg_recv[msg_size];
     char msg_sent[msg_size];
+    fd_set fd_set_read;
 
     memset(msg_sent, 0, msg_size);
     memset(msg_recv, 0, msg_size);
@@ -56,93 +57,131 @@ int main(int argc,char** argv)
     }
 
 
-
+    int i=0;
     //get user input
     for (;;) {
 
-      int i=0;
-      //send message to the server
-      while (1){
 
-        if (i==0){
-          printf("\n[SERVER] please introduce yourself by using /nick <your pseudo>\n");
-          fflush(stdout);
-          readline(0,msg_sent,msg_size);
-          write(sock,msg_sent,strlen(msg_sent));
+            //send message to the server
+            //    while (1){
 
-          if (strcmp(msg_sent, "quit\n") == 0)
-            exit(1);
+              if (i==0){
+                printf("\n[SERVER] please introduce yourself by using /nick <your pseudo>\n");
+                fflush(stdout);
+                FD_ZERO(&fd_set_read);
+                FD_SET(sock, &fd_set_read);
+                FD_SET(fileno(stdin), &fd_set_read);
+                int max_fd =sock+1;
+                int sel=0;
+                sel = select(max_fd, &fd_set_read, NULL, NULL, NULL);
 
-          //handle_client_message()
-          memset(msg_recv, '\0', msg_size);
-          readline(sock,msg_recv,msg_size);
-          char *nick = "/nick ";
+                int a;
+                for ( a = 0 ; a<max_fd && sel>=0; a++){
+                  //memset(msg_sent, '\0', msg_size);
+                  if (FD_ISSET(a, &fd_set_read)){
+                    if (a == fileno(stdin)){
+                      readline(0,msg_sent,msg_size);
+                      write(sock,msg_sent,strlen(msg_sent));
 
-          if (strncmp(msg_recv, nick, strlen(nick)) != 0){
-              printf("[Server] : Wrong syntaxe\n");
-              break;
+                      if (strcmp(msg_sent, "quit\n") == 0)
+                        exit(1);
+
+                      //handle_client_message()
+                      memset(msg_recv, '\0', msg_size);
+                      readline(sock,msg_recv,msg_size);
+                      char *nick = "/nick ";
+
+                      if (strncmp(msg_recv, nick, strlen(nick)) != 0){
+                          printf("[Server] : Wrong syntaxe\n");
+                          break;
+                      }
+
+                      else {
+                        char *name=read_name(msg_recv,"/nick ");
+                        printf("[Server] : Welcome to the chat " );
+                        fflush(stdout);
+                        write(1,name,strlen(name));
+                        printf("\n");
+                        i++;
+                      }
+                    }
+                    sel--;
+                    }
+                  }
+                }
+
+              else{
+
+                printf("\nEnter your message :\n");
+                fflush(stdout);
+                FD_ZERO(&fd_set_read);
+                FD_SET(sock, &fd_set_read);
+                FD_SET(fileno(stdin), &fd_set_read);
+                int max_fd =sock+1;
+                int sel=0;
+                sel = select(max_fd, &fd_set_read, NULL, NULL, NULL);
+
+                int a;
+                for ( a = 0 ; a<max_fd && sel>=0; a++){
+                  //memset(msg_sent, '\0', msg_size);
+                  if (FD_ISSET(a, &fd_set_read)){
+                    if (a == fileno(stdin)){
+                      readline(0,msg_sent,msg_size);
+                      write(sock,msg_sent,strlen(msg_sent));
+
+
+
+                      if (strcmp(msg_sent, "quit\n") == 0)
+                        exit(1);
+
+                      //handle_client_message()
+
+                      if (strcmp(msg_sent, "/who\n") == 0 ){
+                          printf("\nList of user:\n");
+                          memset(msg_recv, '\0', msg_size);
+                          read(sock, msg_recv, msg_size);
+                          write(1,msg_recv,strlen(msg_recv));
+                      }
+
+
+                      else if (strncmp(msg_sent, "/whois", strlen("/whois")) == 0){
+                        memset(msg_recv, '\0', msg_size);
+                        read(sock, msg_recv, msg_size);
+                        write(1,msg_recv,strlen(msg_recv));
+                        printf("\n");
+                      }
+
+                      else if (strncmp(msg_sent, "/msgall", strlen("/msgall")) == 0){
+                        printf("[Server] : Message sent to all\n");
+                      }
+
+
+                      else {
+                        memset(msg_recv, '\0', msg_size);
+                        readline(sock, msg_recv, msg_size);
+                        printf("[Server] : ");
+                        fflush(stdout);
+                        write(1,msg_recv,strlen(msg_recv));
+                        printf("\n");
+                      }
+
+                    }
+                else {
+
+                  memset(msg_recv, '\0', msg_size);
+                  read(sock, msg_recv, msg_size);
+                  fflush(stdout);
+                  write(1,msg_recv,strlen(msg_recv));
+                  printf("\n");
+                }
+                sel --;
+              }
+            }
           }
 
-          else {
-            char *name=read_name(msg_recv,"/nick ");
-            printf("[Server] : Welcome to the chat " );
-            fflush(stdout);
-            write(1,name,strlen(name));
-            printf("\n");
-            i++;
-          }
-        }
+    }
 
-
-
-        else{
-          printf("\nEnter your message :\n");
-          fflush(stdout);
-          readline(0,msg_sent,msg_size);
-          write(sock,msg_sent,strlen(msg_sent));
-
-
-          if (strcmp(msg_sent, "quit\n") == 0)
-            exit(1);
-
-          //handle_client_message()
-
-          if (strcmp(msg_sent, "/who\n") == 0 ){
-              printf("\nList of user:\n");
-              memset(msg_recv, '\0', msg_size);
-              read(sock, msg_recv, msg_size);
-              write(1,msg_recv,strlen(msg_recv));
-          }
-
-
-          else if (strncmp(msg_sent, "/whois", strlen("/whois")) == 0){
-            memset(msg_recv, '\0', msg_size);
-            read(sock, msg_recv, msg_size);
-            write(1,msg_recv,strlen(msg_recv));
-            printf("\n");
-          }
-
-          else if (strncmp(msg_sent, "/msgall", strlen("/msgall")) == 0){
-            printf("[Server] : Message sent to all\n");
-          }
-
-
-          else {
-            memset(msg_recv, '\0', msg_size);
-            readline(sock, msg_recv, msg_size);
-            printf("[Server] : ");
-            fflush(stdout);
-            write(1,msg_recv,strlen(msg_recv));
-            printf("\n");
-          }
-
-        }
-        }
-      }
       close(sock);
-
-
-
       return 0;
 
 
