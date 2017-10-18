@@ -10,6 +10,21 @@
 #include <arpa/inet.h>
 #include "functcom.h"
 
+int do_socket(int domain, int type, int protocol) {
+    int sockfd;
+    int yes = 1;
+//create the socket
+    sockfd = socket(domain,type,protocol);
+
+//check for socket validity
+
+// set socket option, to prevent "already in use" issue when rebooting the server right on
+
+    if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1)
+        error("ERROR setting socket options");
+
+    return sockfd;
+}
 
 
 ssize_t readline(int fd, char str[], size_t maxlen){
@@ -84,9 +99,11 @@ int send_list( char *msg, int conex, client *tabclient, int msg_size, int cactua
     for (j=1; j<conex; j++){
       char *name;
       name=malloc(sizeof(char)*36);
-      char *list2 = " - ";
+      char *list2 = " \n- ";
       name=concat_string(list2,tabclient[j].name);
       who_name=concat_string(who_name,name);
+      who_name=concat_string(who_name,"\n");
+
     }
 
     write(tabclient[cactual].sockclient, who_name, strlen(who_name));
@@ -160,6 +177,7 @@ void ident(client *tabclient, int cactual, char *msg){
 
     if (strncmp(msg, nick, strlen(nick)) == 0 && strcmp(tabclient[cactual].name,"")==0){
       tabclient[cactual].name=read_name(msg,"/nick ");
+      tabclient[cactual].name[strlen(tabclient[cactual].name)-1]='\0';
       tabclient[cactual].iden++;
       printf("Identification of %s\n", tabclient[cactual].name);
     }
@@ -171,6 +189,7 @@ void ident(client *tabclient, int cactual, char *msg){
   else {
     if (strncmp(msg, nick, strlen(nick)) == 0 ){
       tabclient[cactual].name=read_name(msg,"/nick ");
+      tabclient[cactual].name[strlen(tabclient[cactual].name)-1]='\0';
 
     }
 
@@ -181,21 +200,75 @@ void ident(client *tabclient, int cactual, char *msg){
 int broadcast(client *tabclient, int cactual,int i, int j, char *msg){
   char *msgall = "/msgall ";
   char *say;
-  say=malloc(sizeof(char)*36);
+  say=malloc(sizeof(char)*100);
   say=read_name(msg,"/msgall ");
   char *info="";
   char *info1="";
-  info = concat_string("User ",tabclient[cactual].name);
-  info1= concat_string(info,": ");
-  info= concat_string(info1,say);
+
+  info=concat_string("\n[User ",tabclient[cactual].name);
+  info1=concat_string(info,"]");
+  info= concat_string(info1," : ");
+  info1= concat_string(info,say);
 
   if (strncmp(msg, msgall, strlen(msgall)) == 0 ){
+    if (j!=tabclient[i].sockclient){
 
-      printf("%s\n",info);
+
+      write(tabclient[i].sockclient, info1, strlen(info1));
 
 
-      write(tabclient[i].sockclient, info, strlen(info));
-      return 0;
+    }
+    return 0;
+        }
+
+  else {
+          return -1;
+        }
+
+
+}
+
+
+int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex){
+  char *say;
+  say=malloc(sizeof(char)*100);
+  char *say2;
+  say2=malloc(sizeof(char)*100);
+  char *command;
+  command=malloc(sizeof(char)*36);
+  char *client;
+  client=malloc(sizeof(char)*36);
+  char *info="";
+  char *info1="";
+
+  sscanf(msg, "%s %s %s", command, client, say);
+
+
+
+  int k;
+  int sock;
+  for (k=1;k<conex;k++){
+    if (strcmp(tabclient[k].name,client) == 0 ){
+      sock=tabclient[k].sockclient;
+    }
+  }
+
+  client=concat_string(client," ");
+  say2=read_name(msg,"/msg ");
+  say=read_name(say2,client);
+
+  info=concat_string("\n[User ",tabclient[cactual].name);
+  info1=concat_string(info,"]");
+  info= concat_string(info1," : ");
+  info1= concat_string(info,say);
+
+  if (strcmp(command,"/msg") == 0 ){
+
+      write(sock, info1, strlen(info1));
+
+
+
+    return 0;
         }
 
   else {

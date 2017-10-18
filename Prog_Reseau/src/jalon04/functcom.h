@@ -20,6 +20,7 @@ typedef struct {
 
 }client;
 
+int do_socket(int domain, int type, int protocol);
 ssize_t readline(int fd, char str[], size_t maxlen);
 char *read_name(char tab1[],char tab2[]);
 void error(const char *msg);
@@ -28,3 +29,4 @@ int send_list( char *msg, int conex, client *tabclient, int msg_size, int cactua
 int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *portnb);
 void ident(client *tabclient, int cactual, char *msg);
 int broadcast(client *tabclient, int cactual,int i, int j, char *msg);
+int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex);

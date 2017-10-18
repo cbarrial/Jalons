@@ -13,6 +13,7 @@
 #define NO_WHO -1
 #define NO_WHOIS -1
 #define NO_ALL -1
+#define NO_UNI -1
 #include "functcom.h"
 
 
@@ -35,7 +36,7 @@ int main(int argc, char** argv)
 
 
     //create the socket
-    sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    sock = do_socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
     //Check for the socket validity
     if (sock == SOCKET_ERROR){
@@ -155,6 +156,9 @@ int main(int argc, char** argv)
                 int msgall;
                 int k;
 
+                int uni=unicast(tabclient, i, k, j, msg, conex);
+
+
                 for (k=1;k<conex;k++){
 
                   msgall=broadcast(tabclient, i, k, j, msg);
@@ -175,7 +179,7 @@ int main(int argc, char** argv)
                   }
                 }
 
-                if (list == NO_WHO && info == NO_WHOIS && msgall==NO_ALL){
+                if (list == NO_WHO && info == NO_WHOIS && msgall==NO_ALL && uni==NO_UNI){
                   //we write back to the client
                   write(tabclient[i].sockclient, msg, size);
                 }
