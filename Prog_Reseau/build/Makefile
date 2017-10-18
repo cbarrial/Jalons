@@ -111,30 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named RE216_JALON03_SERVER
+# Target rules for targets named RE216_JALON04_SERVER
 
 # Build rule for target.
-RE216_JALON03_SERVER: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 RE216_JALON03_SERVER
-.PHONY : RE216_JALON03_SERVER
+RE216_JALON04_SERVER: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 RE216_JALON04_SERVER
+.PHONY : RE216_JALON04_SERVER
 
 # fast build rule for target.
-RE216_JALON03_SERVER/fast:
-	$(MAKE) -f jalon03/CMakeFiles/RE216_JALON03_SERVER.dir/build.make jalon03/CMakeFiles/RE216_JALON03_SERVER.dir/build
-.PHONY : RE216_JALON03_SERVER/fast
+RE216_JALON04_SERVER/fast:
+	$(MAKE) -f jalon04/CMakeFiles/RE216_JALON04_SERVER.dir/build.make jalon04/CMakeFiles/RE216_JALON04_SERVER.dir/build
+.PHONY : RE216_JALON04_SERVER/fast
 
 #=============================================================================
-# Target rules for targets named RE216_JALON03_CLIENT
+# Target rules for targets named RE216_JALON04_CLIENT
 
 # Build rule for target.
-RE216_JALON03_CLIENT: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 RE216_JALON03_CLIENT
-.PHONY : RE216_JALON03_CLIENT
+RE216_JALON04_CLIENT: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 RE216_JALON04_CLIENT
+.PHONY : RE216_JALON04_CLIENT
 
 # fast build rule for target.
-RE216_JALON03_CLIENT/fast:
-	$(MAKE) -f jalon03/CMakeFiles/RE216_JALON03_CLIENT.dir/build.make jalon03/CMakeFiles/RE216_JALON03_CLIENT.dir/build
-.PHONY : RE216_JALON03_CLIENT/fast
+RE216_JALON04_CLIENT/fast:
+	$(MAKE) -f jalon04/CMakeFiles/RE216_JALON04_CLIENT.dir/build.make jalon04/CMakeFiles/RE216_JALON04_CLIENT.dir/build
+.PHONY : RE216_JALON04_CLIENT/fast
 
 # Help Target
 help:
@@ -144,8 +144,8 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... RE216_JALON03_SERVER"
-	@echo "... RE216_JALON03_CLIENT"
+	@echo "... RE216_JALON04_SERVER"
+	@echo "... RE216_JALON04_CLIENT"
 .PHONY : help
 
 

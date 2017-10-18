@@ -12,6 +12,7 @@
 #define LISTEN_ERROR -1
 #define NO_WHO -1
 #define NO_WHOIS -1
+#define NO_ALL -1
 #include "functcom.h"
 
 
@@ -143,22 +144,27 @@ int main(int argc, char** argv)
               if (FD_ISSET(tabclient[i].sockclient, &lecture)!=0){
                 int size=readline(tabclient[i].sockclient,msg,msg_size);
 
+                int j=tabclient[i].sockclient;
+
                 ident(tabclient, i, msg);
 
                 int list = send_list(msg, conex, tabclient, msg_size, i);
 
                 int info = send_info(msg, tabclient, msg_size, conex, i, argv[1]);
 
+                int msgall;
+                int k;
+
+                for (k=1;k<conex;k++){
+
+                  msgall=broadcast(tabclient, i, k, j, msg);
+
+                }
+
                 printf("Message received by client %s\n",tabclient[i].name);
 
 
-<<<<<<< HEAD
-                //we write back to the client
                 if (strcmp(msg, "quit\n") == 0){
-
-=======
-                if (strcmp(msg, "quit\n") == 0){
->>>>>>> e20876e8e8bbe626c9fc2800aef382b8bfb91a42
                   int clos=tabclient[i].sockclient-3;
                   close(tabclient[i].sockclient);
                   tabclient[i].sockclient=0;
@@ -166,11 +172,10 @@ int main(int argc, char** argv)
                   printf("Client %d is deconnected\n",clos);
                   if (conex<=1){
                     break;
-
                   }
                 }
 
-                if (list == NO_WHO && info == NO_WHOIS){
+                if (list == NO_WHO && info == NO_WHOIS && msgall==NO_ALL){
                   //we write back to the client
                   write(tabclient[i].sockclient, msg, size);
                 }
@@ -183,6 +188,10 @@ int main(int argc, char** argv)
             break;
           }
         }
+
+
+
+
 
 
         }

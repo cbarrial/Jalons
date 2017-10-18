@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/client.c
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/client.c
 stdlib.h
 -
 unistd.h
@@ -24,9 +24,9 @@ netdb.h
 errno.h
 -
 functcom.h
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h
 
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.c
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.c
 stdlib.h
 -
 unistd.h
@@ -48,9 +48,9 @@ time.h
 arpa/inet.h
 -
 functcom.h
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h
 
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h
 stdlib.h
 -
 unistd.h

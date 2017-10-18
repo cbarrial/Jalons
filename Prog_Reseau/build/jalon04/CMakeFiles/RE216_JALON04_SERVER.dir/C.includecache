@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.c
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.c
 stdlib.h
 -
 unistd.h
@@ -28,9 +28,9 @@ time.h
 arpa/inet.h
 -
 functcom.h
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h
 
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h
 stdlib.h
 -
 unistd.h
@@ -50,7 +50,7 @@ errno.h
 time.h
 -
 
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/server.c
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/server.c
 stdio.h
 -
 stdlib.h
@@ -70,5 +70,5 @@ arpa/inet.h
 time.h
 -
 functcom.h
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03/functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h
 

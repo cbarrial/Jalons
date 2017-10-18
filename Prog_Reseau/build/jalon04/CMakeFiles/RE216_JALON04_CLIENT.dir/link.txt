@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/RE216_JALON04_CLIENT.dir/client.c.o CMakeFiles/RE216_JALON04_CLIENT.dir/functcom.c.o  -o RE216_JALON04_CLIENT 

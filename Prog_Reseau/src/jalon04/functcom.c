@@ -104,24 +104,17 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
       user=read_name(msg,"/whois ");
 
       char date[20];
-<<<<<<< HEAD
-      strftime(date, 20, "%Y-%m-%d %H:%M:%S", localtime(&tabclient[cactual].date));
-
-      char *command;
-      command=malloc(sizeof(char)*36);
-
-=======
 
 
       char *command;
       command=malloc(sizeof(char)*36);
->>>>>>> e20876e8e8bbe626c9fc2800aef382b8bfb91a42
       char *info="";
       char *info1="";
 
       int i=1;
       sscanf(msg, "%s", command);
       if (strcmp(command,"/whois") == 0){
+
 
         while (i<nbclients){
           if (strncmp(user, tabclient[i].name, strlen(tabclient[i].name)) == 0){
@@ -130,6 +123,7 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
             memset(msg, '\0', msg_size);
             info1 = concat_string("[Server] : ", user);
             info = concat_string(info1, " connected since ");
+
             //extraire la date
             info1 = concat_string( info, date);
             info = concat_string( info1, " with IP adress ");
@@ -146,8 +140,8 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
           else {
             i++;
           }
-        }
 
+        }
         if (i == nbclients){
           char  *mistake = "This client doesn't exist";
           write(tabclient[cactual].sockclient, mistake, strlen(mistake));
@@ -157,7 +151,6 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
     }
     else {
       return -1;
-
     }
   }
 
@@ -175,4 +168,39 @@ void ident(client *tabclient, int cactual, char *msg){
       printf("Identification failed\n");
     }
   }
+  else {
+    if (strncmp(msg, nick, strlen(nick)) == 0 ){
+      tabclient[cactual].name=read_name(msg,"/nick ");
+
+    }
+
+  }
+}
+
+
+int broadcast(client *tabclient, int cactual,int i, int j, char *msg){
+  char *msgall = "/msgall ";
+  char *say;
+  say=malloc(sizeof(char)*36);
+  say=read_name(msg,"/msgall ");
+  char *info="";
+  char *info1="";
+  info = concat_string("User ",tabclient[cactual].name);
+  info1= concat_string(info,": ");
+  info= concat_string(info1,say);
+
+  if (strncmp(msg, msgall, strlen(msgall)) == 0 ){
+
+      printf("%s\n",info);
+
+
+      write(tabclient[i].sockclient, info, strlen(info));
+      return 0;
+        }
+
+  else {
+          return -1;
+        }
+
+
 }

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon03
+# Install script for directory: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

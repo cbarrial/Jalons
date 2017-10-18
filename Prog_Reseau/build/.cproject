@@ -390,70 +390,70 @@
 						<stopOnError>true</stopOnError>
 						<useDefaultCommand>false</useDefaultCommand>
 					</target>
-					<target name="[exe] RE216_JALON03_SERVER" path="jalon03" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+					<target name="[exe] RE216_JALON04_SERVER" path="jalon04" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 						<buildCommand>/usr/bin/make</buildCommand>
 						<buildArguments>-j4</buildArguments>
-						<buildTarget>RE216_JALON03_SERVER</buildTarget>
+						<buildTarget>RE216_JALON04_SERVER</buildTarget>
 						<stopOnError>true</stopOnError>
 						<useDefaultCommand>false</useDefaultCommand>
 					</target>
-					<target name="[exe] RE216_JALON03_SERVER/fast" path="jalon03" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+					<target name="[exe] RE216_JALON04_SERVER/fast" path="jalon04" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 						<buildCommand>/usr/bin/make</buildCommand>
 						<buildArguments>-j4</buildArguments>
-						<buildTarget>RE216_JALON03_SERVER/fast</buildTarget>
+						<buildTarget>RE216_JALON04_SERVER/fast</buildTarget>
 						<stopOnError>true</stopOnError>
 						<useDefaultCommand>false</useDefaultCommand>
 					</target>
-					<target name="Build" path="[Targets]/[exe] RE216_JALON03_SERVER" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+					<target name="Build" path="[Targets]/[exe] RE216_JALON04_SERVER" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 						<buildCommand>/usr/bin/make</buildCommand>
 						<buildArguments>-C "/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build" -j4</buildArguments>
-						<buildTarget>RE216_JALON03_SERVER</buildTarget>
+						<buildTarget>RE216_JALON04_SERVER</buildTarget>
 						<stopOnError>true</stopOnError>
 						<useDefaultCommand>false</useDefaultCommand>
 					</target>
-					<target name="Clean" path="[Targets]/[exe] RE216_JALON03_SERVER" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+					<target name="Clean" path="[Targets]/[exe] RE216_JALON04_SERVER" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 						<buildCommand>/usr/local/Cellar/cmake/3.9.4/bin/cmake</buildCommand>
-						<buildArguments>-E chdir "/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon03" "/usr/local/Cellar/cmake/3.9.4/bin/cmake" -P "CMakeFiles/RE216_JALON03_SERVER.dir/cmake_clean.cmake"</buildArguments>
+						<buildArguments>-E chdir "/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon04" "/usr/local/Cellar/cmake/3.9.4/bin/cmake" -P "CMakeFiles/RE216_JALON04_SERVER.dir/cmake_clean.cmake"</buildArguments>
 						<buildTarget></buildTarget>
 						<stopOnError>true</stopOnError>
 						<useDefaultCommand>false</useDefaultCommand>
 					</target>
-					<target name="[exe] RE216_JALON03_CLIENT" path="jalon03" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+					<target name="[exe] RE216_JALON04_CLIENT" path="jalon04" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 						<buildCommand>/usr/bin/make</buildCommand>
 						<buildArguments>-j4</buildArguments>
-						<buildTarget>RE216_JALON03_CLIENT</buildTarget>
+						<buildTarget>RE216_JALON04_CLIENT</buildTarget>
 						<stopOnError>true</stopOnError>
 						<useDefaultCommand>false</useDefaultCommand>
 					</target>
-					<target name="[exe] RE216_JALON03_CLIENT/fast" path="jalon03" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+					<target name="[exe] RE216_JALON04_CLIENT/fast" path="jalon04" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 						<buildCommand>/usr/bin/make</buildCommand>
 						<buildArguments>-j4</buildArguments>
-						<buildTarget>RE216_JALON03_CLIENT/fast</buildTarget>
+						<buildTarget>RE216_JALON04_CLIENT/fast</buildTarget>
 						<stopOnError>true</stopOnError>
 						<useDefaultCommand>false</useDefaultCommand>
 					</target>
-					<target name="Build" path="[Targets]/[exe] RE216_JALON03_CLIENT" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+					<target name="Build" path="[Targets]/[exe] RE216_JALON04_CLIENT" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 						<buildCommand>/usr/bin/make</buildCommand>
 						<buildArguments>-C "/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build" -j4</buildArguments>
-						<buildTarget>RE216_JALON03_CLIENT</buildTarget>
+						<buildTarget>RE216_JALON04_CLIENT</buildTarget>
 						<stopOnError>true</stopOnError>
 						<useDefaultCommand>false</useDefaultCommand>
 					</target>
-					<target name="Clean" path="[Targets]/[exe] RE216_JALON03_CLIENT" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+					<target name="Clean" path="[Targets]/[exe] RE216_JALON04_CLIENT" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 						<buildCommand>/usr/local/Cellar/cmake/3.9.4/bin/cmake</buildCommand>
-						<buildArguments>-E chdir "/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon03" "/usr/local/Cellar/cmake/3.9.4/bin/cmake" -P "CMakeFiles/RE216_JALON03_CLIENT.dir/cmake_clean.cmake"</buildArguments>
+						<buildArguments>-E chdir "/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon04" "/usr/local/Cellar/cmake/3.9.4/bin/cmake" -P "CMakeFiles/RE216_JALON04_CLIENT.dir/cmake_clean.cmake"</buildArguments>
 						<buildTarget></buildTarget>
 						<stopOnError>true</stopOnError>
 						<useDefaultCommand>false</useDefaultCommand>
 					</target>
-					<target name=": all" path="jalon03" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+					<target name=": all" path="jalon04" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 						<buildCommand>/usr/bin/make</buildCommand>
 						<buildArguments>-j4</buildArguments>
 						<buildTarget>all</buildTarget>
 						<stopOnError>true</stopOnError>
 						<useDefaultCommand>false</useDefaultCommand>
 					</target>
-					<target name=": clean" path="jalon03" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+					<target name=": clean" path="jalon04" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 						<buildCommand>/usr/bin/make</buildCommand>
 						<buildArguments>-j4</buildArguments>
 						<buildTarget>clean</buildTarget>
