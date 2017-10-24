@@ -277,3 +277,25 @@ int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex){
 
 
 }
+
+
+int create_chanel(client *tabclient, int cactual,int i, int j, char *msg){
+  char *command = "/create ";
+  char *name;
+  name=malloc(sizeof(char)*36);
+  name=read_name(msg,command);
+
+    char *info="";
+
+    info=concat_string("You have created channel ",name);
+
+    if (strncmp(msg, command, strlen(command)) == 0 ){
+
+      write(tabclient[cactual].sockclient,info,strlen(info));
+      return 0;
+    }
+    else {
+      return -1;
+    }
+
+  }
