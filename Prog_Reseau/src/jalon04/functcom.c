@@ -286,7 +286,6 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
   name=read_name(msg,command);
   name[strlen(name)-1]='\0';
     char *info="";
-
     info=concat_string("You have created channel ",name);
 
     if (strncmp(msg, command, strlen(command)) == 0 ){
@@ -312,6 +311,25 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
       return 0;
     }}
     else {
+      return -1;
+    }
+nameofchannel[strlen(nameofchannel)-1]='\0';
+  }
+
+  int join(char **tabchannel, int channel_index, char *msg){
+    int i=0;
+    int k;
+    char *command = "/join";
+    char nameofchannel = read_name(msg, command);
+    nameofchannel[strlen(nameofchannel)-1]='\0';
+
+    for(i=0; i<channel_index; i++){
+      k = strcmp(tachannel[i], nameofchannel)
+      if (k == 0){
+        return 0;
+      }
+    }
+    if (k!=0){
       return -1;
     }
 
