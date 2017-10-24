@@ -162,7 +162,7 @@ int main(int argc,char** argv)
 
                       else {
                         memset(msg_recv, '\0', msg_size);
-                        readline(sock, msg_recv, msg_size);
+                        read(sock, msg_recv, msg_size);
                         printf("[Server] : ");
                         fflush(stdout);
                         write(1,msg_recv,strlen(msg_recv));
