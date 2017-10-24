@@ -30,3 +30,4 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
 void ident(client *tabclient, int cactual, char *msg);
 int broadcast(client *tabclient, int cactual,int i, int j, char *msg);
 int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex);
+int create_chanel(client *tabclient, int cactual,int i, int j, char *msg);

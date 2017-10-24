@@ -56,8 +56,9 @@ int main(int argc,char** argv)
       error("connection");
     }
 
-
+    int salon = 0;
     int i=0;
+    char *channel;
     //get user input
     for (;;) {
 
@@ -110,6 +111,61 @@ int main(int argc,char** argv)
                   }
                 }
 
+
+                else if (salon>0){
+
+                  printf("\n[%s] :\n", channel);
+                  fflush(stdout);
+                  FD_ZERO(&fd_set_read);
+                  FD_SET(sock, &fd_set_read);
+                  FD_SET(fileno(stdin), &fd_set_read);
+                  int max_fd =sock+1;
+                  int sel=0;
+                  sel = select(max_fd, &fd_set_read, NULL, NULL, NULL);
+
+                  int a;
+                  for ( a = 0 ; a<max_fd && sel>=0; a++){
+                    if (FD_ISSET(a, &fd_set_read)){
+                      if (a == fileno(stdin)){
+                        readline(0,msg_sent,msg_size);
+                        write(sock,msg_sent,strlen(msg_sent));
+
+                        char *quit;
+                        quit = malloc(sizeof(char)*36);
+                        quit = concat_string("quit ", channel);
+
+                        if (strncmp(msg_sent, quit, strlen(quit)) == 0)
+                          salon--;
+
+                        //handle_client_message()
+
+                        if (strncmp(msg_sent, "/join", strlen("/join")) == 0){
+                          printf("[%s] : First you have to quit the channel %s (use /quit)\n", channel, channel);
+                        }
+
+                        /*else {
+                          memset(msg_recv, '\0', msg_size);
+                          readline(sock, msg_recv, msg_size);
+                          printf("[%s] : ", channel);
+                          fflush(stdout);
+                          write(1,msg_recv,strlen(msg_recv));
+                          printf("\n");
+                        }*/
+
+                      }
+                  else {
+
+                    memset(msg_recv, '\0', msg_size);
+                    read(sock, msg_recv, msg_size);
+                    fflush(stdout);
+                    write(1,msg_recv,strlen(msg_recv));
+                    printf("\n");
+                  }
+                  sel --;
+                }
+              }
+
+            }
               else{
 
                 printf("\nEnter your message :\n");
@@ -159,6 +215,21 @@ int main(int argc,char** argv)
                         printf("[Server] : Message sent\n");
                       }
 
+                      else if (strncmp(msg_sent, "/whois", strlen("/whois")) == 0){
+                        memset(msg_recv, '\0', msg_size);
+                        read(sock, msg_recv, msg_size);
+                        write(1,msg_recv,strlen(msg_recv));
+                        printf("\n");
+                      }
+
+                      else if (strncmp(msg_sent, "/join", strlen("/join")) == 0){
+                        salon++;
+                        channel = malloc(sizeof(char)*36);
+                        channel = read_name(msg_sent, "/join ");
+                        channel[strlen(channel)-1]='\0';
+                        printf("[%s] : You joined channel %s\n", channel, channel);
+                        printf("\n");
+                      }
 
                       else {
                         memset(msg_recv, '\0', msg_size);

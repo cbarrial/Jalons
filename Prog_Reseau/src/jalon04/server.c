@@ -14,6 +14,7 @@
 #define NO_WHOIS -1
 #define NO_ALL -1
 #define NO_UNI -1
+#define NO_CREATE -1
 #include "functcom.h"
 
 
@@ -158,6 +159,8 @@ int main(int argc, char** argv)
 
                 int uni=unicast(tabclient, i, k, j, msg, conex);
 
+                int create=create_chanel(tabclient, i, k, j, msg);
+
 
                 for (k=1;k<conex;k++){
 
@@ -179,7 +182,7 @@ int main(int argc, char** argv)
                   }
                 }
 
-                if (list == NO_WHO && info == NO_WHOIS && msgall==NO_ALL && uni==NO_UNI){
+                if (list == NO_WHO && info == NO_WHOIS && msgall==NO_ALL && uni==NO_UNI && create==NO_CREATE){
                   //we write back to the client
                   write(tabclient[i].sockclient, msg, size);
                 }
