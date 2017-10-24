@@ -296,7 +296,6 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg){
     else {
       return -1;
     }
-nameofchannel[strlen(nameofchannel)-1]='\0';
   }
 
   int join(char **tabchannel, int channel_index, char *msg){
