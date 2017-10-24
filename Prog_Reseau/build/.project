@@ -2,7 +2,8 @@
 <projectDescription>
 	<name>RE216-Debug@build</name>
 	<comment></comment>
-	<projects></projects>
+	<projects>
+	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.cdt.make.core.makeBuilder</name>
@@ -30,7 +31,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.build.command</key>
-					<value>/usr/bin/make</value>
+					<value>/usr/bin/gmake</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.contents</key>
@@ -42,11 +43,11 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.build.arguments</key>
-					<value>-j4</value>
+					<value>-j8</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build</value>
+					<value>/net/t/cbarrial/Jalons/Prog_Reseau/build</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.useDefaultBuildCmd</key>
@@ -82,7 +83,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.build.location</key>
-					<value>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build</value>
+					<value>/net/t/cbarrial/Jalons/Prog_Reseau/build</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.autoBuildTarget</key>
@@ -96,20 +97,21 @@
 		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.cdt.make.core.ScannerConfigBuilder</name>
-			<arguments/>
+			<arguments>
+			</arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>org.eclipse.cdt.core.ccnature</nature>
 		<nature>org.eclipse.cdt.make.core.makeNature</nature>
 		<nature>org.eclipse.cdt.make.core.ScannerConfigNature</nature>
-		<nature>org.eclipse.cdt.core.ccnature</nature>
 		<nature>org.eclipse.cdt.core.cnature</nature>
 	</natures>
 	<linkedResources>
 		<link>
 			<name>[Source directory]</name>
 			<type>2</type>
-			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src</location>
 		</link>
 		<link>
 			<name>[Subprojects]</name>
@@ -119,70 +121,15 @@
 		<link>
 			<name>[Subprojects]/RE216</name>
 			<type>2</type>
-			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src</location>
 		</link>
 		<link>
 			<name>[Subprojects]/RE216_JALON04</name>
 			<type>2</type>
-			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04</location>
 		</link>
 		<link>
 			<name>[Targets]</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER/</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER/Source Files</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER/Source Files/server.c</name>
-			<type>1</type>
-			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/server.c</location>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER/Source Files/functcom.c</name>
-			<type>1</type>
-			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.c</location>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER/Header Files</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER/Header Files/functcom.h</name>
-			<type>1</type>
-			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h</location>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER/CMake Rules</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER/Resources</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER/Object Files</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>[Targets]/[exe] RE216_JALON04_SERVER/Object Libraries</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -204,12 +151,12 @@
 		<link>
 			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Source Files/client.c</name>
 			<type>1</type>
-			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/client.c</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/client.c</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Source Files/functcom.c</name>
 			<type>1</type>
-			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.c</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/functcom.c</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Header Files</name>
@@ -219,7 +166,7 @@
 		<link>
 			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Header Files/functcom.h</name>
 			<type>1</type>
-			<location>/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h</location>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/functcom.h</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] RE216_JALON04_CLIENT/CMake Rules</name>
@@ -237,7 +184,52 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>[Targets]/[exe] RE216_JALON04_CLIENT/Object Libraries</name>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Source Files/server.c</name>
+			<type>1</type>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/server.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Source Files/functcom.c</name>
+			<type>1</type>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/functcom.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Header Files/functcom.h</name>
+			<type>1</type>
+			<location>/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/functcom.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] RE216_JALON04_SERVER/Object Files</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
