@@ -229,6 +229,39 @@ int broadcast(client *tabclient, int cactual,int i, int j, char *msg){
 }
 
 
+int broadcast2(client *tabclient, int cactual,int i, char *j, char *msg){
+  char *msgall = "/msgall ";
+  char *say;
+  say=malloc(sizeof(char)*100);
+  say=read_name(msg,"/msgall ");
+  char *info="";
+  char *info1="";
+
+  info=concat_string("\n[User ",tabclient[cactual].name);
+  info1=concat_string(info,"]");
+  info= concat_string(info1," : ");
+  info1= concat_string(info,say);
+
+  if (strncmp(msg, msgall, strlen(msgall)) == 0 ){
+    if (strcmp(j,tabclient[i].channel)==0){
+
+
+      write(tabclient[i].sockclient, info1, strlen(info1));
+
+
+    }
+    return 0;
+        }
+
+  else {
+          return -1;
+        }
+
+
+}
+
+
+
 int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex){
   char *say;
   say=malloc(sizeof(char)*100);
@@ -315,7 +348,11 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
     }
   }
 
+<<<<<<< HEAD
   int join(char **tabchannel, int channel_index, char *msg, int i){
+=======
+  int join(client *tabclient, char **tabchannel, int channel_index, char *msg, int i,int actual){
+>>>>>>> cc5dbd40e685bcb5eee59ce802e9e718f965efd2
 
     int k;
     char *command = "/join";
@@ -325,6 +362,7 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
     //for(i=0; i<channel_index; i++){
       k = strcmp(tabchannel[i], nameofchannel);
       if (k == 0){
+        tabclient[actual].channel=nameofchannel;
         return 0;
       }
 
