@@ -93,7 +93,7 @@ int main(int argc, char** argv)
             tabclient[i].sockclient=0;
             tabclient[i].iden = 0;
             tabclient[i].name="";
-
+            tabclient[i].channel="";
           }
           tabclient[0].sockclient=sock;
           conex=conex+1;
@@ -152,6 +152,7 @@ int main(int argc, char** argv)
                 int size=readline(tabclient[i].sockclient,msg,msg_size);
 
                 int j=tabclient[i].sockclient;
+                char *j2=tabclient[i].channel;
 
                 ident(tabclient, i, msg);
 
@@ -160,7 +161,14 @@ int main(int argc, char** argv)
                 int info = send_info(msg, tabclient, msg_size, conex, i, argv[1]);
 
                 int msgall;
+                int msgall2;
                 int k;
+                int l;
+                int join2;
+                for(l=0; l<chanel_index; l++){
+                  join2=join(tabclient,tabchannel,chanel_index,msg,l,i);
+                }
+
 
                 int uni=unicast(tabclient, i, k, j, msg, conex);
 
@@ -168,11 +176,14 @@ int main(int argc, char** argv)
                 if (create!=-1){
                   chanel_index++;
                 }
-                
+
 
                 for (k=1;k<conex;k++){
 
                   msgall=broadcast(tabclient, i, k, j, msg);
+                  if (join2==0){
+                    msgall2=broadcast2(tabclient, i, k, j2, msg);
+                  }
 
                 }
 
@@ -190,7 +201,7 @@ int main(int argc, char** argv)
                   }
                 }
 
-                if (list == NO_WHO && info == NO_WHOIS && msgall==NO_ALL && uni==NO_UNI && create==NO_CREATE){
+                if (list == NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE){
                   //we write back to the client
                   write(tabclient[i].sockclient, msg, size);
                 }
