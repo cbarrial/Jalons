@@ -130,7 +130,7 @@ int main(int argc,char** argv)
                         readline(0,msg_sent,msg_size);
                         char *msg_sent2;
                         msg_sent2 = malloc(sizeof(char)*36);
-                        msg_sent2 = concat_string("/msgall ", msg_sent);
+                        msg_sent2 = concat_string("/msg2all ", msg_sent);
                         write(sock,msg_sent2,strlen(msg_sent2));
 
                         char *quit;
@@ -157,22 +157,22 @@ int main(int argc,char** argv)
                       }
 
                   else {
-                    if (salon=1){
+                    /*if (salon=1){
                       printf("You joined channel %s\n", channel);
                       memset(msg_recv, '\0', msg_size);
                       read(sock, msg_recv, msg_size);
                       fflush(stdout);
                       //printf("\n");
                       salon++;
-                    }
-                    else{
-                      printf("passe par là\n");
+                    }*/
+                    //else{
+
                       memset(msg_recv, '\0', msg_size);
                       read(sock, msg_recv, msg_size);
                       fflush(stdout);
                       write(1,msg_recv,strlen(msg_recv));
                       printf("\n");
-                    }
+                    //}
 
                   }
                   sel --;
@@ -241,6 +241,7 @@ int main(int argc,char** argv)
                         channel = malloc(sizeof(char)*36);
                         channel = read_name(msg_sent, "/join ");
                         channel[strlen(channel)-1]='\0';
+                        printf("You have joined channel %s\n", channel);
                         printf("\n");
                       }
 
