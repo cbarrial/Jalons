@@ -307,29 +307,28 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
 
       write(tabclient[cactual].sockclient,info,strlen(info));
       tabchannel[chanel_index]=name;
-      
+
       return 0;
     }}
     else {
       return -1;
     }
-nameofchannel[strlen(nameofchannel)-1]='\0';
   }
 
-  int join(char **tabchannel, int channel_index, char *msg){
-    int i=0;
+  int join(char **tabchannel, int channel_index, char *msg, int i){
+    
     int k;
     char *command = "/join";
-    char nameofchannel = read_name(msg, command);
+    char *nameofchannel = read_name(msg, command);
     nameofchannel[strlen(nameofchannel)-1]='\0';
 
-    for(i=0; i<channel_index; i++){
-      k = strcmp(tachannel[i], nameofchannel)
+    //for(i=0; i<channel_index; i++){
+      k = strcmp(tabchannel[i], nameofchannel);
       if (k == 0){
         return 0;
       }
-    }
-    if (k!=0){
+
+    else {
       return -1;
     }
 

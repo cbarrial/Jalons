@@ -31,3 +31,4 @@ void ident(client *tabclient, int cactual, char *msg);
 int broadcast(client *tabclient, int cactual,int i, int j, char *msg);
 int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex);
 int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char** tabchannel,int chanel_index);
+int join(char **tabchannel, int channel_index, char *msg, int i);
