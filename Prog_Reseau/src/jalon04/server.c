@@ -34,6 +34,9 @@ int main(int argc, char** argv)
     int sock ;
     int bind_err;
     int list_err;
+    char **tabchannel;
+    tabchannel=malloc(sizeof(char)*100);
+
 
 
     //create the socket
@@ -81,6 +84,8 @@ int main(int argc, char** argv)
           int csock;
           int conex=0;
           int i;
+          int chanel_index=0;
+
 
 
           for (i=0;i < n ;i++ ){
@@ -159,8 +164,11 @@ int main(int argc, char** argv)
 
                 int uni=unicast(tabclient, i, k, j, msg, conex);
 
-                int create=create_chanel(tabclient, i, k, j, msg);
-
+                int create=create_chanel(tabclient, i, k, j, msg,tabchannel,chanel_index);
+                if (create!=-1){
+                  chanel_index++;
+                }
+                
 
                 for (k=1;k<conex;k++){
 

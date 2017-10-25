@@ -279,20 +279,37 @@ int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex){
 }
 
 
-int create_chanel(client *tabclient, int cactual,int i, int j, char *msg){
+int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char** tabchannel,int chanel_index){
   char *command = "/create ";
   char *name;
   name=malloc(sizeof(char)*36);
   name=read_name(msg,command);
-
+  name[strlen(name)-1]='\0';
     char *info="";
     info=concat_string("You have created channel ",name);
 
     if (strncmp(msg, command, strlen(command)) == 0 ){
 
+      int mis=0;
+
+      for (int i=0;i<chanel_index;i++){
+
+        if (strcmp(tabchannel[i],name)==0){
+          mis=1;
+        }
+      }
+        if (mis==1){
+          char  *mistake = "This channel already exists";
+          write(tabclient[cactual].sockclient, mistake, strlen(mistake));
+          return 0;
+        }
+      else {
+
       write(tabclient[cactual].sockclient,info,strlen(info));
+      tabchannel[chanel_index]=name;
+      
       return 0;
-    }
+    }}
     else {
       return -1;
     }
