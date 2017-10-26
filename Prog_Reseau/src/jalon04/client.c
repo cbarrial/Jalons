@@ -138,12 +138,11 @@ int main(int argc,char** argv)
                         quit = concat_string("/quit ", channel);
 
                         if (strncmp(msg_sent, quit, strlen(quit)) == 0){
-                          memset(msg_recv, '\0', msg_size);
+                          /*memset(msg_recv, '\0', msg_size);
                           readline(sock, msg_recv, msg_size);
-                          printf("%d\n", r);
-                          write(1,msg_recv,strlen(msg_recv));
+                          write(1,msg_recv,strlen(msg_recv));*/
                           salon=0;
-                          break;
+                          //break;
                         }
 
 
@@ -209,6 +208,13 @@ int main(int argc,char** argv)
                           write(1,msg_recv,strlen(msg_recv));
                       }
 
+                      else if (strcmp(msg_sent, "/whochannel\n") == 0 ){
+                          printf("\nList of channel:\n");
+                          memset(msg_recv, '\0', msg_size);
+                          read(sock, msg_recv, msg_size);
+                          write(1,msg_recv,strlen(msg_recv));
+                      }
+
 
                       else if (strncmp(msg_sent, "/whois", strlen("/whois")) == 0){
                         memset(msg_recv, '\0', msg_size);
@@ -233,16 +239,19 @@ int main(int argc,char** argv)
                       }
 
                       else if (strncmp(msg_sent, "/join", strlen("/join")) == 0){
+                        memset(msg_recv, '\0', msg_size);
                         salon++;
                         channel = malloc(sizeof(char)*36);
                         channel = read_name(msg_sent, "/join ");
                         channel[strlen(channel)-1]='\0';
                         read(sock, msg_recv, msg_size);
-                        if (strncmp(msg_recv, "This channel doesn't exists", strlen("This channel doesn't exists"))==0){
+                        if (strncmp(msg_recv, "This channel doesn't exist", strlen("This channel doesn't exist"))==0){
                           salon--;
                         }
+
                         write(1,msg_recv,strlen(msg_recv));
                         printf("\n");
+
                       }
 
                       else {
