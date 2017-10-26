@@ -166,12 +166,14 @@ int main(int argc, char** argv)
                 int msgall2;
                 int k;
                 int l;
+                int z=1;
 
-                for(l=0; l<chanel_index; l++){
+                //for(l=0; l<chanel_index; l++){
                   if (join(tabclient,tabchannel,chanel_index,msg,l,i)==0){
                     tabclient[i].intochannel =1;
+                    z=0;
                   }
-                }
+                //}
 
                 //int quittest =quit(msg, j2, i,  conex, tabclient);
 
@@ -206,7 +208,7 @@ int main(int argc, char** argv)
                   }
                 }
 
-                if (list == NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE /*&& quittest==-1*/){
+                if (list == NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE && z==1){
                   //we write back to the client
                   write(tabclient[i].sockclient, msg, size);
                 }

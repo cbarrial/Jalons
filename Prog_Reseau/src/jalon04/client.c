@@ -150,29 +150,17 @@ int main(int argc,char** argv)
                           memset(msg_recv, '\0', msg_size);
                           readline(sock, msg_recv, msg_size);
                           fflush(stdout);
-                          //write(1,msg_recv,strlen(msg_recv));
-                          //printf("\n");
+
                         }
 
                       }
 
                   else {
-                    /*if (salon=1){
-                      printf("You joined channel %s\n", channel);
-                      memset(msg_recv, '\0', msg_size);
-                      read(sock, msg_recv, msg_size);
-                      fflush(stdout);
-                      //printf("\n");
-                      salon++;
-                    }*/
-                    //else{
-
                       memset(msg_recv, '\0', msg_size);
                       read(sock, msg_recv, msg_size);
                       fflush(stdout);
                       write(1,msg_recv,strlen(msg_recv));
                       printf("\n");
-                    //}
 
                   }
                   sel --;
@@ -241,7 +229,11 @@ int main(int argc,char** argv)
                         channel = malloc(sizeof(char)*36);
                         channel = read_name(msg_sent, "/join ");
                         channel[strlen(channel)-1]='\0';
-                        printf("You have joined channel %s\n", channel);
+                        read(sock, msg_recv, msg_size);
+                        if (strncmp(msg_recv, "This channel doesn't exists", strlen("This channel doesn't exists"))==0){
+                          salon--;
+                        }
+                        write(1,msg_recv,strlen(msg_recv));
                         printf("\n");
                       }
 

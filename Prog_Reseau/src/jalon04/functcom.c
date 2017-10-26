@@ -378,21 +378,38 @@ int quit(char *msg, char *j2, int actual, int conex, client *tabclient){
 
 
 
-  int join(client *tabclient, char **tabchannel, int channel_index, char *msg, int i,int actual){
+  int join(client *tabclient, char **tabchannel, int channel_index, char *msg, int j,int actual){
 
 
-    int k;
+    int k=1;
+    int i;
     char *command = "/join ";
     char *nameofchannel = read_name(msg, command);
-    nameofchannel[strlen(nameofchannel)-1]='\0';
 
-    //for(i=0; i<channel_index; i++){
-      k = strcmp(tabchannel[i], nameofchannel);
-      if (k == 0){
+    nameofchannel[strlen(nameofchannel)-1]='\0';
+    char *info;
+    info=malloc(sizeof(char)*36);
+    info=concat_string("You have joined channel ",nameofchannel);
+
+
+    if (strncmp(msg, command, strlen(command))==0){
+      for(i=0; i<channel_index; i++){
+        if (strcmp(tabchannel[i], nameofchannel)==0){
+          k=0;
+        }
+      }
+      if (k==1){
+        char  *mistake = "This channel doesn't exists";
+        write(tabclient[actual].sockclient, mistake, strlen(mistake));
+        return 0;
+      }
+      else {
+
+        write(tabclient[actual].sockclient,info,strlen(info));
         tabclient[actual].channel=nameofchannel;
         return 0;
       }
-
+    }
     else {
       return -1;
     }
