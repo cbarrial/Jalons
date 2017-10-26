@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/functcom.c
+/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/client.c
 stdlib.h
 -
 unistd.h
@@ -22,10 +22,6 @@ sys/socket.h
 netdb.h
 -
 errno.h
--
-time.h
--
-arpa/inet.h
 -
 functcom.h
 /net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/functcom.h

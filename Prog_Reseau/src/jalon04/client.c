@@ -135,10 +135,18 @@ int main(int argc,char** argv)
 
                         char *quit;
                         quit = malloc(sizeof(char)*36);
-                        quit = concat_string("quit ", channel);
+                        quit = concat_string("/quit ", channel);
 
-                        if (strncmp(msg_sent, quit, strlen(quit)) == 0)
+                        if (strncmp(msg_sent, quit, strlen(quit)) == 0){
+                          memset(msg_recv, '\0', msg_size);
+                          readline(sock, msg_recv, msg_size);
+                          printf("%d\n", r);
+                          write(1,msg_recv,strlen(msg_recv));
                           salon=0;
+                          break;
+                        }
+
+
 
                         //handle_client_message()
 

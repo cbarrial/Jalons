@@ -353,27 +353,39 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
 int quit(char *msg, char *j2, int actual, int conex, client *tabclient){
   int i;
   char *quit;
+  char *name;
+  name=malloc(sizeof(char)*36);
+  name=read_name(msg,"/msg2all ");
   quit = malloc(sizeof(char)*36);
-  quit = concat_string("quit ", j2);
+  quit = concat_string("/quit ", j2);
+  printf("j2 est %s et msg est %s lala\n", j2, name);
 
-  if (strncmp(msg, quit, strlen(quit)) == 0){
+  if (strncmp(name, quit, strlen(quit)) == 0){
+    printf("commande bonne\n");
     tabclient[actual].channel = "";
-  }
-  for (i=0; i<conex; i++){
-    if (strcmp(tabclient[i].channel, j2) == 0 ){
-      return -1;
-    }
-    else {
-      int j;
-      for (j=0; j<conex; j++){
-        if (strcmp(tabclient[j].chanel_creator, j2) == 0){
-          char *mistake = "Channel name has been destroyed\n";
-          write(tabclient[j].sockclient, mistake, strlen(mistake));
-          return 0;
+
+    for (i=0; i<conex; i++){
+      printf("boucle for\n");
+      if (strcmp(tabclient[i].channel, j2) == 0 ){
+        printf("channel\n");
+        return -1;
+      }
+      else {
+        printf("else\n");
+        int j;
+        for (j=0; j<conex; j++){
+          printf("for again\n");
+          if (strcmp(tabclient[j].chanel_creator, j2) == 0){
+            printf("channel destroyed\n");
+            char *mistake = "Channel name has been destroyed\n";
+            write(tabclient[j].sockclient, mistake, strlen(mistake));
+            return 0;
+          }
         }
       }
     }
-  }
+}
+return -1;
 }
 
 
