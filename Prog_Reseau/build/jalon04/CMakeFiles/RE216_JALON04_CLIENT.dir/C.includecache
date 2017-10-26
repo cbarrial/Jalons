@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/client.c
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/client.c
 stdlib.h
 -
 unistd.h
@@ -24,9 +24,33 @@ netdb.h
 errno.h
 -
 functcom.h
-/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h
 
-/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.c
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+string.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+netdb.h
+-
+errno.h
+-
+time.h
+-
+arpa/inet.h
+-
+functcom.h
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h
+
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/src/jalon04/functcom.h
 stdlib.h
 -
 unistd.h

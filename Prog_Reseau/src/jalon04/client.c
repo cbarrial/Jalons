@@ -157,22 +157,22 @@ int main(int argc,char** argv)
                       }
 
                   else {
-                    if (salon=1){
+                    /*if (salon=1){
                       printf("You joined channel %s\n", channel);
                       memset(msg_recv, '\0', msg_size);
                       read(sock, msg_recv, msg_size);
                       fflush(stdout);
                       //printf("\n");
                       salon++;
-                    }
-                    else{
-                      printf("passe par là\n");
+                    }*/
+                  //  else{
+                      //printf("passe par là\n");
                       memset(msg_recv, '\0', msg_size);
                       read(sock, msg_recv, msg_size);
                       fflush(stdout);
                       write(1,msg_recv,strlen(msg_recv));
                       printf("\n");
-                    }
+                    //}
 
                   }
                   sel --;

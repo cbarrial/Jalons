@@ -348,14 +348,12 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
     }
   }
 
-<<<<<<< HEAD
-  int join(char **tabchannel, int channel_index, char *msg, int i){
-=======
+
   int join(client *tabclient, char **tabchannel, int channel_index, char *msg, int i,int actual){
->>>>>>> cc5dbd40e685bcb5eee59ce802e9e718f965efd2
+
 
     int k;
-    char *command = "/join";
+    char *command = "/join ";
     char *nameofchannel = read_name(msg, command);
     nameofchannel[strlen(nameofchannel)-1]='\0';
 
