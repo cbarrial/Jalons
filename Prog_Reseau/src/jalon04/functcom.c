@@ -114,6 +114,34 @@ int send_list( char *msg, int conex, client *tabclient, int msg_size, int cactua
   }
 }
 
+//fonction bonus qui affiche la liste des salons
+int who_channel( char **tabchannel, int chanel_index, char *msg, int conex, client *tabclient, int msg_size, int cactual){
+
+  int j;
+  char *who = "/whochannel\n";
+  char *who_name="";
+
+  if (strcmp(msg, who) == 0){
+    memset(msg, '\0', msg_size);
+
+    for (j=0; j<chanel_index; j++){
+      char *name;
+      name=malloc(sizeof(char)*36);
+      char *list2 = " \n- ";
+      name=concat_string(list2,tabchannel[j]);
+      who_name=concat_string(who_name,name);
+      who_name=concat_string(who_name,"\n");
+
+    }
+
+    write(tabclient[cactual].sockclient, who_name, strlen(who_name));
+    return 0;
+  }
+  else {
+    return -1;
+  }
+}
+
 int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *portnb){
       char *whois = "/whois";
       char *user;
@@ -243,7 +271,7 @@ int broadcast2(client *tabclient, int cactual,int i, char *j, char *msg){
   info1= concat_string(info,say);
 
   if (strncmp(msg, msgall, strlen(msgall)) == 0 ){
-    printf("%s\n", tabclient[i].channel);
+    //printf("%s\n", tabclient[i].channel);
     if (strcmp(j,tabclient[i].channel)==0){
 
 
@@ -380,23 +408,52 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
 
 
 
-  int join(client *tabclient, char **tabchannel, int channel_index, char *msg, int i,int actual){
-
-
-    int k;
+  int join(client *tabclient, char **tabchannel, int channel_index, char *msg,int actual){
     char *command = "/join ";
-    char *nameofchannel = read_name(msg, command);
+    char *nameofchannel;
+    nameofchannel=malloc(sizeof(char)*36);
+    nameofchannel=read_name(msg,command);
     nameofchannel[strlen(nameofchannel)-1]='\0';
+    char *info="";
+    info=concat_string("You have joined channel ", nameofchannel);
 
-    //for(i=0; i<channel_index; i++){
-      k = strcmp(tabchannel[i], nameofchannel);
-      if (k == 0){
-        tabclient[actual].channel=nameofchannel;
+    int k=1;
+    int i;
+
+
+    if (strncmp(msg, command, strlen(command))==0){
+      for(i=0; i<channel_index; i++){
+        if (strcmp(tabchannel[i], nameofchannel)==0){
+          k=0;
+        }
+      }
+      if (k==1){
+        char  *mistake = "This channel doesn't exist";
+        write(tabclient[actual].sockclient, mistake, strlen(mistake));
         return 0;
       }
+      else {
 
+
+        write(tabclient[actual].sockclient,info,strlen(info));
+        tabclient[actual].channel=nameofchannel;
+
+        return 0;
+      }
+    }
     else {
       return -1;
     }
 
+  }
+
+  int who_join (char *j,client *tabclient,int r){
+    if (strcmp(j,tabclient[r].channel)==0){
+      char  *co = "Connected";
+      write(tabclient[r].sockclient,co,strlen(co));
+      return 0;
+    }
+    else {
+      return -1;
+    }
   }

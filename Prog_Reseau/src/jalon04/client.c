@@ -150,29 +150,17 @@ int main(int argc,char** argv)
                           memset(msg_recv, '\0', msg_size);
                           readline(sock, msg_recv, msg_size);
                           fflush(stdout);
-                          //write(1,msg_recv,strlen(msg_recv));
-                          //printf("\n");
+
                         }
 
                       }
 
                   else {
-                    /*if (salon=1){
-                      printf("You joined channel %s\n", channel);
-                      memset(msg_recv, '\0', msg_size);
-                      read(sock, msg_recv, msg_size);
-                      fflush(stdout);
-                      //printf("\n");
-                      salon++;
-                    }*/
-                    //else{
-
                       memset(msg_recv, '\0', msg_size);
                       read(sock, msg_recv, msg_size);
                       fflush(stdout);
                       write(1,msg_recv,strlen(msg_recv));
                       printf("\n");
-                    //}
 
                   }
                   sel --;
@@ -213,6 +201,13 @@ int main(int argc,char** argv)
                           write(1,msg_recv,strlen(msg_recv));
                       }
 
+                      else if (strcmp(msg_sent, "/whochannel\n") == 0 ){
+                          printf("\nList of channel:\n");
+                          memset(msg_recv, '\0', msg_size);
+                          read(sock, msg_recv, msg_size);
+                          write(1,msg_recv,strlen(msg_recv));
+                      }
+
 
                       else if (strncmp(msg_sent, "/whois", strlen("/whois")) == 0){
                         memset(msg_recv, '\0', msg_size);
@@ -237,12 +232,19 @@ int main(int argc,char** argv)
                       }
 
                       else if (strncmp(msg_sent, "/join", strlen("/join")) == 0){
+                        memset(msg_recv, '\0', msg_size);
                         salon++;
                         channel = malloc(sizeof(char)*36);
                         channel = read_name(msg_sent, "/join ");
                         channel[strlen(channel)-1]='\0';
-                        printf("You have joined channel %s\n", channel);
+                        read(sock, msg_recv, msg_size);
+                        if (strncmp(msg_recv, "This channel doesn't exist", strlen("This channel doesn't exist"))==0){
+                          salon--;
+                        }
+
+                        write(1,msg_recv,strlen(msg_recv));
                         printf("\n");
+
                       }
 
                       else {

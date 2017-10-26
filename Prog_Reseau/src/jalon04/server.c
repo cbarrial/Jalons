@@ -162,16 +162,25 @@ int main(int argc, char** argv)
 
                 int info = send_info(msg, tabclient, msg_size, conex, i, argv[1]);
 
+                int whocha=who_channel(tabchannel,chanel_index, msg, conex, tabclient, msg_size, i);
+
                 int msgall;
                 int msgall2;
+                int whojoin=-1;
                 int k;
                 int l;
+                int z=1;
 
-                for(l=0; l<chanel_index; l++){
-                  if (join(tabclient,tabchannel,chanel_index,msg,l,i)==0){
+                //for(l=0; l<chanel_index; l++){
+                  if (join(tabclient,tabchannel,chanel_index,msg,i)==0){
                     tabclient[i].intochannel =1;
+
+                    z=0;
+                    for (k=1;k<conex;k++){
+                      whojoin=who_join(j2,tabclient,k);
+                    }
                   }
-                }
+                //}
 
                 //int quittest =quit(msg, j2, i,  conex, tabclient);
 
@@ -188,6 +197,7 @@ int main(int argc, char** argv)
                   msgall=broadcast(tabclient, i, k, j, msg);
                   if (tabclient[i].intochannel==1){
                     msgall2=broadcast2(tabclient, i, k, j2, msg);
+
                   }
 
                 }
@@ -206,7 +216,7 @@ int main(int argc, char** argv)
                   }
                 }
 
-                if (list == NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE /*&& quittest==-1*/){
+                if (list == NO_WHO && whojoin== NO_WHO && whocha== NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE && z==1){
                   //we write back to the client
                   write(tabclient[i].sockclient, msg, size);
                 }
