@@ -446,14 +446,14 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
     }
 
   }
-
+/*
   int who_join (char *j,client *tabclient,int r){
-    if (strcmp(j,tabclient[r].channel)==0){
-      char  *co = "Connected";
+    if (strcmp(j,tabclient[r].channel)!=0){
+      char  *co = "\nConnected";
       write(tabclient[r].sockclient,co,strlen(co));
       return 0;
     }
     else {
       return -1;
     }
-  }
+  }*/

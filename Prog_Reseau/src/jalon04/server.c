@@ -175,10 +175,10 @@ int main(int argc, char** argv)
                   if (join(tabclient,tabchannel,chanel_index,msg,i)==0){
                     tabclient[i].intochannel =1;
 
-                    z=0;
+                    z=0;/*
                     for (k=1;k<conex;k++){
                       whojoin=who_join(j2,tabclient,k);
-                    }
+                    }*/
                   }
                 //}
 
@@ -216,7 +216,7 @@ int main(int argc, char** argv)
                   }
                 }
 
-                if (list == NO_WHO && whojoin== NO_WHO && whocha== NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE && z==1){
+                if (list == NO_WHO && whocha== NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE && z==1){
                   //we write back to the client
                   write(tabclient[i].sockclient, msg, size);
                 }
