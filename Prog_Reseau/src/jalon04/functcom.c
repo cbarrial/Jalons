@@ -230,19 +230,20 @@ int broadcast(client *tabclient, int cactual,int i, int j, char *msg){
 
 
 int broadcast2(client *tabclient, int cactual,int i, char *j, char *msg){
-  char *msgall = "/msgall ";
+  char *msgall = "/msg2all ";
   char *say;
   say=malloc(sizeof(char)*100);
-  say=read_name(msg,"/msgall ");
+  say=read_name(msg,"/msg2all ");
   char *info="";
   char *info1="";
 
-  info=concat_string("\n[User ",tabclient[cactual].name);
+  info=concat_string("[User ",tabclient[cactual].name);
   info1=concat_string(info,"]");
   info= concat_string(info1," : ");
   info1= concat_string(info,say);
 
   if (strncmp(msg, msgall, strlen(msgall)) == 0 ){
+    printf("%s\n", tabclient[i].channel);
     if (strcmp(j,tabclient[i].channel)==0){
 
 
@@ -340,6 +341,7 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
 
       write(tabclient[cactual].sockclient,info,strlen(info));
       tabchannel[chanel_index]=name;
+      tabclient[cactual].chanel_creator =name;
 
       return 0;
     }}
@@ -347,6 +349,35 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
       return -1;
     }
   }
+
+/*int quit(char *msg, char *j2, int actual, int conex, client *tabclient){
+  int i;
+  char *quit;
+  quit = malloc(sizeof(char)*36);
+  quit = concat_string("quit ", j2);
+
+  if (strncmp(msg, quit, strlen(quit)) == 0){
+    tabclient[actual].channel = "";
+  }
+  for (i=0; i<conex; i++){
+    if (strcmp(tabclient[i].channel, j2) == 0 ){
+      return -1;
+    }
+    else {
+      int j;
+      for (j=0; j<conex; j++){
+        if (strcmp(tabclient[j].chanel_creator, j2) == 0){
+          char *mistake = "Channel name has been destroyed\n";
+          write(tabclient[j].sockclient, mistake, strlen(mistake));
+          return 0;
+        }
+      }
+      return 0;
+    }
+
+  }
+}*/
+
 
 
   int join(client *tabclient, char **tabchannel, int channel_index, char *msg, int i,int actual){
