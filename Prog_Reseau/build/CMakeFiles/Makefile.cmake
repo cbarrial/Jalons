@@ -11,7 +11,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/2.8.12.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/2.8.12.2/CMakeSystem.cmake"
   "/net/t/cbarrial/Jalons/Prog_Reseau/src/CMakeLists.txt"
-  "/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon04/CMakeLists.txt"
+  "/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon05/CMakeLists.txt"
   "/usr/share/cmake/Modules/CMakeCCompiler.cmake.in"
   "/usr/share/cmake/Modules/CMakeCCompilerABI.c"
   "/usr/share/cmake/Modules/CMakeCInformation.cmake"
@@ -63,11 +63,11 @@ SET(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/2.8.12.2/CMakeCCompiler.cmake"
   "CMakeFiles/2.8.12.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "jalon04/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "jalon05/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 SET(CMAKE_DEPEND_INFO_FILES
-  "jalon04/CMakeFiles/RE216_JALON04_CLIENT.dir/DependInfo.cmake"
-  "jalon04/CMakeFiles/RE216_JALON04_SERVER.dir/DependInfo.cmake"
+  "jalon05/CMakeFiles/RE216_JALON05_CLIENT.dir/DependInfo.cmake"
+  "jalon05/CMakeFiles/RE216_JALON05_SERVER.dir/DependInfo.cmake"
   )

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 
-project(RE216_JALON05)
+project(RE216_JALON04)
 
 #add here source files you need to compile and link to the client app
 SET(SRC_CLIENT
@@ -16,7 +16,7 @@ SET(SRC_FUNCT2
 		)
 
 
-add_executable(RE216_JALON05_CLIENT ${SRC_CLIENT} ${SRC_FUNCT} ${SRC_FUNCT2})
+add_executable(RE216_JALON04_CLIENT ${SRC_CLIENT} ${SRC_FUNCT} ${SRC_FUNCT2})
 
 
 #add here source files you need to compile and link to the server app
@@ -25,4 +25,4 @@ SET(SRC_SERVER
 				)
 
 
-add_executable(RE216_JALON05_SERVER  ${SRC_SERVER}  ${SRC_FUNCT} ${SRC_FUNCT2})
+add_executable(RE216_JALON04_SERVER  ${SRC_SERVER}  ${SRC_FUNCT} ${SRC_FUNCT2})

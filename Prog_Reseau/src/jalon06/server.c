@@ -3,12 +3,10 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <sys/stat.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <time.h>
-#include <fcntl.h>
 #define SOCKET_ERROR -1
 #define BIND_ERROR -1
 #define LISTEN_ERROR -1
@@ -101,11 +99,6 @@ int main(int argc, char** argv)
           }
           tabclient[0].sockclient=sock;
           conex=conex+1;
-          int index;
-          int sockstock;
-          char *filename;
-          char *send;
-          char *user;
 
           for (;;){
 
@@ -163,14 +156,6 @@ int main(int argc, char** argv)
                 int j=tabclient[i].sockclient;
                 char *j2=tabclient[i].channel;
 
-                if (index == 1){
-                  int type_answer = answer(msg, sockstock, tabclient, i, index);
-                  if (type_answer == 1){
-                    //server_accept(filename, tabclient, i);
-                    //server_send(filename, tabclient, i);
-                  }
-                }
-
                 ident(tabclient, i, msg);
 
                 int list = send_list(msg, conex, tabclient, msg_size, i);
@@ -178,16 +163,6 @@ int main(int argc, char** argv)
                 int info = send_info(msg, tabclient, msg_size, conex, i, argv[1]);
 
                 int whocha=who_channel(tabchannel,chanel_index, msg, conex, tabclient, msg_size, i);
-
-                int isend_test= isend(msg, tabclient, conex, i);
-                if ( isend_test == 0){
-                  index = 1;
-                  sockstock = tabclient[i].sockclient;
-                  user = malloc(sizeof(char)*36);
-                  send = malloc(sizeof(char)*36);
-                  filename = malloc(sizeof(char)*36);
-                  sscanf(msg, "%s %s %s", send, user, filename);
-                }
 
                 int msgall;
                 int msgall2;
