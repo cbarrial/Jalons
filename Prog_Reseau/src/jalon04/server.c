@@ -88,6 +88,7 @@ int main(int argc, char** argv)
 
 
 
+
           for (i=0;i < n ;i++ ){
 
             tabclient[i].sockclient=0;
@@ -135,7 +136,7 @@ int main(int argc, char** argv)
                 tabclient[conex-1].sockclient=csock;
                 tabclient[conex-1].date = time(NULL);
                 tabclient[conex-1].ip = inet_ntoa(csin.sin_addr);
-                if (conex-1>20){
+                if (conex-1>2){
                   write(tabclient[conex-1].sockclient, "Server cannot accept incoming connections anymore. Try again later.", sizeof(char)*60);
                   tabclient[conex-1].sockclient=0;
                   conex=conex-1;
@@ -171,7 +172,7 @@ int main(int argc, char** argv)
                 int l;
                 int z=1;
 
-                //for(l=0; l<chanel_index; l++){
+
                   if (join(tabclient,tabchannel,chanel_index,msg,i)==0){
                     tabclient[i].intochannel =1;
 
@@ -180,9 +181,10 @@ int main(int argc, char** argv)
                       whojoin=who_join(j2,tabclient,k);
                     }*/
                   }
-                //}
 
-                //int quittest =quit(msg, j2, i,  conex, tabclient);
+
+                int quittest = quit(tabchannel,chanel_index,msg, j2, i,  conex, tabclient);
+
 
                 int uni=unicast(tabclient, i, k, j, msg, conex);
 
@@ -216,7 +218,7 @@ int main(int argc, char** argv)
                   }
                 }
 
-                if (list == NO_WHO && whocha== NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE && z==1){
+                if (list == NO_WHO && quittest==NO_WHO && whocha== NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE && z==1){
                   //we write back to the client
                   write(tabclient[i].sockclient, msg, size);
                 }

@@ -36,6 +36,6 @@ int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex);
 int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char** tabchannel,int chanel_index);
 int join(client *tabclient, char **tabchannel, int channel_index, char *msg, int actual);
 int broadcast2(client *tabclient, int cactual,int i, char *j, char *msg);
-int quit(char *msg, char *j2, int actual, int conex, client *tabclient);
+int quit(char **tabchannel,int channel_index, char *msg, char *j2, int actual, int conex, client *tabclient);
 int who_channel( char **tabchannel,int chanel_index, char *msg, int conex, client *tabclient, int msg_size, int cactual);
 //int who_join (char *j,client *tabclient,int r);

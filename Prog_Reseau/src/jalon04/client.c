@@ -67,6 +67,7 @@ int main(int argc,char** argv)
             //    while (1){
 
               if (i==0){
+                printf("\nConnecting to server....done!");
                 printf("\n[SERVER] please introduce yourself by using /nick <your pseudo>\n");
                 fflush(stdout);
                 FD_ZERO(&fd_set_read);
@@ -105,6 +106,16 @@ int main(int argc,char** argv)
                         printf("\n");
                         i++;
                       }
+
+                    }
+                    else {
+                        memset(msg_recv, '\0', msg_size);
+                        read(sock, msg_recv, msg_size);
+                        fflush(stdout);
+                        write(1,msg_recv,strlen(msg_recv));
+                        printf("\n");
+                        exit(1);
+
                     }
                     sel--;
                     }
@@ -135,10 +146,17 @@ int main(int argc,char** argv)
 
                         char *quit;
                         quit = malloc(sizeof(char)*36);
-                        quit = concat_string("quit ", channel);
+                        quit = concat_string("/quit ", channel);
 
-                        if (strncmp(msg_sent, quit, strlen(quit)) == 0)
+                        if (strncmp(msg_sent, quit, strlen(quit)) == 0){
+                          memset(msg_recv, '\0', msg_size);
+                          readline(sock, msg_recv, msg_size);
+                          write(1,msg_recv,strlen(msg_recv));
                           salon=0;
+                          break;
+                        }
+
+
 
                         //handle_client_message()
 
@@ -189,8 +207,11 @@ int main(int argc,char** argv)
 
 
 
-                      if (strcmp(msg_sent, "quit\n") == 0)
+                      if (strcmp(msg_sent, "quit\n") == 0){
+                        printf("[Server]: You will be terminated\n");
+                        printf("Connection terminated\n");
                         exit(1);
+                      }
 
                       //handle_client_message()
 
