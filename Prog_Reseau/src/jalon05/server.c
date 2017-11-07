@@ -207,7 +207,7 @@ int main(int argc, char** argv)
                   }
 
 
-                //int quittest = quit(msg, j2, i,  conex, tabclient);
+                int quittest = quit(msg, j2, i,  conex, tabclient);
 
 
                 int uni=unicast(tabclient, i, k, j, msg, conex);
@@ -242,7 +242,7 @@ int main(int argc, char** argv)
                   }
                 }
 
-                if (list == NO_WHO && whojoin== NO_WHO && whocha== NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE && z==1){
+                if (list == NO_WHO && quittest==NO_WHO && whojoin== NO_WHO && whocha== NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE && z==1){
                   //we write back to the client
                   write(tabclient[i].sockclient, msg, size);
                 }
