@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
+<<<<<<< HEAD
   "CMakeFiles/3.9.4/CMakeCCompiler.cmake"
   "CMakeFiles/3.9.4/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.9.4/CMakeSystem.cmake"
@@ -102,6 +103,48 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/local/Cellar/cmake/3.9.4/share/cmake/Modules/Platform/Darwin.cmake"
   "/usr/local/Cellar/cmake/3.9.4/share/cmake/Modules/Platform/UnixPaths.cmake"
   "/usr/local/Cellar/cmake/3.9.4/share/cmake/Modules/ProcessorCount.cmake"
+=======
+  "CMakeFiles/2.8.12.2/CMakeCCompiler.cmake"
+  "CMakeFiles/2.8.12.2/CMakeCXXCompiler.cmake"
+  "CMakeFiles/2.8.12.2/CMakeSystem.cmake"
+  "/net/t/cbarrial/Jalons/Prog_Reseau/src/CMakeLists.txt"
+  "/net/t/cbarrial/Jalons/Prog_Reseau/src/jalon05/CMakeLists.txt"
+  "/usr/share/cmake/Modules/CMakeCCompiler.cmake.in"
+  "/usr/share/cmake/Modules/CMakeCCompilerABI.c"
+  "/usr/share/cmake/Modules/CMakeCInformation.cmake"
+  "/usr/share/cmake/Modules/CMakeCXXCompiler.cmake.in"
+  "/usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
+  "/usr/share/cmake/Modules/CMakeCXXInformation.cmake"
+  "/usr/share/cmake/Modules/CMakeClDeps.cmake"
+  "/usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
+  "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake"
+  "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake"
+  "/usr/share/cmake/Modules/CMakeDetermineCompiler.cmake"
+  "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake"
+  "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake"
+  "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake"
+  "/usr/share/cmake/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
+  "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake"
+  "/usr/share/cmake/Modules/CMakeFindEclipseCDT4.cmake"
+  "/usr/share/cmake/Modules/CMakeGenericSystem.cmake"
+  "/usr/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake"
+  "/usr/share/cmake/Modules/CMakeSystem.cmake.in"
+  "/usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake"
+  "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake"
+  "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake"
+  "/usr/share/cmake/Modules/CMakeTestCompilerCommon.cmake"
+  "/usr/share/cmake/Modules/CMakeUnixFindMake.cmake"
+  "/usr/share/cmake/Modules/Compiler/GNU-C.cmake"
+  "/usr/share/cmake/Modules/Compiler/GNU-CXX.cmake"
+  "/usr/share/cmake/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake/Modules/Platform/Linux-CXX.cmake"
+  "/usr/share/cmake/Modules/Platform/Linux-GNU-C.cmake"
+  "/usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake"
+  "/usr/share/cmake/Modules/Platform/Linux-GNU.cmake"
+  "/usr/share/cmake/Modules/Platform/Linux.cmake"
+  "/usr/share/cmake/Modules/Platform/UnixPaths.cmake"
+  "/usr/share/cmake/Modules/ProcessorCount.cmake"
+>>>>>>> fd34f1ccc4de9de2404eb7eb79278d9477b1e503
   )
 
 # The corresponding makefile is:
@@ -118,11 +161,17 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/3.9.4/CMakeCCompiler.cmake"
   "CMakeFiles/3.9.4/CMakeCXXCompiler.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "jalon04/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "jalon05/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
+<<<<<<< HEAD
 set(CMAKE_DEPEND_INFO_FILES
   "jalon04/CMakeFiles/RE216_JALON04_SERVER.dir/DependInfo.cmake"
   "jalon04/CMakeFiles/RE216_JALON04_CLIENT.dir/DependInfo.cmake"
+=======
+SET(CMAKE_DEPEND_INFO_FILES
+  "jalon05/CMakeFiles/RE216_JALON05_CLIENT.dir/DependInfo.cmake"
+  "jalon05/CMakeFiles/RE216_JALON05_SERVER.dir/DependInfo.cmake"
+>>>>>>> fd34f1ccc4de9de2404eb7eb79278d9477b1e503
   )
