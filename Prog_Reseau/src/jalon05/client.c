@@ -23,6 +23,7 @@ int main(int argc,char** argv)
         return 1;
     }
 
+    //Declaration
     struct sockaddr_in sock_host;
     int sock;
     int msg_size=1000;
@@ -58,9 +59,10 @@ int main(int argc,char** argv)
       error("connection");
     }
 
+    //Initialisation of elements
     int salon = 0;
     int file = 0;
-    int i=0;
+    int i=0; // variable of Identification
     char *intro;
     char *channel;
     char *filename;
@@ -73,7 +75,7 @@ int main(int argc,char** argv)
             //send message to the server
             //    while (1){
 
-              if (i==0){
+              if (i==0){ // first Identification
                 printf("\nConnecting to server....done!");
                 printf("\n[SERVER] please introduce yourself by using /nick <your pseudo>\n");
                 fflush(stdout);
@@ -88,7 +90,7 @@ int main(int argc,char** argv)
                 for ( a = 0 ; a<max_fd && sel>=0; a++){
                   //memset(msg_sent, '\0', msg_size);
                   if (FD_ISSET(a, &fd_set_read)){
-                    if (a == fileno(stdin)){
+                    if (a == fileno(stdin)){ // listen input
                       readline(0,msg_sent,msg_size);
                       write(sock,msg_sent,strlen(msg_sent));
 
@@ -114,7 +116,7 @@ int main(int argc,char** argv)
                         i++;
                       }
                     }
-                    else {
+                    else { // message from on other client
                         memset(msg_recv, '\0', msg_size);
                         read(sock, msg_recv, msg_size);
                         fflush(stdout);
@@ -129,7 +131,7 @@ int main(int argc,char** argv)
                 }
 
 
-                else if (salon>0){
+                else if (salon>0){ // a channel is used
 
                   printf("\n[%s] : ", channel);
                   fflush(stdout);
@@ -143,11 +145,11 @@ int main(int argc,char** argv)
                   int a;
                   for ( a = 0 ; a<max_fd && sel>=0; a++){
                     if (FD_ISSET(a, &fd_set_read)){
-                      if (a == fileno(stdin)){
+                      if (a == fileno(stdin)){ // listen input
                         readline(0,msg_sent,msg_size);
                         char *msg_sent2;
                         msg_sent2 = malloc(sizeof(char)*36);
-                        msg_sent2 = concat_string("/msg2all ", msg_sent);
+                        msg_sent2 = concat_string("/msg2all ", msg_sent); // implicit /msg2all, (cf function.c)
                         write(sock,msg_sent2,strlen(msg_sent2));
 
                         char *quit;
@@ -158,28 +160,26 @@ int main(int argc,char** argv)
                           memset(msg_recv, '\0', msg_size);
                           readline(sock, msg_recv, msg_size);
                           write(1,msg_recv,strlen(msg_recv));
-                          salon=0;
+                          salon=0; //close the channel
                           break;
                         }
 
 
 
                         //handle_client_message()
-
+                        //specific case
                         if (strncmp(msg_sent, "/join", strlen("/join")) == 0){
                           printf("[%s] : First you have to quit the channel %s (use /quit)\n", channel, channel);
                         }
 
-                        else {
+                        else { // message from on other client
                           memset(msg_recv, '\0', msg_size);
                           readline(sock, msg_recv, msg_size);
                           fflush(stdout);
-
                         }
-
                       }
 
-                  else {
+                  else { // message from on other client
                       memset(msg_recv, '\0', msg_size);
                       read(sock, msg_recv, msg_size);
                       fflush(stdout);
@@ -190,9 +190,9 @@ int main(int argc,char** argv)
                   sel --;
                 }
               }
-
             }
-            else if (file==1){
+
+            else if (file==1){ // case of a transfert of files
               printf("\n%s\n[Y/N] : ", intro);
               fflush(stdout);
               FD_ZERO(&fd_set_read);
@@ -230,7 +230,7 @@ int main(int argc,char** argv)
                       printf("You didn't answer the question\n");
                     }
                   }
-                  else{
+                  else{  // message from on other client
                     memset(msg_recv, '\0', msg_size);
                     read(sock, msg_recv, msg_size);
                     fflush(stdout);
@@ -255,13 +255,11 @@ int main(int argc,char** argv)
                 for ( a = 0 ; a<max_fd && sel>=0; a++){
                   //memset(msg_sent, '\0', msg_size);
                   if (FD_ISSET(a, &fd_set_read)){
-                    if (a == fileno(stdin)){
+                    if (a == fileno(stdin)){ //listen input
                       readline(0,msg_sent,msg_size);
-
-
                       write(sock,msg_sent,strlen(msg_sent));
 
-
+                      //starts several conditions of the functions with /...
 
                       if (strcmp(msg_sent, "quit\n") == 0){
                       printf("[Server]: You will be terminated\n");
@@ -349,7 +347,7 @@ int main(int argc,char** argv)
 
                       }
 
-                      else {
+                      else { //answer of the server
                         memset(msg_recv, '\0', msg_size);
                         read(sock, msg_recv, msg_size);
                         printf("[Server] : ");
@@ -380,7 +378,7 @@ int main(int argc,char** argv)
           }
 
     }
-
+      //close the socket
       close(sock);
       return 0;
 

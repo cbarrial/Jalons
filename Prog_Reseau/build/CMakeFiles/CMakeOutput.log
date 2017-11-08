@@ -28,6 +28,7 @@ The CXX compiler identification is GNU, found in "/net/t/gchapotot/Jalons/Prog_R
 Determining if the C compiler works passed with the following output:
 Change Dir: /net/t/gchapotot/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
 
+<<<<<<< HEAD
 Run Build Command:/usr/bin/gmake "cmTryCompileExec2990282942/fast"
 /usr/bin/gmake -f CMakeFiles/cmTryCompileExec2990282942.dir/build.make CMakeFiles/cmTryCompileExec2990282942.dir/build
 gmake[1] : on entre dans le répertoire « /net/t/gchapotot/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp »
@@ -64,12 +65,46 @@ LIBRARY_PATH=/opt/rh/sclo-subversion19/root/usr/lib64/../lib64/:/usr/lib/gcc/x86
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec239910740' '-rdynamic' '-mtune=generic' '-march=x86-64'
  /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec239910740 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/opt/rh/sclo-subversion19/root/usr/lib64/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/opt/rh/sclo-subversion19/root/usr/lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTryCompileExec239910740.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
 gmake[1] : on quitte le répertoire « /net/t/gchapotot/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp »
+=======
+Run Build Command:"/usr/bin/make" "cmTC_8fb23/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_8fb23.dir/build.make CMakeFiles/cmTC_8fb23.dir/build
+Building C object CMakeFiles/cmTC_8fb23.dir/testCCompiler.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc    -o CMakeFiles/cmTC_8fb23.dir/testCCompiler.c.o   -c /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_8fb23
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8fb23.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_8fb23.dir/testCCompiler.c.o  -o cmTC_8fb23 
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7cccb/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_7cccb.dir/build.make CMakeFiles/cmTC_7cccb.dir/build
+Building C object CMakeFiles/cmTC_7cccb.dir/CMakeCCompilerABI.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc    -o CMakeFiles/cmTC_7cccb.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.9.4/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_7cccb
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7cccb.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_7cccb.dir/CMakeCCompilerABI.c.o  -o cmTC_7cccb 
+Apple LLVM version 7.0.2 (clang-700.1.81)
+Target: x86_64-apple-darwin14.5.0
+Thread model: posix
+ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTC_7cccb -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_7cccb.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-253.9
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+>>>>>>> 80bf0b6410b5ac33826d0d0424151dfa4b72451d
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /net/t/gchapotot/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp]
   ignore line: []
+<<<<<<< HEAD
   ignore line: [Run Build Command:/usr/bin/gmake "cmTryCompileExec239910740/fast"]
   ignore line: [/usr/bin/gmake -f CMakeFiles/cmTryCompileExec239910740.dir/build.make CMakeFiles/cmTryCompileExec239910740.dir/build]
   ignore line: [gmake[1] : on entre dans le répertoire « /net/t/gchapotot/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp »]
@@ -140,9 +175,105 @@ Parsed C implicit link information from above output:
   implicit fwks: []
 
 
+=======
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_7cccb/fast"]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_7cccb.dir/build.make CMakeFiles/cmTC_7cccb.dir/build]
+  ignore line: [Building C object CMakeFiles/cmTC_7cccb.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc    -o CMakeFiles/cmTC_7cccb.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.9.4/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_7cccb]
+  ignore line: [/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7cccb.dir/link.txt --verbose=1]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_7cccb.dir/CMakeCCompilerABI.c.o  -o cmTC_7cccb ]
+  ignore line: [Apple LLVM version 7.0.2 (clang-700.1.81)]
+  ignore line: [Target: x86_64-apple-darwin14.5.0]
+  ignore line: [Thread model: posix]
+  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTC_7cccb -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_7cccb.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+    arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_7cccb] ==> ignore
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTC_7cccb.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: []
+  implicit dirs: [/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+
+
+Detecting C [-std=c11] compiler features compiled with the following output:
+Change Dir: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_be555/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_be555.dir/build.make CMakeFiles/cmTC_be555.dir/build
+Building C object CMakeFiles/cmTC_be555.dir/feature_tests.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_be555.dir/feature_tests.c.o   -c /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_be555
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_be555.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_be555.dir/feature_tests.c.o  -o cmTC_be555 
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:1c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f5b17/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_f5b17.dir/build.make CMakeFiles/cmTC_f5b17.dir/build
+Building C object CMakeFiles/cmTC_f5b17.dir/feature_tests.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_f5b17.dir/feature_tests.c.o   -c /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_f5b17
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f5b17.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_f5b17.dir/feature_tests.c.o  -o cmTC_f5b17 
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c90] compiler features compiled with the following output:
+Change Dir: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_cec62/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_cec62.dir/build.make CMakeFiles/cmTC_cec62.dir/build
+Building C object CMakeFiles/cmTC_cec62.dir/feature_tests.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_cec62.dir/feature_tests.c.o   -c /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_cec62
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cec62.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_cec62.dir/feature_tests.c.o  -o cmTC_cec62 
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+>>>>>>> 80bf0b6410b5ac33826d0d0424151dfa4b72451d
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /net/t/gchapotot/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
 
+<<<<<<< HEAD
 Run Build Command:/usr/bin/gmake "cmTryCompileExec4052115401/fast"
 /usr/bin/gmake -f CMakeFiles/cmTryCompileExec4052115401.dir/build.make CMakeFiles/cmTryCompileExec4052115401.dir/build
 gmake[1] : on entre dans le répertoire « /net/t/gchapotot/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp »
@@ -179,12 +310,46 @@ LIBRARY_PATH=/opt/rh/sclo-subversion19/root/usr/lib64/../lib64/:/usr/lib/gcc/x86
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec3523033843' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
  /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec3523033843 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/opt/rh/sclo-subversion19/root/usr/lib64/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/opt/rh/sclo-subversion19/root/usr/lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTryCompileExec3523033843.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
 gmake[1] : on quitte le répertoire « /net/t/gchapotot/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp »
+=======
+Run Build Command:"/usr/bin/make" "cmTC_855df/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_855df.dir/build.make CMakeFiles/cmTC_855df.dir/build
+Building CXX object CMakeFiles/cmTC_855df.dir/testCXXCompiler.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++     -o CMakeFiles/cmTC_855df.dir/testCXXCompiler.cxx.o -c /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_855df
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_855df.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_855df.dir/testCXXCompiler.cxx.o  -o cmTC_855df 
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_92810/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_92810.dir/build.make CMakeFiles/cmTC_92810.dir/build
+Building CXX object CMakeFiles/cmTC_92810.dir/CMakeCXXCompilerABI.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/c++     -o CMakeFiles/cmTC_92810.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.9.4/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_92810
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_92810.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_92810.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_92810 
+Apple LLVM version 7.0.2 (clang-700.1.81)
+Target: x86_64-apple-darwin14.5.0
+Thread model: posix
+ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTC_92810 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_92810.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-253.9
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+>>>>>>> 80bf0b6410b5ac33826d0d0424151dfa4b72451d
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /net/t/gchapotot/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp]
   ignore line: []
+<<<<<<< HEAD
   ignore line: [Run Build Command:/usr/bin/gmake "cmTryCompileExec3523033843/fast"]
   ignore line: [/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3523033843.dir/build.make CMakeFiles/cmTryCompileExec3523033843.dir/build]
   ignore line: [gmake[1] : on entre dans le répertoire « /net/t/gchapotot/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp »]
@@ -251,5 +416,272 @@ Parsed CXX implicit link information from above output:
   implicit libs: [stdc++;m;c]
   implicit dirs: [/opt/rh/sclo-subversion19/root/usr/lib64;/usr/lib/gcc/x86_64-redhat-linux/4.8.5;/usr/lib64;/lib64;/usr/lib]
   implicit fwks: []
+=======
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_92810/fast"]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_92810.dir/build.make CMakeFiles/cmTC_92810.dir/build]
+  ignore line: [Building CXX object CMakeFiles/cmTC_92810.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++     -o CMakeFiles/cmTC_92810.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.9.4/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_92810]
+  ignore line: [/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_92810.dir/link.txt --verbose=1]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_92810.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_92810 ]
+  ignore line: [Apple LLVM version 7.0.2 (clang-700.1.81)]
+  ignore line: [Target: x86_64-apple-darwin14.5.0]
+  ignore line: [Thread model: posix]
+  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTC_92810 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_92810.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+    arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_92810] ==> ignore
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTC_92810.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lc++] ==> lib [c++]
+    arg [-lSystem] ==> lib [System]
+    arg [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.0.2/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [c++]
+  implicit dirs: [/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+
+
+Detecting CXX [-std=c++1z] compiler features compiled with the following output:
+Change Dir: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9137b/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_9137b.dir/build.make CMakeFiles/cmTC_9137b.dir/build
+Building CXX object CMakeFiles/cmTC_9137b.dir/feature_tests.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_9137b.dir/feature_tests.cxx.o -c /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_9137b
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9137b.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_9137b.dir/feature_tests.cxx.o  -o cmTC_9137b 
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++14] compiler features compiled with the following output:
+Change Dir: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_212f6/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_212f6.dir/build.make CMakeFiles/cmTC_212f6.dir/build
+Building CXX object CMakeFiles/cmTC_212f6.dir/feature_tests.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_212f6.dir/feature_tests.cxx.o -c /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_212f6
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_212f6.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_212f6.dir/feature_tests.cxx.o  -o cmTC_212f6 
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++11] compiler features compiled with the following output:
+Change Dir: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_538dd/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_538dd.dir/build.make CMakeFiles/cmTC_538dd.dir/build
+Building CXX object CMakeFiles/cmTC_538dd.dir/feature_tests.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_538dd.dir/feature_tests.cxx.o -c /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_538dd
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_538dd.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_538dd.dir/feature_tests.cxx.o  -o cmTC_538dd 
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++98] compiler features compiled with the following output:
+Change Dir: /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_34c73/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_34c73.dir/build.make CMakeFiles/cmTC_34c73.dir/build
+Building CXX object CMakeFiles/cmTC_34c73.dir/feature_tests.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_34c73.dir/feature_tests.cxx.o -c /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_34c73
+/usr/local/Cellar/cmake/3.9.4/bin/cmake -E cmake_link_script CMakeFiles/cmTC_34c73.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_34c73.dir/feature_tests.cxx.o  -o cmTC_34c73 
+>>>>>>> 80bf0b6410b5ac33826d0d0424151dfa4b72451d
 
 

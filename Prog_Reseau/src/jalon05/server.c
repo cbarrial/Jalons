@@ -17,6 +17,8 @@
 #define NO_ALL -1
 #define NO_UNI -1
 #define NO_CREATE -1
+#define NO_JOIN -1
+#define NO_QUIT -1
 #include "functcom.h"
 
 
@@ -29,7 +31,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
-
+    //Declaration
     struct sockaddr_in sin;
     int msg_size=1000;
     char msg[msg_size];
@@ -89,7 +91,7 @@ int main(int argc, char** argv)
           int chanel_index=0;
 
 
-
+          //initialisation of elements
           for (i=0;i < n ;i++ ){
 
             tabclient[i].sockclient=0;
@@ -142,7 +144,7 @@ int main(int argc, char** argv)
                 tabclient[conex-1].sockclient=csock;
                 tabclient[conex-1].date = time(NULL);
                 tabclient[conex-1].ip = inet_ntoa(csin.sin_addr);
-                if (conex-1>20){
+                if (conex-1>20){ //only 20 clients on the chat
                   write(tabclient[conex-1].sockclient, "Server cannot accept incoming connections anymore. Try again later.", sizeof(char)*60);
                   tabclient[conex-1].sockclient=0;
                   conex=conex-1;
@@ -159,7 +161,6 @@ int main(int argc, char** argv)
 
               if (FD_ISSET(tabclient[i].sockclient, &lecture)!=0){
                 int size=readline(tabclient[i].sockclient,msg,msg_size);
-
                 int j=tabclient[i].sockclient;
                 char *j2=tabclient[i].channel;
 
@@ -170,15 +171,16 @@ int main(int argc, char** argv)
                   }
                 }
 
-                ident(tabclient, i, msg);
+                ident(tabclient, i, msg); //Identification of the client
 
-                int list = send_list(msg, conex, tabclient, msg_size, i);
+                int list = send_list(msg, conex, tabclient, msg_size, i); // function /who
 
-                int info = send_info(msg, tabclient, msg_size, conex, i, argv[1]);
+                int info = send_info(msg, tabclient, msg_size, conex, i, argv[1]); //function /whois
 
-                int whocha=who_channel(tabchannel,chanel_index, msg, conex, tabclient, msg_size, i);
+                int whocha=who_channel(tabchannel,chanel_index, msg, conex, tabclient, msg_size, i); //function /who_channel
 
                 int isend_test= isend(msg, tabclient, conex, i);
+
                 if ( isend_test == 0){
                   index = 1;
                   sockstock = tabclient[i].sockclient;
@@ -196,50 +198,44 @@ int main(int argc, char** argv)
                 int z=1;
 
 
-                  if (join(tabclient,tabchannel,chanel_index,msg,i)==0){
+                  if (join(tabclient,tabchannel,chanel_index,msg,i)==0){ // if the client joint the channel, function /join
                     tabclient[i].intochannel =1;
-
                     z=0;
-
                   }
 
 
-              int quittest = quit(tabchannel,chanel_index,msg, j2, i,  conex, tabclient);
+                int quittest = quit(tabchannel,chanel_index,msg, j2, i,  conex, tabclient); // quit the channel
 
+                int uni=unicast(tabclient, i, k, j, msg, conex);// function /msg
 
-                int uni=unicast(tabclient, i, k, j, msg, conex);
+                int create=create_chanel(tabclient, i, k, j, msg,tabchannel,chanel_index);// function /create
 
-                int create=create_chanel(tabclient, i, k, j, msg,tabchannel,chanel_index);
                 if (create!=-1){
-                  chanel_index++;
+                  chanel_index++; //increase channel index
                 }
 
-
-                for (k=1;k<conex;k++){
-
-                  msgall=broadcast(tabclient, i, k, j, msg);
-                  if (tabclient[i].intochannel==1){
+                for (k=1;k<conex;k++){ //all connected clients
+                  msgall=broadcast(tabclient, i, k, j, msg); //function /msgall
+                  if (tabclient[i].intochannel==1){ //if client in a channel
                     msgall2=broadcast2(tabclient, i, k, j2, msg);
-
                   }
-
                 }
 
                 printf("Message received by client %s\n",tabclient[i].name);
 
 
-                if (strcmp(msg, "quit\n") == 0){
+                if (strcmp(msg, "quit\n") == 0){ // message starts with quit, client wants to quit the chat
                   int clos=tabclient[i].sockclient-3;
-                  close(tabclient[i].sockclient);
+                  close(tabclient[i].sockclient); //close the client socket
                   tabclient[i].sockclient=0;
-                  conex=conex-1;
+                  conex=conex-1; // decrease number of clients
                   printf("Client %d is deconnected\n",clos);
-                  if (conex<=1){
+                  if (conex<=1){ //no more clients
                     break;
                   }
                 }
-
-                if (list == NO_WHO && quittest==NO_WHO && whojoin== NO_WHO && whocha== NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE && z==1){
+                // specific cases of the functions
+                if (list == NO_WHO && quittest==NO_QUIT && whojoin== NO_JOIN && whocha== NO_WHO && info == NO_WHOIS && msgall==NO_ALL && msgall2==NO_ALL && uni==NO_UNI && create==NO_CREATE && z==1){
                   //we write back to the client
                   write(tabclient[i].sockclient, msg, size);
                 }
