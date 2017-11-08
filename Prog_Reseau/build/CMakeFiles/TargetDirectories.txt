@@ -1,6 +1,2 @@
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/rebuild_cache.dir
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/edit_cache.dir
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/rebuild_cache.dir
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/edit_cache.dir
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/RE216_JALON05_SERVER.dir
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/RE216_JALON05_CLIENT.dir
+/net/t/gchapotot/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/RE216_JALON05_CLIENT.dir
+/net/t/gchapotot/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/RE216_JALON05_SERVER.dir

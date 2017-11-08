@@ -166,8 +166,7 @@ int main(int argc, char** argv)
                 if (index == 1){
                   int type_answer = answer(msg, sockstock, tabclient, i, index);
                   if (type_answer == 1){
-                    //server_accept(filename, tabclient, i);
-                    //server_send(filename, tabclient, i);
+                    server_accept(filename, user, tabclient, i, conex);
                   }
                 }
 
@@ -201,11 +200,13 @@ int main(int argc, char** argv)
                     tabclient[i].intochannel =1;
 
                     z=0;
-                    
+                    for (k=1;k<conex;k++){
+                      whojoin=who_join(j2,tabclient,k);
+                    }
                   }
 
 
-                int quittest = quit(tabchannel,chanel_index,msg, j2, i,  conex, tabclient);
+                int quittest = quit(msg, j2, i,  conex, tabclient);
 
 
                 int uni=unicast(tabclient, i, k, j, msg, conex);

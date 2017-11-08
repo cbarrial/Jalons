@@ -503,7 +503,7 @@ void server_send(char *filename, client *tabclient, int i){
 }
 
 //get the file
-void server_accept(char *filename, client *tabclient, int i){
+void server_accept(char *filename, char *user, client *tabclient, int i, int conex){
 
   int n=0;
   int file;
@@ -511,7 +511,15 @@ void server_accept(char *filename, client *tabclient, int i){
   int sizefile = 0;
   int sizesent = 0;
   char *buffer;
+  buffer = malloc(sizeof(char)*1024);
 
+  int k;
+  int sock;
+  for (k=1;k<conex;k++){
+    if (strcmp(tabclient[k].name,user) == 0 ){
+      sock=tabclient[k].sockclient;
+    }
+  }
   //Open the file
   file = open(filename, O_RDONLY);
 
@@ -520,12 +528,12 @@ void server_accept(char *filename, client *tabclient, int i){
   sizefile = infos.st_size;
 
   //Send the file size
-  write(tabclient[i].sockclient, &sizefile, sizeof(int));
+  //write(tabclient[i].sockclient, &sizefile, sizeof(int));
 
   while (sizesent < sizefile){
-    n = read(file, buffer, sizeof(char)*36);
+    n = read(file, buffer, sizeof(char)*1024);
     sizesent = sizesent + n;
-    write(tabclient[i].sockclient, buffer, n);
+    write(sock, buffer, n);
   }
   close(file);
 
