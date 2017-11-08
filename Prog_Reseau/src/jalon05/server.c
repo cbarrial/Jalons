@@ -200,13 +200,11 @@ int main(int argc, char** argv)
                     tabclient[i].intochannel =1;
 
                     z=0;
-                    for (k=1;k<conex;k++){
-                      whojoin=who_join(j2,tabclient,k);
-                    }
+
                   }
 
 
-                int quittest = quit(msg, j2, i,  conex, tabclient);
+              int quittest = quit(tabchannel,chanel_index,msg, j2, i,  conex, tabclient);
 
 
                 int uni=unicast(tabclient, i, k, j, msg, conex);

@@ -487,27 +487,6 @@ int quit(char **tabchannel,int channel_index, char *msg, char *j2, int actual, i
 
   }
 
-//Recieve the file and save it under the same name into the server repertory
-void server_send(char *filename, client *tabclient, int i){
-
-  int n=0;
-  int file;
-  int rcv;
-  char *buffer;
-  int sizemsg =0;
-
-  file = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-
-  //Read the size of the message
-  read(tabclient[i].sockclient, &sizemsg, sizeof(int));
-
-  while (rcv < sizemsg){
-    n = read(tabclient[i].sockclient, buffer, sizeof(char)*36);
-    rcv = rcv + n;
-    write(file, buffer, n);
-  }
-  close(file);
-}
 
 //get the file
 void server_accept(char *filename, char *user, client *tabclient, int i, int conex){
@@ -530,71 +509,46 @@ void server_accept(char *filename, char *user, client *tabclient, int i, int con
   //Open the file
   file = open(filename, O_RDONLY);
 
-  //size of the file
-  fstat(file, &infos);
-  sizefile = infos.st_size;
+  if (file !=-1){
+    //size of the file
+    fstat(file, &infos);
+    sizefile = infos.st_size;
 
-  //Send the file size
-  //write(tabclient[i].sockclient, &sizefile, sizeof(int));
+    //Send the file size
+    //write(tabclient[i].sockclient, &sizefile, sizeof(int));
 
-  while (sizesent < sizefile){
-    n = read(file, buffer, sizeof(char)*1024);
-    sizesent = sizesent + n;
-    write(sock, buffer, n);
+    while (sizesent < sizefile){
+      n = read(file, buffer, sizeof(char)*1024);
+      sizesent = sizesent + n;
+      write(sock, buffer, n);
+    }
+
+    close(file);
   }
-  close(file);
+  else{
+    write(tabclient[i].sockclient, "This file doesn't exist\n", strlen("This file doesn't exist\n"));
+  }
+
 
 }
 
-//the client put the file
-void client_send(char *filename, int sock){
 
-  int n =0;
-  int file;
-  struct stat infos;
-  int sizefile = 0;
-  int sizesent = 0;
-  char *buffer;
-
-  //Open the file
-  file = open(filename, O_RDONLY);
-
-  //size of the file
-  fstat(file, &infos);
-  sizefile = infos.st_size;
-
-  //Send the file size
-  write (sock, &sizefile, sizeof(int));
-
-  while (sizesent < sizefile){
-    n = read(file, buffer, sizeof(char)*36);
-    sizesent = sizesent + n;
-    write(sock, buffer, n);
-  }
-  close(file);
-
-}
 
 //the client get the file
-void client_accept(char *filename, int sock){
-
-  int n=0;
+void client_accept(char *filename, char *msg_recv){
   int file;
-  int rcv;
-  char *buffer;
-  int sizemsg = 0;
+  char *name;
+  name = malloc(sizeof(char)*36);
 
-  file = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+  name = "file.txt";
 
-  //Read the size of the message
-  read(sock, &sizemsg, sizeof(int));
+  //Open the file
+  file = open(name, O_CREAT | O_WRONLY, 0777);
 
-  while (rcv < sizemsg){
-    n = read(sock, buffer, sizeof(char)*36);
-    rcv = rcv + n;
-    write(file, buffer, n);
-  }
+  int j =write(file, msg_recv, strlen(msg_recv));
+
   close(file);
+  printf("file.txt saved in build/jalon05\n");
 
 }
 
@@ -658,5 +612,34 @@ int answer(char *msg, int sockstock, client *tabclient, int cactual, int index){
     return 0;
     //write(tabclient[cactual].sockclient, "[FILE TRANSFERT] Wrong syntaxe !", strlen("[FILE TRANSFERT] Wrong syntaxe !"));
   }
+
+}
+
+char *NomFichier(char *fichier)
+{
+
+  printf("dans la fonction nomfichier\n");
+	unsigned int i = 0;
+	int pos = 0;
+	char *ltmp = fichier;
+  char *tmp;
+  tmp = malloc(sizeof(char)*36);
+
+	for (i=0;i<strlen(fichier);i++) {
+
+		if (ltmp[i] == '/') { //si c'est un "/"
+			pos = i;
+
+		}
+
+	} //On récupère ainsi la pos du dernier "/"
+  printf("%d\n", pos);
+
+  for (i=0; i<strlen(fichier); i++){
+    tmp[i]=ltmp[pos+1];
+    pos++;
+  }
+  printf("%s\n", tmp);
+	return tmp;
 
 }

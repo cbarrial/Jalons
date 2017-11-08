@@ -209,14 +209,15 @@ int main(int argc,char** argv)
                   if (a == fileno(stdin)){
                     readline(0,msg_sent,msg_size);
                     write(sock,msg_sent,strlen(msg_sent));
-                    printf("msg_sent : %s\n", msg_sent);
+                    
 
                     if (strcmp(msg_sent, "quit\n") == 0)
                       break;
 
                     else if (strcmp(msg_sent, "Y\n") == 0 || strcmp(msg_sent, "y\n") == 0){
                       printf("Wait for the file transfert...\n");
-                      //client_accept(filename, sock);
+                      read(sock, msg_recv, msg_size);
+                      client_accept(filename, msg_recv);
                       file = 2;
                     }
 
@@ -335,8 +336,17 @@ int main(int argc,char** argv)
                       }
 
                       else if (strcmp(msg_sent, "N\n") == 0 || strcmp(msg_sent, "n\n") == 0 || strcmp(msg_sent, "Y\n") == 0 || strcmp(msg_sent, "y\n") == 0 && file == 2){
+                        printf("ah ben gros on est la\n");
                         memset(msg_recv, '\0', msg_size);
                         read(sock, msg_recv, msg_size);
+                        client_accept(filename, msg_recv);
+                      }
+
+                      else if (strncmp(msg_sent, "Fichieràtransférer", strlen("Fichieràtransférer")) == 0){
+                        char *text_file;
+                        text_file = malloc(sizeof(char)*1024);
+                        printf("j'y suis\n");
+
                       }
 
                       else {
