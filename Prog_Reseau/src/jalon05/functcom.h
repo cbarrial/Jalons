@@ -17,9 +17,9 @@ typedef struct {
   char *name; // name of the client
   char *ip; // ip adress
   char *channel; // name of the channel the client joined
-  int intochannel;
-  char *chanel_creator;
-  time_t date;
+  int intochannel; // use for entry in channel
+  char *chanel_creator; // if not empty, the client created a channel
+  time_t date; // date
 
 }client;
 
