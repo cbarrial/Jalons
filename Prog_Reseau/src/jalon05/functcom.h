@@ -38,7 +38,6 @@ int join(client *tabclient, char **tabchannel, int channel_index, char *msg, int
 int broadcast2(client *tabclient, int cactual,int i, char *j, char *msg);
 int quit(char **tabchannel,int channel_index, char *msg, char *j2, int actual, int conex, client *tabclient);
 int who_channel( char **tabchannel,int chanel_index, char *msg, int conex, client *tabclient, int msg_size, int cactual);
-int who_join (char *j,client *tabclient,int r);
 void server_send(char *filename, client *tabclient, int i);
 void server_accept(char *filename, client *tabclient, int i);
 void client_send(char *filename, int sock);

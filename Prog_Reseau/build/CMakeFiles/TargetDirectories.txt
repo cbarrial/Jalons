@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/rebuild_cache.dir
 /Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/CMakeFiles/edit_cache.dir
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon04/CMakeFiles/rebuild_cache.dir
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon04/CMakeFiles/edit_cache.dir
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon04/CMakeFiles/RE216_JALON04_SERVER.dir
-/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon04/CMakeFiles/RE216_JALON04_CLIENT.dir
-=======
-/net/t/cbarrial/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/RE216_JALON05_CLIENT.dir
-/net/t/cbarrial/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/RE216_JALON05_SERVER.dir
->>>>>>> fd34f1ccc4de9de2404eb7eb79278d9477b1e503
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/rebuild_cache.dir
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/edit_cache.dir
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/RE216_JALON05_SERVER.dir
+/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon05/CMakeFiles/RE216_JALON05_CLIENT.dir

@@ -29,11 +29,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-<<<<<<< HEAD
-  include("/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon04/cmake_install.cmake")
-=======
-  INCLUDE("/net/t/cbarrial/Jalons/Prog_Reseau/build/jalon05/cmake_install.cmake")
->>>>>>> fd34f1ccc4de9de2404eb7eb79278d9477b1e503
+  include("/Users/Guillaume/Documents/Enseirb/T2/Jalons/Prog_Reseau/build/jalon05/cmake_install.cmake")
 
 endif()
 

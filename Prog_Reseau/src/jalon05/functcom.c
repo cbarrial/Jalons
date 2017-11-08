@@ -480,17 +480,6 @@ int quit(char **tabchannel,int channel_index, char *msg, char *j2, int actual, i
 
   }
 
-  int who_join (char *j,client *tabclient,int r){
-    if (strcmp(j,tabclient[r].channel)==0){
-      char  *co = "Connected";
-      write(tabclient[r].sockclient,co,strlen(co));
-      return 0;
-    }
-    else {
-      return -1;
-    }
-  }
-
 //Recieve the file and save it under the same name into the server repertory
 void server_send(char *filename, client *tabclient, int i){
 
