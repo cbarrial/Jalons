@@ -13,10 +13,10 @@
 
 typedef struct {
   int sockclient;
-  int iden ;
-  char *name;
-  char *ip;
-  char *channel;
+  int iden ; // use for first Identification of the client with /nick
+  char *name; // name of the client
+  char *ip; // ip adress
+  char *channel; // name of the channel the client joined
   int intochannel;
   char *chanel_creator;
   time_t date;
