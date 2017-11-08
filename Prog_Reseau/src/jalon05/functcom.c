@@ -28,7 +28,7 @@ int do_socket(int domain, int type, int protocol) {
     return sockfd;
 }
 
-
+// read the message untill \n
 ssize_t readline(int fd, char str[], size_t maxlen){
   int i, a;
   char caract, *tab;
@@ -54,6 +54,7 @@ ssize_t readline(int fd, char str[], size_t maxlen){
   return i;
 }
 
+//get a substring of tab1 when tab1 and tab2 have the same starting string
 char *read_name(char tab1[],char tab2[]){
   int j=0;
   int i=0;
@@ -73,13 +74,14 @@ char *read_name(char tab1[],char tab2[]){
   return msg;
 }
 
+//error message
 void error(const char *msg)
 {
     perror(msg);
     exit(1);
 }
 
-
+//concat two strings
 char *concat_string(char *s1,char *s2)
 {
      char *s3=NULL;
@@ -89,16 +91,17 @@ char *concat_string(char *s1,char *s2)
      return s3;
    }
 
+//function /who, write on current client socket the connected clients
 int send_list( char *msg, int conex, client *tabclient, int msg_size, int cactual){
 
   int j;
   char *who = "/who\n";
   char *who_name="";
 
-  if (strcmp(msg, who) == 0){
+  if (strcmp(msg, who) == 0){  // message starts with /who
     memset(msg, '\0', msg_size);
 
-    for (j=1; j<conex; j++){
+    for (j=1; j<conex; j++){ // all connected clients
       char *name;
       name=malloc(sizeof(char)*36);
       char *list2 = " \n- ";
@@ -112,11 +115,11 @@ int send_list( char *msg, int conex, client *tabclient, int msg_size, int cactua
     return 0;
   }
   else {
-    return -1;
+    return -1; // not /who
   }
 }
 
-//fonction bonus qui affiche la liste des salons
+//function bonus, returns the list of existing channels
 int who_channel( char **tabchannel, int chanel_index, char *msg, int conex, client *tabclient, int msg_size, int cactual){
 
   int j;
@@ -144,6 +147,7 @@ int who_channel( char **tabchannel, int chanel_index, char *msg, int conex, clie
   }
 }
 
+//function /whois, write on current client socket the information about the right client
 int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cactual, char *portnb){
       char *whois = "/whois";
       char *user;
@@ -160,12 +164,12 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
 
       int i=1;
       sscanf(msg, "%s", command);
-      if (strcmp(command,"/whois") == 0){
+      if (strcmp(command,"/whois") == 0){ // message starts with /whois
 
 
         while (i<nbclients){
-          if (strncmp(user, tabclient[i].name, strlen(tabclient[i].name)) == 0){
-            strftime(date, 20, "%Y-%m-%d %H:%M:%S", localtime(&tabclient[i].date));
+          if (strncmp(user, tabclient[i].name, strlen(tabclient[i].name)) == 0){ // right client
+            strftime(date, 20, "%Y-%m-%d %H:%M:%S", localtime(&tabclient[i].date)); // get the date and time
             user[strlen(user)-1]='\0';
             memset(msg, '\0', msg_size);
             info1 = concat_string("[Server] : ", user);
@@ -189,7 +193,7 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
           }
 
         }
-        if (i == nbclients){
+        if (i == nbclients){ // special case
           char  *mistake = "This client doesn't exist";
           write(tabclient[cactual].sockclient, mistake, strlen(mistake));
           return 0;
@@ -201,9 +205,10 @@ int send_info(char *msg, client *tabclient, int msg_size, int nbclients, int cac
     }
   }
 
+//function /nick, add the name of client in socket if good Identification
 void ident(client *tabclient, int cactual, char *msg){
   char *nick = "/nick ";
-  if (tabclient[cactual].iden == 0){
+  if (tabclient[cactual].iden == 0){ // first Identification of the client
 
     if (strncmp(msg, nick, strlen(nick)) == 0 && strcmp(tabclient[cactual].name,"")==0){
       tabclient[cactual].name=read_name(msg,"/nick ");
@@ -212,12 +217,12 @@ void ident(client *tabclient, int cactual, char *msg){
       printf("Identification of %s\n", tabclient[cactual].name);
     }
 
-    else {
+    else { // false Identification
       printf("Identification failed\n");
     }
   }
   else {
-    if (strncmp(msg, nick, strlen(nick)) == 0 ){
+    if (strncmp(msg, nick, strlen(nick)) == 0 ){ // rename the client name
       tabclient[cactual].name=read_name(msg,"/nick ");
       tabclient[cactual].name[strlen(tabclient[cactual].name)-1]='\0';
 
@@ -226,7 +231,7 @@ void ident(client *tabclient, int cactual, char *msg){
   }
 }
 
-
+//function /msgall, write the message to all connected clients (for() in server.c)
 int broadcast(client *tabclient, int cactual,int i, int j, char *msg){
   char *msgall = "/msgall ";
   char *say;
@@ -240,8 +245,8 @@ int broadcast(client *tabclient, int cactual,int i, int j, char *msg){
   info= concat_string(info1," : ");
   info1= concat_string(info,say);
 
-  if (strncmp(msg, msgall, strlen(msgall)) == 0 ){
-    if (j!=tabclient[i].sockclient){
+  if (strncmp(msg, msgall, strlen(msgall)) == 0 ){ // message starts with /msgall
+    if (j!=tabclient[i].sockclient){ //doesn't write on the current client
 
 
       write(tabclient[i].sockclient, info1, strlen(info1));
@@ -258,9 +263,9 @@ int broadcast(client *tabclient, int cactual,int i, int j, char *msg){
 
 }
 
-
+//function broadcast of channel
 int broadcast2(client *tabclient, int cactual,int i, char *j, char *msg){
-  char *msgall = "/msg2all ";
+  char *msgall = "/msg2all "; //invisible/implicit /msg2all, in order to use same function of broadast
   char *say;
   say=malloc(sizeof(char)*100);
   say=read_name(msg,"/msg2all ");
@@ -277,7 +282,7 @@ int broadcast2(client *tabclient, int cactual,int i, char *j, char *msg){
     if (strcmp(j,tabclient[i].channel)==0){
 
 
-      write(tabclient[i].sockclient, info1, strlen(info1));
+      write(tabclient[i].sockclient, info1, strlen(info1)); // write to all clients of the channel
 
 
     }
@@ -292,7 +297,7 @@ int broadcast2(client *tabclient, int cactual,int i, char *j, char *msg){
 }
 
 
-
+//function /msg, write a message to a specific client
 int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex){
   char *say;
   say=malloc(sizeof(char)*100);
@@ -305,14 +310,14 @@ int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex){
   char *info="";
   char *info1="";
 
-  sscanf(msg, "%s %s %s", command, client, say);
+  sscanf(msg, "%s %s %s", command, client, say); //get several informations
 
 
 
   int k;
   int sock;
-  for (k=1;k<conex;k++){
-    if (strcmp(tabclient[k].name,client) == 0 ){
+  for (k=1;k<conex;k++){ // all connected clients
+    if (strcmp(tabclient[k].name,client) == 0 ){ // right client who was asked
       sock=tabclient[k].sockclient;
     }
   }
@@ -326,7 +331,7 @@ int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex){
   info= concat_string(info1," : ");
   info1= concat_string(info,say);
 
-  if (strcmp(command,"/msg") == 0 ){
+  if (strcmp(command,"/msg") == 0 ){ // message starts with /msg
 
       write(sock, info1, strlen(info1));
 
@@ -342,7 +347,7 @@ int unicast(client *tabclient, int cactual,int i, int j, char *msg, int conex){
 
 }
 
-
+//function /create, create a channel
 int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char** tabchannel,int chanel_index){
   char *command = "/create ";
   char *name;
@@ -352,13 +357,13 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
     char *info="";
     info=concat_string("You have created channel ",name);
 
-    if (strncmp(msg, command, strlen(command)) == 0 ){
+    if (strncmp(msg, command, strlen(command)) == 0 ){ // message starts with /create
 
       int mis=0;
       int i;
-      for (i=0;i<chanel_index;i++){
+      for (i=0;i<chanel_index;i++){ // all channel names
 
-        if (strcmp(tabchannel[i],name)==0){
+        if (strcmp(tabchannel[i],name)==0){ //already exists
           mis=1;
         }
       }
@@ -369,9 +374,9 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
         }
       else {
 
-      write(tabclient[cactual].sockclient,info,strlen(info));
-      tabchannel[chanel_index]=name;
-      tabclient[cactual].chanel_creator =name;
+      write(tabclient[cactual].sockclient,info,strlen(info)); // write to the client who created the channel
+      tabchannel[chanel_index]=name; // add name to tabchannel
+      tabclient[cactual].chanel_creator =name; // add information to the structure, needed for quit function
 
       return 0;
     }}
@@ -380,39 +385,41 @@ int create_chanel(client *tabclient, int cactual,int i, int j, char *msg, char**
     }
   }
 
+
+// function /quit, go out of the channel
 int quit(char **tabchannel,int channel_index, char *msg, char *j2, int actual, int conex, client *tabclient){
     int i;
     char *quit;
     char *name;
     name=malloc(sizeof(char)*36);
-    name=read_name(msg,"/msg2all ");
+    name=read_name(msg,"/msg2all ");//implicit /msg2all
     quit = malloc(sizeof(char)*36);
     quit = concat_string("/quit ", j2);
 
 
-    if (strncmp(name, quit, strlen(quit)) == 0){
+    if (strncmp(name, quit, strlen(quit)) == 0){ // message starts with /quit
 
       tabclient[actual].channel = "";
       int l=conex;
-      for (i=1; i<conex; i++){
+      for (i=1; i<conex; i++){ // all connected clients
 
         if (strcmp(tabclient[i].channel, j2) != 0 ){
           l=l-1;
         }
       }
 
-      if (l==1){
+      if (l==1){ // no more client in the channel
 
 
-        for(i=0; i<channel_index; i++){
+        for(i=0; i<channel_index; i++){ // all channel names
           if (strcmp(tabchannel[i], j2)==0){
-            tabchannel[i]="";
+            tabchannel[i]=""; //empty the channel name
           }
         }
         int j;
         for (j=1; j<conex; j++){
 
-          if (strcmp(tabclient[j].chanel_creator, j2) == 0){
+          if (strcmp(tabclient[j].chanel_creator, j2) == 0){ //looking for the client who created the channel
 
 
 
@@ -440,7 +447,7 @@ int quit(char **tabchannel,int channel_index, char *msg, char *j2, int actual, i
     }
   }
 
-
+//function /join, go in the channel
   int join(client *tabclient, char **tabchannel, int channel_index, char *msg,int actual){
     char *command = "/join ";
     char *nameofchannel;
@@ -454,8 +461,8 @@ int quit(char **tabchannel,int channel_index, char *msg, char *j2, int actual, i
     int i;
 
 
-    if (strncmp(msg, command, strlen(command))==0){
-      for(i=0; i<channel_index; i++){
+    if (strncmp(msg, command, strlen(command))==0){ // message starts with /join
+      for(i=0; i<channel_index; i++){ //all channel names
         if (strcmp(tabchannel[i], nameofchannel)==0){
           k=0;
         }
@@ -465,11 +472,11 @@ int quit(char **tabchannel,int channel_index, char *msg, char *j2, int actual, i
         write(tabclient[actual].sockclient, mistake, strlen(mistake));
         return 0;
       }
-      else {
+      else { //channel exists
 
 
-        write(tabclient[actual].sockclient,info,strlen(info));
-        tabclient[actual].channel=nameofchannel;
+        write(tabclient[actual].sockclient,info,strlen(info)); //write to the current client
+        tabclient[actual].channel=nameofchannel; //add to the stucture
 
         return 0;
       }
